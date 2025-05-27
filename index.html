@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resolve OTC - Modern Trading, Simplified</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--m3-sys-light-background);
+        color: var(--m3-sys-light-on-surface);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      /* Material 3 Inspired Color Palette & Variables */
+      :root {
+        /* Primary (from Resolve Logo #0052B4) */
+        --m3-sys-light-primary: #0052b4;
+        --m3-sys-light-on-primary: #ffffff;
+        --m3-sys-light-primary-container: #d6e3ff; /* Lightened blue */
+        --m3-sys-light-on-primary-container: #001b3e; /* Dark blue */
+
+        /* Secondary (Vibrant Teal) */
+        --m3-sys-light-secondary: #008080; /* Teal */
+        --m3-sys-light-on-secondary: #ffffff;
+        --m3-sys-light-secondary-container: #a6e8e8; /* Light Teal */
+        --m3-sys-light-on-secondary-container: #002020;
+
+        /* Tertiary (Brighter Orange accent) */
+        --m3-sys-light-tertiary: #ff8c00; /* Brighter Orange */
+        --m3-sys-light-on-tertiary: #ffffff;
+        --m3-sys-light-tertiary-container: #ffddb9; /* Light Orange */
+        --m3-sys-light-on-tertiary-container: #381e00;
+
+        /* Neutral Surfaces */
+        --m3-sys-light-background: #f8fafc; /* Slightly cooler white */
+        --m3-sys-light-on-background: #1a1c1e;
+        --m3-sys-light-surface: #f8fafc;
+        --m3-sys-light-on-surface: #1a1c1e;
+        --m3-sys-light-surface-variant: #dee3eb; /* Slightly more defined variant */
+        --m3-sys-light-on-surface-variant: #41474d;
+        --m3-sys-light-outline: #71777f;
+        --m3-sys-light-outline-variant: #c1c7ce;
+
+        /* Surface Containers */
+        --m3-sys-light-surface-container-lowest: #ffffff;
+        --m3-sys-light-surface-container-low: #f2f4f7;
+        --m3-sys-light-surface-container: #eceff3;
+        --m3-sys-light-surface-container-high: #e6e9ed;
+        --m3-sys-light-surface-container-highest: #e1e3e8;
+
+        --text-primary-dark: var(--m3-sys-light-on-surface);
+        --text-secondary-dark: var(--m3-sys-light-on-surface-variant);
+
+        --m3-shadow-elevation-1: 0px 1px 3px rgba(0, 0, 0, 0.1),
+          0px 1px 2px rgba(0, 0, 0, 0.06);
+        --m3-shadow-elevation-2: 0px 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0px 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --m3-shadow-elevation-3: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0px 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+
+      .hero-section {
+        /* Adopting a clean, solid background style similar to Paystack.com */
+        background-color: var(--m3-sys-light-surface-container-low);
+      }
+
+      .accent-color {
+        color: var(--m3-sys-light-primary);
+      }
+      .secondary-accent-color {
+        color: var(--m3-sys-light-tertiary);
+      }
+
+      .m3-card {
+        background-color: var(--m3-sys-light-surface-container-lowest);
+        border: 1px solid var(--m3-sys-light-outline-variant);
+        border-radius: 1.25rem;
+        box-shadow: var(--m3-shadow-elevation-1);
+        transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+      .m3-card-hover:hover {
+        box-shadow: var(--m3-shadow-elevation-3);
+        transform: translateY(-4px);
+      }
+
+      .m3-button {
+        padding: 0.85rem 1.75rem;
+        border-radius: 1.75rem;
+        font-weight: 700;
+        transition: background-color 0.2s ease, box-shadow 0.2s ease,
+          transform 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        letter-spacing: 0.015em;
+        text-transform: uppercase;
+        font-size: 0.875rem;
+      }
+      .m3-button-primary {
+        background-color: var(--m3-sys-light-primary);
+        color: var(--m3-sys-light-on-primary);
+        box-shadow: var(--m3-shadow-elevation-1);
+      }
+      .m3-button-primary:hover {
+        background-color: color-mix(
+          in srgb,
+          var(--m3-sys-light-primary) 85%,
+          black
+        );
+        box-shadow: var(--m3-shadow-elevation-2);
+        transform: translateY(-2px);
+      }
+      .m3-button-secondary {
+        background-color: transparent;
+        border: 2px solid var(--m3-sys-light-primary);
+        color: var(--m3-sys-light-primary);
+      }
+      .m3-button-secondary:hover {
+        background-color: var(--m3-sys-light-primary-container);
+        color: var(--m3-sys-light-on-primary-container);
+        border-color: var(--m3-sys-light-primary-container);
+        transform: translateY(-2px);
+      }
+      .m3-button-text {
+        background-color: transparent;
+        color: var(--m3-sys-light-primary);
+        padding: 0.85rem 1.25rem;
+        font-weight: 700;
+      }
+      .m3-button-text:hover {
+        background-color: var(--m3-sys-light-primary-container);
+        color: var(--m3-sys-light-on-primary-container);
+      }
+
+      h1 {
+        font-size: 2.25rem;
+        line-height: 2.75rem;
+        font-weight: 800;
+      }
+      h2 {
+        font-size: 1.875rem;
+        line-height: 2.375rem;
+        font-weight: 700;
+      }
+      h3 {
+        font-size: 1.5rem;
+        line-height: 2rem;
+        font-weight: 700;
+      }
+
+      p,
+      li {
+        font-size: 0.9375rem;
+        line-height: 1.65;
+        color: var(--m3-sys-light-on-surface-variant);
+      }
+      @media (min-width: 768px) {
+        p,
+        li {
+          font-size: 1rem;
+          line-height: 1.75;
+        }
+      }
+      label {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        font-weight: 600;
+        color: var(--m3-sys-light-on-surface-variant);
+      }
+
+      .hero-content h1 {
+        color: var(--m3-sys-light-on-background);
+        min-height: 110px;
+      }
+      @media (min-width: 768px) {
+        .hero-content h1 {
+          font-size: 3rem;
+          line-height: 3.5rem;
+          letter-spacing: -0.035em;
+          min-height: 140px;
+        }
+      }
+      @media (min-width: 1024px) {
+        .hero-content h1 {
+          font-size: 3.75rem;
+          line-height: 4.25rem;
+          min-height: 170px;
+        }
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+        line-height: 1.75; /* Consistent with other line-heights */
+        color: var(--m3-sys-light-on-surface-variant);
+        font-weight: 400;
+      }
+      @media (min-width: 768px) {
+        .hero-content p {
+          font-size: 1.125rem;
+          line-height: 1.75;
+        }
+      }
+      @media (min-width: 1024px) {
+        .hero-content p {
+          font-size: 1.25rem;
+          line-height: 1.75;
+        }
+      }
+      .section-subtitle {
+        max-width: 48rem;
+      }
+
+      .feature-card h3 {
+      }
+      .feature-icon {
+        font-size: 2.75rem;
+        margin-bottom: 1.25rem;
+        color: var(--m3-sys-light-primary);
+      }
+
+      .m3-input {
+        background-color: var(--m3-sys-light-surface-container-high);
+        border: 1px solid var(--m3-sys-light-outline-variant);
+        border-radius: 0.75rem;
+        padding: 1rem;
+        color: var(--m3-sys-light-on-surface);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+      .m3-input:focus {
+        outline: none;
+        border-color: var(--m3-sys-light-primary);
+        box-shadow: 0 0 0 2px var(--m3-sys-light-primary-container);
+      }
+      .m3-input::placeholder {
+        color: var(--m3-sys-light-on-surface-variant);
+      }
+      select.m3-input {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2341474D'%3E%3Cpath d='M7 10l5 5 5-5H7z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1.5em;
+        padding-right: 3rem;
+      }
+
+      .hero-content-item {
+        opacity: 0; /* Start hidden, JS will animate */
+        transition: opacity 0.5s ease-in-out 0.1s; /* Added for smooth fade-in */
+      }
+      .typewriter-cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1em;
+        background-color: var(--m3-sys-light-on-background);
+        animation: blinkCursor 0.7s infinite;
+        margin-left: 2px;
+        vertical-align: text-bottom;
+      }
+      @keyframes blinkCursor {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+      .animate-instantly {
+        display: inline-block;
+        animation: popInstantly 0.6s ease-out forwards,
+          pulseInstantly 2.5s 0.7s infinite ease-in-out;
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      @keyframes popInstantly {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      @keyframes pulseInstantly {
+        0%,
+        100% {
+          transform: scale(1);
+          filter: brightness(100%);
+        }
+        50% {
+          transform: scale(1.08);
+          filter: brightness(120%);
+        }
+      }
+
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.6s cubic-bezier(0.645, 0.045, 0.355, 1),
+          transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+        transition-delay: 0.1s;
+      }
+      .animate-on-scroll.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .stagger-delay > .animate-on-scroll:nth-child(1) {
+        transition-delay: 0.1s;
+      }
+      .stagger-delay > .animate-on-scroll:nth-child(2) {
+        transition-delay: 0.2s;
+      }
+      .stagger-delay > .animate-on-scroll:nth-child(3) {
+        transition-delay: 0.3s;
+      }
+      .stagger-delay > .animate-on-scroll:nth-child(4) {
+        transition-delay: 0.4s;
+      }
+      .stagger-delay > .animate-on-scroll:nth-child(5) {
+        transition-delay: 0.5s;
+      }
+      .stagger-delay > .animate-on-scroll:nth-child(6) {
+        transition-delay: 0.6s;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(26, 28, 30, 0.7);
+      }
+      .modal-content {
+        background-color: var(--m3-sys-light-surface-container-low);
+        color: var(--m3-sys-light-on-surface);
+        margin: 10% auto;
+        padding: 1.75rem;
+        border-radius: 1.75rem;
+        width: 90%;
+        max-width: 500px;
+        text-align: center;
+        box-shadow: var(--m3-shadow-elevation-3);
+      }
+      .modal-close-button {
+        color: var(--m3-sys-light-on-surface-variant);
+        float: right;
+        font-size: 1.75rem;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .modal-close-button:hover,
+      .modal-close-button:focus {
+        color: var(--m3-sys-light-on-surface);
+      }
+
+      .navbar-logo {
+        height: 40px;
+        width: auto;
+        object-fit: contain;
+      }
+      nav {
+        background-color: var(--m3-sys-light-surface-container);
+        box-shadow: var(--m3-shadow-elevation-1);
+        border-bottom: 1px solid var(--m3-sys-light-outline-variant);
+      }
+      nav a {
+        color: var(--m3-sys-light-on-surface-variant);
+        font-weight: 500;
+      }
+      nav a:hover {
+        color: var(--m3-sys-light-primary);
+      }
+
+      .form-section-bg {
+        background-color: var(--m3-sys-light-surface-container-low);
+      }
+      .form-section-bg .m3-card {
+        background-color: var(--m3-sys-light-surface-container-lowest);
+      }
+
+      #markets .market-item-card {
+        background-color: var(--m3-sys-light-surface-container-lowest);
+        border: 1px solid var(--m3-sys-light-outline-variant);
+        border-radius: 1.25rem;
+        box-shadow: var(--m3-shadow-elevation-1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+      #markets .market-item-card:hover {
+        background-color: var(--m3-sys-light-surface-container-low);
+        box-shadow: var(--m3-shadow-elevation-2);
+        transform: translateY(-3px);
+      }
+      #markets .market-item-card .font-semibold {
+        color: var(--m3-sys-light-on-surface);
+      }
+      #markets .market-item-icon {
+        font-size: 2.75rem;
+        color: var(--m3-sys-light-secondary);
+        margin-bottom: 0.75rem;
+        line-height: 1;
+      }
+
+      footer {
+        background-color: var(--m3-sys-light-surface-container);
+        border-top: 1px solid var(--m3-sys-light-surface-variant);
+        color: var(--m3-sys-light-on-surface-variant);
+      }
+      footer a {
+        color: var(--m3-sys-light-on-surface-variant);
+      }
+      footer a:hover {
+        color: var(--m3-sys-light-primary);
+      }
+
+      .app-download-button {
+        display: inline-flex;
+        align-items: center;
+        background-color: var(--m3-sys-light-surface-container-high);
+        color: var(--m3-sys-light-on-surface);
+        padding: 0.85rem 1.75rem;
+        border-radius: 1.75rem;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease,
+          transform 0.3s ease;
+        min-width: 220px;
+        justify-content: center;
+        border: 1px solid var(--m3-sys-light-outline);
+        box-shadow: var(--m3-shadow-elevation-1);
+      }
+      .app-download-button:hover {
+        background-color: var(--m3-sys-light-surface-container-highest);
+        box-shadow: var(--m3-shadow-elevation-2);
+        transform: translateY(-2px);
+      }
+      .app-download-button i {
+        font-size: 1.6rem;
+        margin-right: 0.85rem;
+        color: var(--m3-sys-light-primary);
+      }
+      .app-download-button .button-text-small {
+        display: block;
+        font-size: 0.8rem;
+        line-height: 1;
+        margin-bottom: 0.125rem;
+        color: var(--m3-sys-light-on-surface-variant);
+      }
+      .app-download-button .button-text-large {
+        display: block;
+        font-size: 1.2rem;
+        line-height: 1;
+        color: var(--m3-sys-light-on-surface);
+        font-weight: 700;
+      }
+
+      .testimonial-carousel-container {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden;
+      }
+      .testimonial-slides {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+      .testimonial-card {
+        background-color: var(--m3-sys-light-surface-container-low);
+        border: 1px solid var(--m3-sys-light-outline-variant);
+        border-radius: 1.25rem;
+        padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+        box-shadow: var(--m3-shadow-elevation-2);
+        position: relative;
+        min-width: 100%;
+        box-sizing: border-box;
+      }
+      .testimonial-quote-icon {
+        font-size: 2.75rem;
+        color: var(--m3-sys-light-secondary-container);
+        opacity: 1;
+        position: absolute;
+        top: 1.25rem;
+        left: 1.25rem;
+      }
+      .testimonial-text {
+        font-style: italic;
+        color: var(--m3-sys-light-on-surface-variant);
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        min-height: 80px;
+        font-size: 1.05rem;
+      }
+      .testimonial-author {
+        font-weight: 700;
+        color: var(--m3-sys-light-on-surface);
+      }
+      .testimonial-author-title {
+        font-size: 0.875rem;
+        color: var(--m3-sys-light-on-surface-variant);
+      }
+      .star-rating .fa-star {
+        color: var(--m3-sys-light-tertiary);
+      }
+      .star-rating .fa-star-half-alt {
+        color: var(--m3-sys-light-tertiary);
+      }
+
+      .carousel-nav-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: var(--m3-sys-light-surface-container-high);
+        color: var(--m3-sys-light-primary);
+        border: 1px solid var(--m3-sys-light-outline-variant);
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: var(--m3-shadow-elevation-1);
+        width: 32px;
+        height: 32px;
+        padding: 0.5rem;
+      }
+      @media (min-width: 640px) {
+        .carousel-nav-button {
+          width: 38px;
+          height: 38px;
+          padding: 0.65rem;
+        }
+      }
+
+      .carousel-nav-button:hover {
+        background-color: var(--m3-sys-light-surface-container-highest);
+        box-shadow: var(--m3-shadow-elevation-2);
+      }
+      .prev-button {
+        left: 8px;
+      }
+      .next-button {
+        right: 8px;
+      }
+      @media (min-width: 640px) {
+        .prev-button {
+          left: 10px;
+        }
+        .next-button {
+          right: 10px;
+        }
+      }
+
+      .carousel-dots {
+        text-align: center;
+        padding: 1rem 0;
+      }
+      .carousel-dot {
+        cursor: pointer;
+        height: 10px;
+        width: 10px;
+        margin: 0 5px;
+        background-color: var(--m3-sys-light-surface-variant);
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+      .carousel-dot.active {
+        background-color: var(--m3-sys-light-primary);
+        transform: scale(1.3);
+      }
+      /* Removed .hero-visual-svg and related SVG animation styles */
+    </style>
+  </head>
+  <body class="antialiased">
+    <nav class="fixed w-full z-50">
+      <div
+        class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center"
+      >
+        <a href="#" class="flex items-center">
+          <img
+            src="resolve%20png%20opt1.png"
+            alt="Resolve Logo"
+            class="navbar-logo mr-2"
+          />
+        </a>
+        <div
+          class="flex flex-wrap items-center justify-end gap-x-1 gap-y-1 sm:gap-x-2 md:gap-x-1 lg:gap-x-2"
+        >
+          <a
+            href="#features"
+            class="text-xs sm:text-sm px-1 py-1 sm:px-2 sm:py-1 rounded-md font-medium m3-button-text"
+            >Why Resolve</a
+          >
+          <a
+            href="#markets"
+            class="text-xs sm:text-sm px-1 py-1 sm:px-2 sm:py-1 rounded-md font-medium m3-button-text"
+            >Assets</a
+          >
+          <a
+            href="#mobile-app"
+            class="text-xs sm:text-sm px-1 py-1 sm:px-2 sm:py-1 rounded-md font-medium m3-button-text"
+            >Mobile App</a
+          >
+          <a
+            href="#testimonials"
+            class="text-xs sm:text-sm px-1 py-1 sm:px-2 sm:py-1 rounded-md font-medium m3-button-text"
+            >Testimonials</a
+          >
+          <a
+            href="#newsletter-section"
+            class="text-xs sm:text-sm px-1 py-1 sm:px-2 sm:py-1 rounded-md font-medium m3-button-text"
+            >Newsletter</a
+          >
+          <a
+            href="#contact-us-section"
+            class="m3-button m3-button-secondary text-xs !py-1 !px-2 sm:!px-3 sm:!py-2"
+            >Contact Us</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero-section min-h-screen flex items-center">
+      <div class="container mx-auto px-4 sm:px-6 py-16 md:py-24">
+        <div class="flex flex-col items-center justify-center">
+          <div class="hero-content text-center max-w-3xl">
+            <h1
+              id="heroHeadline"
+              class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 opacity-0"
+            >
+              {/* Content will be injected by JS */}
+            </h1>
+            <p class="text-lg sm:text-xl lg:text-2xl mb-8 hero-content-item">
+              Effortlessly trade large volumes of digital and traditional assets
+              with deep liquidity, competitive pricing, and complete discretion.
+            </p>
+            <div
+              class="flex flex-col sm:flex-row justify-center gap-4 hero-content-item"
+            >
+              <a
+                href="#contact-us-section"
+                class="m3-button m3-button-primary text-base lg:text-lg"
+              >
+                Get Started
+              </a>
+              <a
+                href="#features"
+                class="m3-button m3-button-secondary text-base lg:text-lg"
+              >
+                Learn More
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="features" class="py-12 md:py-16">
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10 md:mb-12">
+          <h2
+            class="section-title text-3xl sm:text-4xl md:text-5xl animate-on-scroll"
+          >
+            Why Choose Resolve?
+          </h2>
+          <p
+            class="section-subtitle mt-3 md:mt-4 animate-on-scroll"
+            style="transition-delay: 0.2s"
+          >
+            Discover our easy-to-use and efficient OTC trading platform. Here's
+            why we are different:
+          </p>
+        </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 stagger-delay"
+        >
+          <div
+            class="m3-card m3-card-hover p-6 md:p-8 feature-card animate-on-scroll"
+          >
+            <div class="flex justify-center">
+              <i class="fas fa-bolt feature-icon"></i>
+            </div>
+            <h3
+              class="m3-title-large text-center text-lg sm:text-xl md:text-2xl"
+            >
+              Very Fast Trades
+            </h3>
+            <p class="text-center m3-body-large">
+              Your trades are completed in a flash. Our system is built for
+              speed and efficiency.
+            </p>
+          </div>
+          <div
+            class="m3-card m3-card-hover p-6 md:p-8 feature-card animate-on-scroll"
+          >
+            <div class="flex justify-center">
+              <i class="fas fa-shield-halved feature-icon"></i>
+            </div>
+            <h3
+              class="m3-title-large text-center text-lg sm:text-xl md:text-2xl"
+            >
+              Top-Level Security
+            </h3>
+            <p class="text-center m3-body-large">
+              Your money and assets are protected with the best security, just
+              like a bank.
+            </p>
+          </div>
+          <div
+            class="m3-card m3-card-hover p-6 md:p-8 feature-card animate-on-scroll"
+          >
+            <div class="flex justify-center">
+              <i class="fas fa-water feature-icon"></i>
+            </div>
+            <h3
+              class="m3-title-large text-center text-lg sm:text-xl md:text-2xl"
+            >
+              Always Enough to Trade
+            </h3>
+            <p class="text-center m3-body-large">
+              You can always find buyers and sellers, so you get good prices,
+              even for big amounts.
+            </p>
+          </div>
+          <div
+            class="m3-card m3-card-hover p-6 md:p-8 feature-card animate-on-scroll"
+          >
+            <div class="flex justify-center">
+              <i class="fas fa-shipping-fast feature-icon"></i>
+            </div>
+            <h3
+              class="m3-title-large text-center text-lg sm:text-xl md:text-2xl"
+            >
+              Quick Trading & Withdrawals
+            </h3>
+            <p class="text-center m3-body-large">
+              Trade when you want and get your money out quickly and easily.
+            </p>
+          </div>
+          <div
+            class="m3-card m3-card-hover p-6 md:p-8 feature-card animate-on-scroll"
+          >
+            <div class="flex justify-center">
+              <i class="fas fa-headset feature-icon"></i>
+            </div>
+            <h3
+              class="m3-title-large text-center text-lg sm:text-xl md:text-2xl"
+            >
+              Helpful Customer Support
+            </h3>
+            <p class="text-center m3-body-large">
+              Our friendly support team is always ready to help you, anytime,
+              day or night.
+            </p>
+          </div>
+          <div
+            class="m3-card m3-card-hover p-6 md:p-8 feature-card animate-on-scroll"
+          >
+            <div class="flex justify-center">
+              <i class="fas fa-eye-slash feature-icon"></i>
+            </div>
+            <h3
+              class="m3-title-large text-center text-lg sm:text-xl md:text-2xl"
+            >
+              Private & Confidential Trades
+            </h3>
+            <p class="text-center m3-body-large">
+              Your big trades are kept private, so they don't affect market
+              prices. Your business stays your business.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="markets"
+      class="py-12 md:py-16 bg-[var(--m3-sys-light-surface-container-low)] border-t border-b border-[var(--m3-sys-light-outline-variant)]"
+    >
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10 md:mb-12">
+          <h2
+            class="section-title text-3xl sm:text-4xl md:text-5xl animate-on-scroll"
+          >
+            Many Assets to Trade
+          </h2>
+          <p
+            class="section-subtitle mt-3 md:mt-4 animate-on-scroll"
+            style="transition-delay: 0.2s"
+          >
+            Trade different types of assets with good prices and lots of options
+            available.
+          </p>
+        </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center stagger-delay"
+        >
+          <div class="market-item-card animate-on-scroll">
+            <i class="fab fa-bitcoin market-item-icon"></i>
+            <p class="font-semibold text-sm md:text-base">Bitcoin (BTC)</p>
+          </div>
+          <div class="market-item-card animate-on-scroll">
+            <i class="fas fa-dollar-sign market-item-icon"></i>
+            <p class="font-semibold text-sm md:text-base">Tether (USDT)</p>
+          </div>
+          <div class="market-item-card animate-on-scroll">
+            <i class="fab fa-ethereum market-item-icon"></i>
+            <p class="font-semibold text-sm md:text-base">Ethereum (ETH)</p>
+          </div>
+          <div class="market-item-card animate-on-scroll">
+            <i class="fas fa-naira-sign market-item-icon"></i>
+            <p class="font-semibold text-sm md:text-base">
+              Nigerian Naira (NGN)
+            </p>
+          </div>
+        </div>
+        <p class="text-center mt-10 animate-on-scroll m3-body-large">
+          We offer many other assets too.
+          <a href="#contact-us-section" class="accent-color hover:underline"
+            >Ask us for the complete list.</a
+          >
+        </p>
+      </div>
+    </section>
+
+    <section id="mobile-app" class="py-12 md:py-16">
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10 md:mb-12">
+          <h2
+            class="section-title text-3xl sm:text-4xl md:text-5xl animate-on-scroll"
+          >
+            Trade With Your Phone
+          </h2>
+          <p
+            class="section-subtitle mt-3 md:mt-4 animate-on-scroll"
+            style="transition-delay: 0.2s"
+          >
+            Use our secure mobile app to access your Resolve OTC account and
+            trade wherever you are.
+          </p>
+        </div>
+        <div
+          class="flex flex-col sm:flex-row justify-center items-center gap-6 md:gap-8 animate-on-scroll"
+          style="transition-delay: 0.3s"
+        >
+          <a href="#" class="app-download-button">
+            <i class="fab fa-apple"></i>
+            <div>
+              <span class="button-text-small">Download on the</span>
+              <span class="button-text-large">App Store</span>
+            </div>
+          </a>
+          <a href="#" class="app-download-button">
+            <i class="fab fa-google-play"></i>
+            <div>
+              <span class="button-text-small">GET IT ON</span>
+              <span class="button-text-large">Google Play</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="testimonials"
+      class="py-12 md:py-16 bg-[var(--m3-sys-light-surface-container-low)] border-t border-b border-[var(--m3-sys-light-outline-variant)]"
+    >
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10 md:mb-12">
+          <h2
+            class="section-title text-3xl sm:text-4xl md:text-5xl animate-on-scroll"
+          >
+            Hear From Our Clients
+          </h2>
+          <p
+            class="section-subtitle mt-3 md:mt-4 animate-on-scroll"
+            style="transition-delay: 0.2s"
+          >
+            See why traders and institutions trust Resolve for their OTC needs.
+          </p>
+        </div>
+
+        <div
+          class="testimonial-carousel-container w-11/12 sm:w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl animate-on-scroll"
+        >
+          <div class="testimonial-slides">
+            <div class="testimonial-card text-center">
+              <i class="fas fa-quote-left testimonial-quote-icon"></i>
+              <p class="testimonial-text m3-body-large">
+                "Resolve has made our large crypto trades so much smoother. The
+                liquidity is excellent, and their team is always responsive and
+                professional. Highly recommended!"
+              </p>
+              <div class="mt-4">
+                <div class="testimonial-author">Adebayo K.</div>
+                <div class="testimonial-author-title">
+                  CEO, Fintech Innovators Ltd.
+                </div>
+                <div class="star-rating mt-2">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card text-center">
+              <i class="fas fa-quote-left testimonial-quote-icon"></i>
+              <p class="testimonial-text m3-body-large">
+                "The discretion and speed Resolve offers for OTC transactions
+                are unmatched. We can execute significant volumes without
+                worrying about market impact. Their platform is top-notch."
+              </p>
+              <div class="mt-4">
+                <div class="testimonial-author">Chioma E.</div>
+                <div class="testimonial-author-title">
+                  Head of Trading, Global Ventures PLC
+                </div>
+                <div class="star-rating mt-2">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star-half-alt"></i>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card text-center">
+              <i class="fas fa-quote-left testimonial-quote-icon"></i>
+              <p class="testimonial-text m3-body-large">
+                "Switching to Resolve for our Naira to Crypto OTC needs was the
+                best decision. Their rates are competitive, and the withdrawal
+                process is incredibly fast. Excellent service all around!"
+              </p>
+              <div class="mt-4">
+                <div class="testimonial-author">Emeka O.</div>
+                <div class="testimonial-author-title">Private Investor</div>
+                <div class="star-rating mt-2">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-nav-button prev-button"
+            onclick="moveTestimonialSlide(-1)"
+            aria-label="Previous testimonial"
+          >
+            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <button
+            class="carousel-nav-button next-button"
+            onclick="moveTestimonialSlide(1)"
+            aria-label="Next testimonial"
+          >
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="carousel-dots" id="testimonialCarouselDots"></div>
+      </div>
+    </section>
+
+    <section id="security" class="py-12 md:py-16">
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="flex flex-col md:flex-row items-center gap-10 md:gap-12">
+          <div class="md:w-1/2 animate-on-scroll">
+            <img
+              src="https://images.pexels.com/photos/5473298/pexels-photo-5473298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              alt="Abstract Security Network"
+              class="w-full h-auto rounded-2xl shadow-xl object-cover"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x450/DEE3EB/41474D?text=Secure+Infrastructure';"
+            />
+          </div>
+          <div
+            class="md:w-1/2 text-center md:text-left animate-on-scroll"
+            style="transition-delay: 0.2s"
+          >
+            <h2 class="section-title text-3xl sm:text-4xl md:text-5xl mb-6">
+              Keeping Your Money Safe
+            </h2>
+            <p class="m3-body-large mb-6">
+              We use many strong security methods to protect your money and
+              information, using the latest technology and strict procedures.
+            </p>
+            <ul class="space-y-3 text-base m3-body-large">
+              <li class="flex items-center">
+                <i class="fas fa-check-circle accent-color mr-3 text-xl"></i
+                >Offline Storage for Extra Safety
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check-circle accent-color mr-3 text-xl"></i
+                >Regular Security Checks and Tests
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check-circle accent-color mr-3 text-xl"></i
+                >Protection from Online Attacks
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check-circle accent-color mr-3 text-xl"></i
+                >Extra Login Security (2FA)
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check-circle accent-color mr-3 text-xl"></i
+                >Insurance for Certain Assets (Ask for details)
+              </li>
+            </ul>
+            <a
+              href="#contact-us-section"
+              class="mt-8 inline-block m3-button m3-button-primary"
+              >More About Our Security</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="newsletter-section"
+      class="py-12 md:py-16 hero-bg form-section-bg"
+    >
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10 md:mb-12">
+          <h2
+            class="section-title text-3xl sm:text-4xl md:text-5xl animate-on-scroll"
+          >
+            Stay Updated with Resolve
+          </h2>
+          <p
+            class="section-subtitle mt-3 md:mt-4 animate-on-scroll"
+            style="transition-delay: 0.1s"
+          >
+            Subscribe to our newsletter for the latest market insights, platform
+            updates, and exclusive offers.
+          </p>
+        </div>
+        <div
+          class="max-w-xl mx-auto m3-card p-8 md:p-10 animate-on-scroll"
+          style="transition-delay: 0.2s"
+        >
+          <form id="newsletterForm">
+            <div class="mb-6">
+              <label for="newsletterEmail" class="block m3-label-large mb-2"
+                >Email Address:</label
+              >
+              <input
+                type="email"
+                id="newsletterEmail"
+                name="newsletterEmail"
+                required
+                class="m3-input w-full"
+                placeholder="you@example.com"
+              />
+            </div>
+            <div class="text-center">
+              <button type="submit" class="m3-button m3-button-primary text-lg">
+                Subscribe Now
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="contact-us-section"
+      class="py-12 md:py-16 bg-[var(--m3-sys-light-background)]"
+    >
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10 md:mb-12">
+          <h2
+            class="section-title text-3xl sm:text-4xl md:text-5xl animate-on-scroll"
+          >
+            Get In Touch With Us
+          </h2>
+          <p
+            class="section-subtitle mt-3 md:mt-4 animate-on-scroll"
+            style="transition-delay: 0.1s"
+          >
+            Have questions or need assistance? Our team is here to help you.
+          </p>
+        </div>
+        <div
+          class="max-w-2xl mx-auto m3-card p-8 md:p-10 animate-on-scroll"
+          style="transition-delay: 0.2s"
+        >
+          <form id="mainContactForm">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label for="contactName" class="block m3-label-large mb-2"
+                  >Full Name:</label
+                >
+                <input
+                  type="text"
+                  id="contactName"
+                  name="contactName"
+                  required
+                  class="m3-input w-full"
+                  placeholder="e.g., Jane Doe"
+                />
+              </div>
+              <div>
+                <label for="contactEmail" class="block m3-label-large mb-2"
+                  >Email Address:</label
+                >
+                <input
+                  type="email"
+                  id="contactEmail"
+                  name="contactEmail"
+                  required
+                  class="m3-input w-full"
+                  placeholder="you@example.com"
+                />
+              </div>
+            </div>
+            <div class="mb-6">
+              <label for="contactCompany" class="block m3-label-large mb-2"
+                >Institution / Company (Optional):</label
+              >
+              <input
+                type="text"
+                id="contactCompany"
+                name="contactCompany"
+                class="m3-input w-full"
+                placeholder="e.g., Major Capital Inc."
+              />
+            </div>
+            <div class="mb-6">
+              <label for="contactInquiryType" class="block m3-label-large mb-2"
+                >Inquiry Type:</label
+              >
+              <select
+                id="contactInquiryType"
+                name="contactInquiryType"
+                class="m3-input w-full"
+              >
+                <option>General Inquiry</option>
+                <option>API Access Request</option>
+                <option>Partnership Opportunities</option>
+                <option>Technical Support</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="mb-6">
+              <label for="contactMessage" class="block m3-label-large mb-2"
+                >Message:</label
+              >
+              <textarea
+                id="contactMessage"
+                name="contactMessage"
+                rows="5"
+                required
+                class="m3-input w-full"
+                placeholder="Please describe your needs..."
+              ></textarea>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="m3-button m3-button-primary text-lg">
+                Send Your Message
+              </button>
+            </div>
+          </form>
+        </div>
+        <div
+          class="mt-12 text-center animate-on-scroll"
+          style="transition-delay: 0.3s"
+        >
+          <p class="m3-body-large">
+            You can also reach our support team directly:
+          </p>
+          <p class="mt-2 m3-body-large">
+            Email:
+            <a
+              href="mailto:support@resolve.com"
+              class="accent-color hover:underline"
+              >support@resolve.com</a
+            >
+          </p>
+          <p class="m3-body-large">
+            Phone (Support Line):
+            <a href="tel:+12345678902" class="accent-color hover:underline"
+              >+1 (234) 567-8902</a
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-12">
+      <div class="container mx-auto px-4 sm:px-6 text-center">
+        <div class="mb-4">
+          <a href="#" class="inline-flex items-center">
+            <img
+              src="resolve%20png%20opt1.png"
+              alt="Resolve Logo"
+              class="navbar-logo mr-2"
+            />
+          </a>
+        </div>
+        <div class="space-x-4 mb-4 text-sm">
+          <a href="#" class="m3-button-text text-xs">Terms of Service</a>
+          <a href="#" class="m3-button-text text-xs">Privacy Policy</a>
+          <a href="#" class="m3-button-text text-xs">Risk Disclosure</a>
+        </div>
+        <p class="text-sm m3-body-large">
+          &copy; <span id="currentYear"></span> Resolve. All Rights Reserved.
+        </p>
+        <p class="text-xs mt-2 m3-body-large">
+          Trading digital assets and other financial products has risks and may
+          not be right for everyone. Resolve helps you make trades but does not
+          offer financial advice.
+        </p>
+      </div>
+    </footer>
+
+    <div id="responseModal" class="modal">
+      <div class="modal-content">
+        <span class="modal-close-button" onclick="closeModal()">&times;</span>
+        <p id="modalMessage" class="m3-body-large"></p>
+        <button onclick="closeModal()" class="mt-6 m3-button m3-button-primary">
+          OK
+        </button>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentYearElement = document.getElementById("currentYear");
+        if (currentYearElement) {
+          currentYearElement.textContent = new Date().getFullYear();
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              const navbarHeight = document.querySelector("nav").offsetHeight;
+              const elementPosition = targetElement.getBoundingClientRect().top;
+              const offsetPosition =
+                elementPosition + window.pageYOffset - navbarHeight;
+              window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+            }
+          });
+        });
+
+        const modal = document.getElementById("responseModal");
+        const modalMessage = document.getElementById("modalMessage");
+
+        window.showModal = function (message) {
+          if (modalMessage) modalMessage.textContent = message;
+          if (modal) modal.style.display = "block";
+        };
+
+        window.closeModal = function () {
+          if (modal) modal.style.display = "none";
+        };
+
+        window.onclick = function (event) {
+          if (event.target == modal) closeModal();
+        };
+
+        // Newsletter Form Submission
+        const newsletterForm = document.getElementById("newsletterForm");
+        if (newsletterForm) {
+          newsletterForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const formData = new FormData(newsletterForm);
+            const email = formData.get("newsletterEmail");
+            console.log("Newsletter Subscription:", email);
+            showModal(
+              "Thank you for subscribing to the Resolve newsletter, " +
+                email +
+                "!"
+            );
+            newsletterForm.reset();
+          });
+        }
+
+        // Main Contact Form Submission
+        const mainContactForm = document.getElementById("mainContactForm");
+        if (mainContactForm) {
+          mainContactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const formData = new FormData(mainContactForm);
+            const name = formData.get("contactName");
+            console.log(
+              "Main Contact Form Data:",
+              Object.fromEntries(formData)
+            );
+            showModal(
+              "Thank you, " +
+                name +
+                "! Your message has been sent. Our team will get back to you shortly."
+            );
+            mainContactForm.reset();
+          });
+        }
+
+        const animatedElements =
+          document.querySelectorAll(".animate-on-scroll");
+        if (animatedElements.length > 0) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            {
+              threshold: 0.1,
+            }
+          );
+
+          animatedElements.forEach((el) => {
+            observer.observe(el);
+          });
+        }
+
+        // Testimonial Carousel Logic
+        let currentTestimonialSlide = 0;
+        const testimonialSlidesContainer = document.querySelector(
+          ".testimonial-slides"
+        );
+        const testimonialSlides = document.querySelectorAll(
+          ".testimonial-slides .testimonial-card"
+        );
+        const testimonialDotsContainer = document.getElementById(
+          "testimonialCarouselDots"
+        );
+        let testimonialInterval;
+
+        window.showTestimonialSlide = function (index) {
+          if (!testimonialSlidesContainer || testimonialSlides.length === 0)
+            return;
+
+          if (index >= testimonialSlides.length) {
+            currentTestimonialSlide = 0;
+          } else if (index < 0) {
+            currentTestimonialSlide = testimonialSlides.length - 1;
+          } else {
+            currentTestimonialSlide = index;
+          }
+          testimonialSlidesContainer.style.transform =
+            "translateX(" + -currentTestimonialSlide * 100 + "%)";
+          updateTestimonialDots();
+        };
+
+        window.moveTestimonialSlide = function (n) {
+          showTestimonialSlide(currentTestimonialSlide + n);
+          resetTestimonialInterval();
+        };
+
+        window.currentTestimonialDot = function (n) {
+          showTestimonialSlide(n);
+          resetTestimonialInterval();
+        };
+
+        function updateTestimonialDots() {
+          if (!testimonialDotsContainer) return;
+          testimonialDotsContainer.innerHTML = "";
+          testimonialSlides.forEach((_, index) => {
+            const dot = document.createElement("span");
+            dot.classList.add("carousel-dot");
+            if (index === currentTestimonialSlide) {
+              dot.classList.add("active");
+            }
+            dot.setAttribute("aria-label", "Go to slide " + (index + 1));
+            dot.setAttribute("onclick", "currentTestimonialDot(" + index + ")");
+            testimonialDotsContainer.appendChild(dot);
+          });
+        }
+
+        function startTestimonialInterval() {
+          testimonialInterval = setInterval(() => {
+            moveTestimonialSlide(1);
+          }, 5000);
+        }
+
+        function resetTestimonialInterval() {
+          clearInterval(testimonialInterval);
+          startTestimonialInterval();
+        }
+
+        if (testimonialSlides.length > 0) {
+          showTestimonialSlide(currentTestimonialSlide);
+          startTestimonialInterval();
+        }
+
+        // Hero Content Animation Logic
+        const heroHeadlineElement = document.getElementById("heroHeadline");
+        const heroParagraph = document.querySelector(".hero-content p");
+        const heroButtonsContainer = document.querySelector(
+          ".hero-content .flex-col.sm\\:flex-row"
+        );
+
+        const headlineText =
+          'Secure & Instant OTC Trading with <span class="accent-color">Resolve</span> <span class="secondary-accent-color animate-instantly">Instantly.</span>';
+        let charIndex = 0;
+        let heroAnimationTimeout;
+
+        function typeHeadline() {
+          if (heroHeadlineElement) {
+            heroHeadlineElement.classList.remove("opacity-0");
+
+            let textSoFar = heroHeadlineElement.innerHTML.replace(
+              /<span class="typewriter-cursor"><\/span>$/,
+              ""
+            );
+            const cursorHtml = '<span class="typewriter-cursor"></span>';
+
+            if (charIndex < headlineText.length) {
+              if (headlineText.substring(charIndex).startsWith("<span")) {
+                const closingSpanIndex =
+                  headlineText.indexOf("</span>", charIndex) + 7;
+                textSoFar += headlineText.substring(
+                  charIndex,
+                  closingSpanIndex
+                );
+                charIndex = closingSpanIndex;
+              } else {
+                textSoFar += headlineText.charAt(charIndex);
+                charIndex++;
+              }
+              heroHeadlineElement.innerHTML = textSoFar + cursorHtml;
+              heroAnimationTimeout = setTimeout(typeHeadline, 50);
+            } else {
+              // Typing complete, remove cursor from final text
+              heroHeadlineElement.innerHTML = textSoFar;
+
+              if (heroParagraph) {
+                heroParagraph.style.opacity = "0";
+                heroParagraph.classList.add("hero-content-item");
+                // Trigger reflow for animation - already handled by adding class and CSS transition
+                // The void offsetWidth is a common trick to force reflow,
+                // but adding the class with the transition property
+                // before setting opacity is usually sufficient.
+                // Keeping it here for robustness, but it might not be strictly necessary.
+                void heroParagraph.offsetWidth;
+                heroParagraph.style.opacity = "1";
+              }
+              if (heroButtonsContainer) {
+                heroButtonsContainer.style.opacity = "0";
+                heroButtonsContainer.classList.add("hero-content-item");
+                void heroButtonsContainer.offsetWidth;
+                setTimeout(
+                  () => (heroButtonsContainer.style.opacity = "1"),
+                  150
+                ); // Stagger slightly
+              }
+            }
+          }
+        }
+
+        function resetHeroAnimations() {
+          if (heroAnimationTimeout) clearTimeout(heroAnimationTimeout);
+          charIndex = 0;
+          if (heroHeadlineElement) {
+            heroHeadlineElement.innerHTML = "";
+            heroHeadlineElement.classList.add("opacity-0");
+          }
+          if (heroParagraph) {
+            heroParagraph.classList.remove("hero-content-item");
+            heroParagraph.style.opacity = "0";
+          }
+          if (heroButtonsContainer) {
+            heroButtonsContainer.classList.remove("hero-content-item");
+            heroButtonsContainer.style.opacity = "0";
+          }
+        }
+
+        resetHeroAnimations();
+        heroAnimationTimeout = setTimeout(() => {
+          typeHeadline();
+        }, 500);
+      });
+    </script>
+  </body>
+</html>
