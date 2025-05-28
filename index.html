@@ -14,6 +14,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
+    <!-- Favicon Link -->
+    <link rel="icon" type="image/png" href="./img/favicon-32x32.png" />
     <!-- Link to your external CSS file -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -681,6 +683,7 @@
           </p>
         </div>
       </div>
+      \
     </section>
 
     <footer class="py-12">
@@ -961,7 +964,7 @@
                 charIndex++;
               }
               heroHeadlineElement.innerHTML = textSoFar + cursorHtml;
-              heroAnimationTimeout = setTimeout(typeHeadline, 50);
+              heroAnimationTimeout = setTimeout(typeHeadline, 15); // Further reduced delay for even faster typing
             } else {
               // Typing complete, remove cursor from final text
               heroHeadlineElement.innerHTML = textSoFar;
