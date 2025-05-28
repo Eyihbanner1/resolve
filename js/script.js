@@ -15,12 +15,31 @@ document.addEventListener("DOMContentLoaded", function () {
         const offsetPosition =
           elementPosition + window.pageYOffset - navbarHeight;
         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+
+        // Close mobile menu if open
+        const mobileMenu = document.getElementById("mobileMenu");
+        const mobileMenuButton =
+          document.getElementById("mobileMenuButton");
+        const hamburgerIcon = document.getElementById("hamburgerIcon");
+        if (mobileMenu && mobileMenu.classList.contains("menu-open")) {
+          mobileMenu.classList.remove("menu-open");
+          mobileMenuButton.setAttribute("aria-expanded", "false");
+          if (hamburgerIcon) {
+            hamburgerIcon.classList.remove("fa-times");
+            hamburgerIcon.classList.add("fa-bars");
+          }
+        }
       }
     });
   });
 
   const modal = document.getElementById("responseModal");
   const modalMessage = document.getElementById("modalMessage");
+
+  // Hamburger Menu Toggle Logic
+  const mobileMenuButton = document.getElementById("mobileMenuButton");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const hamburgerIcon = document.getElementById("hamburgerIcon");
 
   window.showModal = function (message) {
     if (modalMessage) modalMessage.textContent = message;
@@ -69,6 +88,25 @@ document.addEventListener("DOMContentLoaded", function () {
           "! Your message has been sent. Our team will get back to you shortly."
       );
       mainContactForm.reset();
+    });
+  }
+
+  if (mobileMenuButton && mobileMenu && hamburgerIcon) {
+    mobileMenuButton.addEventListener("click", () => {
+      const isExpanded =
+        mobileMenuButton.getAttribute("aria-expanded") === "true" ||
+        false;
+      mobileMenuButton.setAttribute("aria-expanded", !isExpanded);
+      mobileMenu.classList.toggle("menu-open");
+
+      // Toggle icon
+      if (mobileMenu.classList.contains("menu-open")) {
+        hamburgerIcon.classList.remove("fa-bars");
+        hamburgerIcon.classList.add("fa-times");
+      } else {
+        hamburgerIcon.classList.remove("fa-times");
+        hamburgerIcon.classList.add("fa-bars");
+      }
     });
   }
 
@@ -200,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
           charIndex++;
         }
         heroHeadlineElement.innerHTML = textSoFar + cursorHtml;
-        heroAnimationTimeout = setTimeout(typeHeadline, 50);
+        heroAnimationTimeout = setTimeout(typeHeadline, 15); // Further reduced delay for even faster typing
       } else {
         // Typing complete, remove cursor from final text
         heroHeadlineElement.innerHTML = textSoFar;
@@ -246,67 +284,32 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Scroll to top button logic
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+  function toggleScrollTopButton() {
+    if (scrollTopBtn) {
+      if (
+        document.body.scrollTop > 200 ||
+        document.documentElement.scrollTop > 200
+      ) {
+        scrollTopBtn.classList.add("show");
+      } else {
+        scrollTopBtn.classList.remove("show");
+      }
+    }
+  }
+
+  window.addEventListener("scroll", toggleScrollTopButton);
+
+  if (scrollTopBtn) {
+    scrollTopBtn.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
   resetHeroAnimations();
   heroAnimationTimeout = setTimeout(() => {
     typeHeadline();
-  }, 500); // End of Hero Content Animation Logic
-
-  // Hamburger Menu Logic
-  const hamburgerButton = document.getElementById("hamburgerButton");
-  const mobileNavLinks = document.getElementById("mobileNavLinks");
-  const hamburgerIconOpen = document.getElementById("hamburgerIconOpen");
-  const hamburgerIconClose =
-    document.getElementById("hamburgerIconClose");
-
-  if (
-    hamburgerButton &&
-    mobileNavLinks &&
-    hamburgerIconOpen &&
-    hamburgerIconClose
-  ) {
-    const navLinksForMenuClose = mobileNavLinks.querySelectorAll("a");
-
-    hamburgerButton.addEventListener("click", () => {
-      const isExpanded =
-        hamburgerButton.getAttribute("aria-expanded") === "true";
-      hamburgerButton.setAttribute("aria-expanded", !isExpanded);
-      mobileNavLinks.classList.toggle("hidden");
-      // mobileNavLinks.classList.toggle('flex'); // flex-col is already part of its classes
-
-      if (!isExpanded) {
-        // Was closed, now opening
-        hamburgerIconOpen.classList.remove("block");
-        hamburgerIconOpen.classList.add("hidden");
-        hamburgerIconClose.classList.remove("hidden");
-        hamburgerIconClose.classList.add("block");
-      } else {
-        // Was open, now closing
-        hamburgerIconOpen.classList.remove("hidden");
-        hamburgerIconOpen.classList.add("block");
-        hamburgerIconClose.classList.remove("block");
-        hamburgerIconClose.classList.add("hidden");
-      }
-    });
-
-    navLinksForMenuClose.forEach((link) => {
-      link.addEventListener("click", () => {
-        const isMobileView =
-          window.getComputedStyle(hamburgerButton.parentElement)
-            .display !== "none";
-        if (
-          isMobileView &&
-          !mobileNavLinks.classList.contains("hidden")
-        ) {
-          hamburgerButton.setAttribute("aria-expanded", "false");
-          mobileNavLinks.classList.add("hidden");
-          // mobileNavLinks.classList.remove('flex');
-
-          hamburgerIconOpen.classList.remove("hidden");
-          hamburgerIconOpen.classList.add("block");
-          hamburgerIconClose.classList.add("hidden");
-          hamburgerIconClose.classList.remove("block");
-        }
-      });
-    });
-  } // End of Hamburger Menu Logic
+  }, 500);
 });
