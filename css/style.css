@@ -1,5 +1,28 @@
+/*
+  If "Sansation" is a local font, you'll need to add @font-face rules here.
+  Example:
+*/
+@font-face {
+  font-family: 'Sansation';
+  /* Corrected path assuming fonts are in 'resolve/fonts/' */
+  src: url('./fonts/Sansation-Regular.ttf') format('truetype');
+  font-weight: normal; /* or 400 */
+  font-style: normal;
+  font-display: swap; /* Improves perceived performance by showing fallback font while loading */
+}
+
+@font-face {
+  font-family: 'Sansation';
+  /* Corrected path assuming fonts are in 'resolve/fonts/' */
+  src: url('./fonts/Sansation-Bold.ttf') format('truetype');
+  font-weight: bold; /* or 700 */
+  font-style: normal;
+  font-display: swap;
+}
+/* Add more @font-face rules here if you have other Sansation weights/styles (e.g., Light, Italic) */
+
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Sansation", "Inter", sans-serif; /* Sansation as primary, Inter as fallback */
   background-color: var(--m3-sys-light-background);
   color: var(--m3-sys-light-on-surface);
   overflow-x: hidden;
@@ -15,10 +38,10 @@ body {
   --m3-sys-light-on-primary-container: #001b3e; /* Dark blue */
 
   /* Secondary (Vibrant Teal) */
-  --m3-sys-light-secondary: #008080; /* Teal */
+  --m3-sys-light-secondary: #4F3BFF; /* Updated Secondary - Vibrant Violet-Blue */
   --m3-sys-light-on-secondary: #ffffff;
-  --m3-sys-light-secondary-container: #a6e8e8; /* Light Teal */
-  --m3-sys-light-on-secondary-container: #002020;
+  --m3-sys-light-secondary-container: #E4E0FF; /* Derived Light Violet for Secondary Container */
+  --m3-sys-light-on-secondary-container: #2A1FBC; /* Updated On Secondary Container - Dark Violet-Blue */
 
   /* Tertiary (Brighter Orange accent) */
   --m3-sys-light-tertiary: #ff8c00; /* Brighter Orange */
@@ -155,18 +178,21 @@ body {
 
 h1 {
   /* Fluid font size: min, preferred (scales with viewport width), max */
+  font-family: "Bricolage Grotesque", "Inter", sans-serif; /* Bricolage Grotesque for H1 */
   font-size: clamp(1.875rem, 1.375rem + 2.5vw, 2.75rem);
   line-height: 1.2;
   font-weight: 800;
 }
 h2 {
   /* Fluid font size */
+  font-family: "Bricolage Grotesque", "Inter", sans-serif; /* Bricolage Grotesque for H2 */
   font-size: clamp(1.5rem, 1.125rem + 1.875vw, 2.375rem);
   line-height: 1.25;
   font-weight: 700;
 }
 h3 {
   /* Fluid font size */
+  font-family: "Bricolage Grotesque", "Inter", sans-serif; /* Bricolage Grotesque for H3 */
   font-size: clamp(1.125rem, 0.875rem + 1.25vw, 2rem);
   line-height: 1.3;
   font-weight: 700;
@@ -177,6 +203,7 @@ li {
   font-size: 0.9375rem;
   line-height: 1.65;
   color: var(--m3-sys-light-on-surface-variant);
+  text-align: center; /* Center align paragraphs and list items */
 }
 @media (min-width: 768px) {
   p,
@@ -235,6 +262,8 @@ label {
 }
 .section-subtitle {
   max-width: 48rem;
+  margin-left: auto; /* Center the block */
+  margin-right: auto; /* Center the block */
 }
 
 .feature-icon {
@@ -380,7 +409,7 @@ select.m3-input {
 }
 
 .navbar-logo {
-  height: 2.5rem; /* 40px / 16px */
+  height: 2.875rem; /* 46px / 16px */
   width: auto;
   object-fit: contain;
 }
