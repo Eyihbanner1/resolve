@@ -139,6 +139,7 @@ body {
   letter-spacing: 0.015em;
   text-transform: uppercase;
   font-size: 0.875rem;
+  white-space: nowrap; /* Ensures button text stays on one line */
 }
 .m3-button-primary {
   background-color: var(--m3-sys-light-primary);
