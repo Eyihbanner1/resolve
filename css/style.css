@@ -400,6 +400,68 @@ textarea.m3-input {
   transition-delay: 0.6s;
 }
 
+/* Decorative Shapes Animations for Hero */
+.decorative-shape {
+  pointer-events: none; /* Ensures they don't interfere with mouse interactions */
+  /* filter: blur(2px); You can optionally add a slight blur */
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.1; transform: scale(0.95); }
+  50% { opacity: 0.25; transform: scale(1.05); }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 8s infinite ease-in-out;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  50% { transform: translateY(-25px) translateX(15px) rotate(15deg); }
+}
+.animate-float-slow {
+  animation: float-slow 12s infinite ease-in-out;
+}
+
+/* Floating Crypto Icons for Hero */
+.floating-crypto-icon {
+  position: absolute;
+  color: var(--m3-sys-light-on-surface-variant); /* Or a specific color like var(--m3-sys-light-primary-container) */
+  opacity: 0.12; /* Faded appearance */
+  z-index: 5; /* Above decorative shapes (z-0), below main content (z-10) */
+  pointer-events: none; /* Non-interactive */
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  filter: blur(0.5px); /* Optional: slight blur for softer look */
+}
+
+@keyframes float-crypto-1 { /* Gentle up-down and slight rotation */
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-25px) rotate(8deg); }
+}
+
+@keyframes float-crypto-2 { /* Diagonal movement and different rotation */
+  0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+  25% { transform: translate(15px, -15px) rotate(-5deg); }
+  50% { transform: translate(0px, -30px) rotate(0deg); }
+  75% { transform: translate(-15px, -15px) rotate(5deg); }
+}
+
+@keyframes float-crypto-3 { /* Larger drift and opacity pulse */
+  0%, 100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.1; }
+  50% { transform: translateY(-20px) translateX(20px) scale(1.05); opacity: 0.18; }
+}
+
+/* Example of how to apply a specific animation if not done inline (though inline is fine for variety)
+.floating-crypto-icon.icon-btc {
+  animation-name: float-crypto-1;
+  animation-duration: 12s;
+}
+.floating-crypto-icon.icon-eth {
+  animation-name: float-crypto-2;
+  animation-duration: 15s;
+}
+*/
+
 .modal {
   display: none;
   position: fixed;

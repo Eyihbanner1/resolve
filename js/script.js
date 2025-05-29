@@ -205,8 +205,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // Hero Content Animation Logic
   const heroHeadlineElement = document.getElementById("heroHeadline");
   const heroParagraph = document.querySelector(".hero-content p");
+  // Updated selector to match the current HTML structure for the buttons' container
   const heroButtonsContainer = document.querySelector(
-    ".hero-content .flex-col.sm\\:flex-row"
+    ".hero-content .flex.flex-row.justify-center.gap-4.hero-content-item"
+  );
+  const heroBenefitSnippets = document.querySelector(
+    ".hero-content > .hero-content-item.mt-10" // Targets the container of the benefit snippets
   );
 
   const headlineText =
@@ -244,28 +248,30 @@ document.addEventListener("DOMContentLoaded", function () {
         heroHeadlineElement.innerHTML = textSoFar;
 
         if (heroParagraph) {
-          heroParagraph.style.opacity = "0";
-          heroParagraph.classList.add("hero-content-item");
-          // Trigger reflow for animation - already handled by adding class and CSS transition
-          // The void offsetWidth is a common trick to force reflow,
-          // but adding the class with the transition property
-          // before setting opacity is usually sufficient.
-          // Keeping it here for robustness, but it might not be strictly necessary.
+          // Assumes hero-content-item is on the element via HTML,
+          // which sets initial opacity: 0 and transition.
+          // Force reflow to ensure transition plays smoothly.
           void heroParagraph.offsetWidth;
           heroParagraph.style.opacity = "1";
         }
         if (heroButtonsContainer) {
-          heroButtonsContainer.style.opacity = "0";
-          heroButtonsContainer.classList.add("hero-content-item");
+          // Assumes hero-content-item is on the element via HTML.
           void heroButtonsContainer.offsetWidth;
           setTimeout(
             () => (heroButtonsContainer.style.opacity = "1"),
             150
           ); // Stagger slightly
         }
-      }
-    }
-  }
+        if (heroBenefitSnippets) {
+          // Assumes hero-content-item is on the element via HTML.
+          void heroBenefitSnippets.offsetWidth; // Force reflow
+          setTimeout(() => { // Stagger after buttons
+            heroBenefitSnippets.style.opacity = "1";
+          }, 300); // Appears 150ms after buttons start animating
+        } // Closes if (heroBenefitSnippets)
+      } // Closes else (typing complete)
+    } // Closes if (heroHeadlineElement)
+} // Closes typeHeadline function
 
   function resetHeroAnimations() {
     if (heroAnimationTimeout) clearTimeout(heroAnimationTimeout);
@@ -275,12 +281,15 @@ document.addEventListener("DOMContentLoaded", function () {
       heroHeadlineElement.classList.add("opacity-0");
     }
     if (heroParagraph) {
-      heroParagraph.classList.remove("hero-content-item");
+      // Elements with hero-content-item have opacity: 0 set by the class.
+      // Setting style.opacity = '0' ensures they are reset for the next animation.
       heroParagraph.style.opacity = "0";
     }
     if (heroButtonsContainer) {
-      heroButtonsContainer.classList.remove("hero-content-item");
       heroButtonsContainer.style.opacity = "0";
+    }
+    if (heroBenefitSnippets) {
+      heroBenefitSnippets.style.opacity = "0";
     }
   }
 

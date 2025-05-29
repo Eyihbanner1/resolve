@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Resolve OTC - Modern Trading, Simplified</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Updated Google Fo<!-- ... other navbar code ... -->
-
-    <!-- ... other navbar code ... -->
+    <!-- Google Fonts -->
+    <!-- Note: "Sansation" font is loaded via @font-face in style.css -->
     <link
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
@@ -113,23 +112,159 @@
       </div>
     </nav>
 
-    <header class="hero-section min-h-screen flex items-center">
-      <div class="container mx-auto px-4 sm:px-6 py-8 md:py-24">
+    <header
+      class="hero-section min-h-screen flex items-center relative bg-cover bg-center"
+      <!--
+      Removed
+      inline
+      background-image
+      style
+      to
+      use
+      CSS
+      gradient
+      --
+    >
+      <!-- Removed stray '>' character here -->
+      <!-- Removed black overlay div -->
+      <!-- ADDED: Decorative Shapes -->
+      <div
+        class="decorative-shape absolute top-1/4 left-1/4 w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 bg-[var(--m3-sys-light-primary-container)] rounded-full opacity-20 animate-pulse-slow mix-blend-overlay z-0"
+      ></div>
+      <div
+        class="decorative-shape absolute bottom-1/4 right-1/4 w-40 h-40 sm:w-48 sm:h-48 lg:w-64 lg:h-64 bg-[var(--m3-sys-light-secondary-container)] rounded-full opacity-15 animate-float-slow mix-blend-overlay z-0"
+      ></div>
+      <!-- ADDED: Floating Crypto Icons -->
+      <div
+        class="floating-crypto-icon"
+        style="
+          top: 15%;
+          left: 10%;
+          animation-name: float-crypto-1;
+          animation-duration: 12s;
+          font-size: 3rem;
+        "
+      >
+        <i class="fab fa-bitcoin"></i>
+      </div>
+      <div
+        class="floating-crypto-icon"
+        style="
+          top: 60%;
+          left: 20%;
+          animation-name: float-crypto-2;
+          animation-duration: 15s;
+          font-size: 2.5rem;
+          animation-delay: -2s;
+        "
+      >
+        <i class="fab fa-ethereum"></i>
+      </div>
+      <div
+        class="floating-crypto-icon"
+        style="
+          top: 30%;
+          left: 80%;
+          animation-name: float-crypto-3;
+          animation-duration: 10s;
+          font-size: 3.5rem;
+          animation-delay: -4s;
+        "
+      >
+        <i class="fas fa-dollar-sign"></i>
+        <!-- USDT often uses dollar sign -->
+      </div>
+      <div
+        class="floating-crypto-icon"
+        style="
+          top: 75%;
+          left: 70%;
+          animation-name: float-crypto-1;
+          animation-duration: 13s;
+          font-size: 2rem;
+          animation-delay: -6s;
+          opacity: 0.08;
+        "
+      >
+        <i class="fas fa-coins"></i>
+        <!-- Generic coins icon -->
+      </div>
+      <div
+        class="floating-crypto-icon"
+        style="
+          top: 10%;
+          left: 50%;
+          animation-name: float-crypto-2;
+          animation-duration: 14s;
+          font-size: 2.2rem;
+          animation-delay: -1s;
+        "
+      >
+        <i class="fab fa-btc"></i>
+        <!-- Another Bitcoin icon -->
+      </div>
+      <div
+        class="floating-crypto-icon"
+        style="
+          top: 85%;
+          left: 15%;
+          animation-name: float-crypto-3;
+          animation-duration: 11s;
+          font-size: 2.8rem;
+          animation-delay: -5s;
+          opacity: 0.1;
+        "
+      >
+        <i class="fas fa-lira-sign"></i>
+        <!-- Example, can be any icon -->
+      </div>
+      <div
+        class="floating-crypto-icon"
+        style="
+          top: 5%;
+          left: 75%;
+          animation-name: float-crypto-1;
+          animation-duration: 16s;
+          font-size: 1.8rem;
+          animation-delay: -3s;
+        "
+      >
+        <i class="fab fa-monero"></i>
+      </div>
+      <div
+        class="floating-crypto-icon"
+        style="
+          top: 45%;
+          left: 5%;
+          animation-name: float-crypto-2;
+          animation-duration: 12.5s;
+          font-size: 3.2rem;
+          animation-delay: -7s;
+          opacity: 0.09;
+        "
+      >
+        <i class="fab fa-dash"></i>
+      </div>
+      <!-- END ADDED: Floating Crypto Icons -->
+      <!-- END ADDED: Decorative Shapes -->
+      <!-- Content Container - needs to be on top of the overlay -->
+      <div
+        class="container mx-auto px-6 sm:px-6 pt-20 pb-6 md:pt-32 md:pb-24 relative z-10"
+      >
+        <!-- Content needs to be above overlay -->
         <div class="flex flex-col items-center justify-center">
           <div class="hero-content text-center max-w-3xl">
             <h1
               id="heroHeadline"
               class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 opacity-0"
             >
-              {/* Content will be injected by JS */}
+              <!-- Content will be injected by JS -->
             </h1>
             <p class="text-lg sm:text-xl lg:text-2xl mb-8 hero-content-item">
               Effortlessly trade large volumes of digital and traditional assets
               with deep liquidity, competitive pricing, and complete discretion.
             </p>
-            <div
-              class="flex flex-col sm:flex-row justify-center gap-4 hero-content-item"
-            >
+            <div class="flex flex-row justify-center gap-4 hero-content-item">
               <a
                 href="#contact-us-section"
                 class="m3-button m3-button-primary text-base lg:text-lg"
@@ -143,6 +278,28 @@
                 Learn More
               </a>
             </div>
+            <!-- ADDED: Key Benefit Snippets -->
+            <div
+              class="mt-10 sm:mt-12 flex flex-col sm:flex-row justify-center items-center sm:items-start gap-6 sm:gap-8 hero-content-item"
+            >
+              <div class="flex items-center gap-2 text-sm sm:text-base">
+                <i
+                  class="fas fa-shield-alt text-[var(--m3-sys-light-primary)]"
+                ></i>
+                <span>Bank-Grade Security</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm sm:text-base">
+                <i class="fas fa-water text-[var(--m3-sys-light-primary)]"></i>
+                <span>Deep Liquidity Pools</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm sm:text-base">
+                <i
+                  class="fas fa-headset text-[var(--m3-sys-light-primary)]"
+                ></i>
+                <span>24/7 Support</span>
+              </div>
+            </div>
+            <!-- END ADDED: Key Benefit Snippets -->
           </div>
         </div>
       </div>
@@ -458,60 +615,6 @@
       </div>
     </section>
 
-    <section id="security" class="py-12 md:py-16">
-      <div class="container mx-auto px-4 sm:px-6">
-        <div class="flex flex-col md:flex-row items-center gap-10 md:gap-12">
-          <div class="md:w-1/2 animate-on-scroll">
-            <img
-              src="https://images.pexels.com/photos/5473298/pexels-photo-5473298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt="Abstract Security Network"
-              class="w-full h-auto rounded-2xl shadow-xl object-cover"
-              onerror="this.onerror=null;this.src='https://placehold.co/600x450/DEE3EB/41474D?text=Secure+Infrastructure';"
-            />
-          </div>
-          <div
-            class="md:w-1/2 text-center animate-on-scroll"
-            style="transition-delay: 0.2s"
-          >
-            <h2 class="section-title text-3xl sm:text-4xl md:text-5xl mb-6">
-              Keeping Your Money Safe
-            </h2>
-            <p class="m3-body-large mb-6">
-              We use many strong security methods to protect your money and
-              information, using the latest technology and strict procedures.
-            </p>
-            <ul class="space-y-3 text-base m3-body-large">
-              <li class="flex items-center">
-                <i class="fas fa-check-circle accent-color mr-3 text-xl"></i
-                >Offline Storage for Extra Safety
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-check-circle accent-color mr-3 text-xl"></i
-                >Regular Security Checks and Tests
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-check-circle accent-color mr-3 text-xl"></i
-                >Protection from Online Attacks
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-check-circle accent-color mr-3 text-xl"></i
-                >Extra Login Security (2FA)
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-check-circle accent-color mr-3 text-xl"></i
-                >Insurance for Certain Assets (Ask for details)
-              </li>
-            </ul>
-            <a
-              href="#contact-us-section"
-              class="mt-8 inline-block m3-button m3-button-primary"
-              >More About Our Security</a
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section
       id="contact-us-section"
       class="py-12 md:py-16 bg-[var(--m3-sys-light-background)]"
@@ -619,7 +722,7 @@
             <a
               href="mailto:support@resolve.com"
               class="accent-color hover:underline"
-              >support@resolve.com</a
+              >admin@resolve.com</a
             >
           </p>
           <p class="m3-body-large">
@@ -630,7 +733,6 @@
           </p>
         </div>
       </div>
-      \
     </section>
 
     <footer class="py-12">
