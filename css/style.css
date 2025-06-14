@@ -2010,3 +2010,26 @@ footer a:hover {
     opacity: 0.12;
   }
 }
+
+/* Mobile responsive adjustments for floating crypto symbols */
+@media (max-width: 768px) {
+  .crypto-symbol {
+    font-size: 1.5rem;
+    opacity: 0.1;
+  }
+  
+  .crypto-symbol:hover {
+    opacity: 0.15;
+  }
+}
+
+@media (max-width: 480px) {
+  .crypto-symbol {
+    font-size: 1.2rem;
+    opacity: 0.08;
+  }
+  
+  .crypto-symbol:hover {
+    opacity: 0.12;
+  }
+}
