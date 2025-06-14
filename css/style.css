@@ -30,18 +30,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 /* Material 3 Inspired Color Palette & Variables */
-:root {
-  /* Primary (from Resolve Logo #0052B4) */
-  --m3-sys-light-primary: #0277F2; /* Updated Primary Blue */
+:root {  /* Primary (Updated to match Resolve Logo) */
+  --m3-sys-light-primary: #3999ff; /* Blue matching logo */
   --m3-sys-light-on-primary: #ffffff;
-  --m3-sys-light-primary-container: #BBD9FD; /* Updated Light Blue Primary Container */
-  --m3-sys-light-on-primary-container: #012F60; /* Updated Dark Blue for On Primary Container */
-
-  /* Secondary (Vibrant Teal) */
-  --m3-sys-light-secondary: #4F3BFF; /* Updated Secondary - Vibrant Violet-Blue */
+  --m3-sys-light-primary-container: #e1f0ff; /* Light blue container */
+  --m3-sys-light-on-primary-container: #002147; /* Dark blue for container text */
+  /* Secondary (Complementary to logo blue) */
+  --m3-sys-light-secondary: #5577ff; /* Complementary blue */
   --m3-sys-light-on-secondary: #ffffff;
-  --m3-sys-light-secondary-container: #E4E0FF; /* Derived Light Violet for Secondary Container */
-  --m3-sys-light-on-secondary-container: #2A1FBC; /* Updated On Secondary Container - Dark Violet-Blue */
+  --m3-sys-light-secondary-container: #e6ebff; /* Light complementary container */
+  --m3-sys-light-on-secondary-container: #001a66; /* Dark blue for container text */
 
   /* Tertiary (Brighter Orange accent) */
   --m3-sys-light-tertiary: #ff8c00; /* Brighter Orange */
@@ -1797,7 +1795,7 @@ button[type="submit"]:hover {
 .section-title,
 h2.section-title {
   color: var(--m3-sys-light-primary) !important;
-  font-weight: 800;
+  font-weight:  800;
   text-shadow: 0 2px 6px rgba(255, 255, 255, 0.8);
 }
 
@@ -1994,6 +1992,11 @@ h2.section-title {
     align-items: center;
   }
   
+  /* Increase font weight of header on mobile */
+  .hero-headline {
+    font-weight: 700;
+  }
+  
   /* Ensure animations still work on mobile but are more subtle */
   .hero-background {
     opacity: 0.5;
@@ -2003,5 +2006,52 @@ h2.section-title {
   .trust-section .grid {
     max-width: 280px;
     margin: 0 auto;
+  }
+}
+
+/* Mobile testimonial fixes to prevent overlay issues */
+@media (max-width: 639px) {
+  .testimonial-carousel-container {
+    position: relative;
+    padding: 0 3rem; /* Add padding to accommodate nav buttons */
+  }
+  
+  .carousel-nav-button {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.8rem;
+    z-index: 20; /* Ensure buttons are above content */
+  }
+  
+  .prev-button {
+    left: 0.5rem;
+  }
+  
+  .next-button {
+    right: 0.5rem;
+  }
+  
+  .testimonial-card {
+    padding: 1.5rem 1rem; /* Reduce padding to prevent text overflow */
+    margin: 0 0.5rem; /* Add margin for better spacing */
+  }
+  
+  .testimonial-text {
+    font-size: 0.9rem; /* Slightly smaller text on mobile */
+    line-height: 1.5;
+  }
+  
+  .testimonial-quote-icon {
+    font-size: 1.5rem; /* Smaller quote icon */
+  }
+  
+  /* Ensure proper spacing and prevent overlay */
+  .testimonial-author {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .testimonial-author-title {
+    font-size: 0.8rem;
   }
 }
