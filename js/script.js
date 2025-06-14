@@ -167,8 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const testimonialDotsContainer = document.getElementById(
     "testimonialCarouselDots"
   );
-  let testimonialInterval;
-  window.showTestimonialSlide = function (index) {
+  let testimonialInterval;  window.showTestimonialSlide = function (index) {
     if (!testimonialSlidesContainer || testimonialSlides.length === 0)
       return;
 
@@ -180,10 +179,8 @@ document.addEventListener("DOMContentLoaded", function () {
       currentTestimonialSlide = index;
     }
     
-    // Transform calculation: each slide is 1/3 of the container width
-    // So to show slide N, we need to move -N * (100/3)%
-    const translatePercentage = -currentTestimonialSlide * (100 / 3);
-    testimonialSlidesContainer.style.transform = `translateX(${translatePercentage}%)`;
+    // Standard transform: each slide is 100% of container width
+    testimonialSlidesContainer.style.transform = `translateX(${-currentTestimonialSlide * 100}%)`;
     updateTestimonialDots();
   };
 
@@ -414,13 +411,12 @@ document.addEventListener("DOMContentLoaded", function () {
       startX = e.touches[0].clientX;
       isDragging = true;
       testimonialSlidesContainer.style.transition = 'none';
-    });
-      testimonialSlidesContainer.addEventListener('touchmove', (e) => {
+    });    testimonialSlidesContainer.addEventListener('touchmove', (e) => {
       if (!isDragging) return;
       endX = e.touches[0].clientX;
       const diff = startX - endX;
-      const currentTransform = -currentTestimonialSlide * (100 / 3);
-      const movePercent = (diff / testimonialSlidesContainer.offsetWidth) * (100 / 3);
+      const currentTransform = -currentTestimonialSlide * 100;
+      const movePercent = (diff / testimonialSlidesContainer.offsetWidth) * 100;
       testimonialSlidesContainer.style.transform = `translateX(${currentTransform - movePercent}%)`;
     });
     
@@ -441,7 +437,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       } else {
         // Snap back to current slide
-        testimonialSlidesContainer.style.transform = `translateX(${-currentTestimonialSlide * (100 / 3)}%)`;
+        testimonialSlidesContainer.style.transform = `translateX(${-currentTestimonialSlide * 100}%)`;
       }
     });
     
