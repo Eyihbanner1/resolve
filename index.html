@@ -65,7 +65,7 @@
       >
         <a href="./index.html" class="flex items-center">
           <img
-            src="./img/resolve logo.png"
+            src="./img/resolve.png"
             alt="Resolve Logo"
             class="navbar-logo mr-2"
           />
@@ -619,9 +619,8 @@
             crypto trading needs.
           </p>
         </div>
-
         <div
-          class="testimonial-carousel-container w-11/12 sm:w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl animate-on-scroll"
+          class="testimonial-carousel-container mx-auto w-11/12 sm:w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl animate-on-scroll"
         >
           <div class="testimonial-slides">
             <div class="testimonial-card text-center">
@@ -727,13 +726,15 @@
           <div class="faq-item m3-card p-6 animate-on-scroll">
             <button
               class="faq-question w-full text-left flex justify-between items-center"
+              aria-expanded="false"
+              aria-controls="faq-answer-1"
             >
               <span class="font-semibold text-lg">What is OTC trading?</span>
               <i
                 class="fas fa-chevron-down transition-transform duration-200"
               ></i>
             </button>
-            <div class="faq-answer mt-4 hidden">
+            <div class="faq-answer mt-4 hidden" id="faq-answer-1">
               <p class="text-[var(--m3-sys-light-on-surface-variant)]">
                 Over-the-counter (OTC) trading allows you to trade large volumes
                 of digital assets directly with other traders without affecting

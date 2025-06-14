@@ -1472,14 +1472,19 @@ footer a:hover {
   overflow: hidden;
   border-radius: 2rem;
   box-shadow: var(--m3-shadow-elevation-1);
+  width: 100%;
+  max-width: 100%;
 }
 
 .testimonial-slides {
   display: flex;
   transition: transform 0.6s var(--m3-motion-easing-emphasized);
+  width: 100%;
 }
 
 .testimonial-card {
+  flex: 0 0 100%;
+  width: 100%;
   background: rgba(255, 255, 255, 0.12);
   -webkit-backdrop-filter: blur(25px);
   backdrop-filter: blur(25px);
@@ -1490,70 +1495,11 @@ footer a:hover {
               0 6px 20px rgba(0, 0, 0, 0.08),
               inset 0 1px 0 rgba(255, 255, 255, 0.2);
   position: relative;
-  min-width: 100%;
   box-sizing: border-box;
   transition: all 0.3s var(--m3-motion-easing-standard);
 }
 
-.testimonial-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--m3-gradient-primary);
-  border-radius: 1.5rem 1.5rem 0 0;
-}
-
-.testimonial-quote-icon {
-  font-size: 3rem;
-  color: var(--m3-sys-light-primary);
-  opacity: 0.8;
-  position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
-  background: var(--m3-sys-light-primary-container);
-  border-radius: 50%;
-  width: 4rem;
-  height: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-}
-
-.testimonial-text {
-  font-style: italic;
-  color: var(--m3-sys-light-on-surface-variant);
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem; 
-  min-height: 5rem;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-.testimonial-author {
-  font-weight: 700;
-  color: var(--m3-sys-light-on-surface);
-  font-size: 1.1rem;
-}
-
-.testimonial-author-title {
-  font-size: 0.9rem;
-  color: var(--m3-sys-light-on-surface-variant);
-  margin-top: 0.25rem;
-}
-
-.star-rating .fa-star,
-.star-rating .fa-star-half-alt {
-  color: var(--m3-sys-light-tertiary);
-  font-size: 1.1rem;
-  margin-right: 0.2rem;
-  filter: drop-shadow(0 2px 4px rgba(255, 140, 0, 0.3));
-}
-
-/* Material 3 Expressive Carousel Navigation */
+/* Carousel navigation buttons improvements */
 .carousel-nav-button {
   position: absolute;
   top: 50%;
@@ -1563,14 +1509,14 @@ footer a:hover {
   border: 2px solid var(--m3-sys-light-primary-container);
   border-radius: 50%;
   cursor: pointer;
-  z-index: 10;
+  z-index: 40;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s var(--m3-motion-easing-emphasized);
   box-shadow: var(--m3-shadow-elevation-2);
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3rem;
+  height: 3rem;
   padding: 0;
 }
 
@@ -1586,13 +1532,6 @@ footer a:hover {
   transform: translateY(-50%) scale(0.95);
 }
 
-@media (min-width: 640px) {
-  .carousel-nav-button {
-    width: 3rem;
-    height: 3rem;
-  }
-}
-
 .prev-button {
   left: 1rem;
 }
@@ -1601,42 +1540,34 @@ footer a:hover {
   right: 1rem;
 }
 
-@media (min-width: 640px) {
-  .prev-button {
-    left: 1.5rem;
-  }
-  .next-button {
-    right: 1.5rem;
-  }
-}
-
-/* Enhanced Carousel Dots */
+/* Carousel dots improvements */
 .carousel-dots {
   text-align: center;
   padding: 1.5rem 0;
+  margin-top: 1rem;
 }
 
 .carousel-dot {
-  cursor: pointer;
-  height: 0.75rem;
-  width: 0.75rem;
-  margin: 0 8px;
-  background: var(--m3-sys-light-surface-variant);
-  border-radius: 50%;
   display: inline-block;
-  transition: all 0.4s var(--m3-motion-easing-emphasized);
-  border: 2px solid transparent;
-}
-
-.carousel-dot:hover {
-  background: var(--m3-sys-light-outline);
-  transform: scale(1.2);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 0 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s var(--m3-motion-easing-standard);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .carousel-dot.active {
-  background: var(--m3-gradient-primary);
-  transform: scale(1.4);
-  border-color: var(--m3-sys-light-primary-container);
+  background: var(--m3-sys-light-primary);
+  transform: scale(1.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-dot:hover {
+  background: var(--m3-sys-light-primary);
+  opacity: 0.8;
 }
 
 /* Material 3 Expressive Utility Classes */
@@ -1796,7 +1727,7 @@ button[type="submit"]:hover {
 h2.section-title {
   color: var(--m3-sys-light-primary) !important;
   font-weight:  800;
-  text-shadow: 0 2px 6px rgba(255, 255, 255, 0.8);
+  text-shadow: 0 2px 6px rgba(255,  255, 255, 0.8);
 }
 
 .section-subtitle,
@@ -2022,7 +1953,8 @@ h2.section-title {
     width: 2rem;
     height: 2rem;
     font-size: 0.75rem;
-    z-index: 30; /* Ensure buttons are above content */    background: rgba(255, 255, 255, 0.9);
+    z-index: 30; /* Ensure buttons are above content */
+    background: rgba(255, 255, 255, 0.9);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
   }
@@ -2050,6 +1982,10 @@ h2.section-title {
   .testimonial-quote-icon {
     font-size: 1.25rem !important; /* Smaller quote icon */
     margin-bottom: 0.5rem !important;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    top: 1rem !important;
+    left: 1rem !important;
   }
   
   /* Ensure proper spacing and prevent overlay */
@@ -2070,5 +2006,92 @@ h2.section-title {
   
   .star-rating i {
     font-size: 0.8rem !important;
+  }
+}
+
+/* FAQ Section Enhancements */
+.faq-item {
+  transition: all 0.3s var(--m3-motion-easing-standard);
+}
+
+.faq-item:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--m3-shadow-elevation-2);
+}
+
+.faq-question {
+  padding: 1.5rem;
+  margin: -1.5rem;
+  border-radius: 1rem;
+  transition: all 0.2s var(--m3-motion-easing-standard);
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.faq-question:hover {
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.faq-question:active {
+  transform: scale(0.98);
+}
+
+.faq-question:focus {
+  outline: 2px solid var(--m3-sys-light-primary);
+  outline-offset: 2px;
+}
+
+.faq-question span {
+  pointer-events: none; /* Prevent text selection interference */
+}
+
+.faq-question i {
+  pointer-events: none; /* Prevent icon click interference */
+  transition: transform 0.3s var(--m3-motion-easing-emphasized);
+}
+
+.faq-item.active .faq-question {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.faq-item.active .faq-question i {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  transition: all 0.4s var(--m3-motion-easing-emphasized);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.faq-answer:not(.hidden) {
+  max-height: 300px;
+  opacity: 1;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+/* Mobile FAQ improvements */
+@media (max-width: 768px) {
+  .faq-question {
+    padding: 1rem;
+    margin: -1rem;
+  }
+  
+  .faq-question span {
+    font-size: 1rem;
+  }
+  
+  .faq-answer {
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
 }

@@ -247,24 +247,28 @@ document.addEventListener("DOMContentLoaded", function () {
     scrollTopBtn.addEventListener("click", function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
-  }
-
-  // FAQ Accordion Functionality
+  }  // FAQ Accordion Functionality
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
     const question = item.querySelector('.faq-question');
     const answer = item.querySelector('.faq-answer');
     const icon = question.querySelector('i');
     
-    question.addEventListener('click', () => {
+    question.addEventListener('click', (e) => {
+      e.preventDefault();
       const isOpen = !answer.classList.contains('hidden');
       
       // Close all other FAQ items
       faqItems.forEach(otherItem => {
         if (otherItem !== item) {
-          otherItem.querySelector('.faq-answer').classList.add('hidden');
-          otherItem.querySelector('.faq-question i').classList.remove('fa-chevron-up');
-          otherItem.querySelector('.faq-question i').classList.add('fa-chevron-down');
+          const otherAnswer = otherItem.querySelector('.faq-answer');
+          const otherIcon = otherItem.querySelector('.faq-question i');
+          const otherQuestion = otherItem.querySelector('.faq-question');
+          otherAnswer.classList.add('hidden');
+          otherIcon.classList.remove('fa-chevron-up');
+          otherIcon.classList.add('fa-chevron-down');
+          otherItem.classList.remove('active');
+          otherQuestion.setAttribute('aria-expanded', 'false');
         }
       });
       
@@ -273,10 +277,22 @@ document.addEventListener("DOMContentLoaded", function () {
         answer.classList.add('hidden');
         icon.classList.remove('fa-chevron-up');
         icon.classList.add('fa-chevron-down');
+        item.classList.remove('active');
+        question.setAttribute('aria-expanded', 'false');
       } else {
         answer.classList.remove('hidden');
         icon.classList.remove('fa-chevron-down');
         icon.classList.add('fa-chevron-up');
+        item.classList.add('active');
+        question.setAttribute('aria-expanded', 'true');
+      }
+    });
+    
+    // Add keyboard support
+    question.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        question.click();
       }
     });
   });
