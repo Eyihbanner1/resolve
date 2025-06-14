@@ -1744,9 +1744,10 @@ footer a:hover {
 /* Additional mobile hero enhancements for smaller screens */
 @media (max-width: 768px) {
   .hero-headline {
-    font-size: clamp(1.75rem, 9vw, 2.8rem);
+    font-size: clamp(2.2rem, 10vw, 3.5rem);
     font-weight: 900;
     margin-bottom: 1rem;
+    color: var(--m3-sys-light-on-surface) !important;
     text-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 
                  0 3px 6px rgba(255, 255, 255, 0.9),
                  0 10px 20px rgba(2, 119, 242, 0.3);
@@ -1756,17 +1757,19 @@ footer a:hover {
   
   .hero-headline h1 {
     font-weight: 900;
-    background: linear-gradient(135deg, var(--m3-sys-light-primary), #1976d2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--m3-sys-light-on-surface) !important;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  }
+  
+  .hero-headline span {
+    color: var(--m3-sys-light-primary) !important;
+    text-shadow: 0 2px 4px rgba(2, 119, 242, 0.4);
   }
 }
 
 @media (max-width: 480px) {
   .hero-headline {
-    font-size: clamp(1.5rem, 10vw, 2.2rem);
+    font-size: clamp(1.8rem, 12vw, 2.8rem);
     margin-bottom: 0.75rem;
   }
 }
@@ -1774,6 +1777,11 @@ footer a:hover {
 /* Keep theme color for key branding elements */
 .hero-headline,
 .hero-headline h1 {
+  color: var(--m3-sys-light-on-surface) !important;
+}
+
+/* Keep "Nigeria" in theme color */
+.hero-headline span {
   color: var(--m3-sys-light-primary) !important;
 }
 
