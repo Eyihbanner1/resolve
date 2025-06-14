@@ -1944,154 +1944,159 @@ h2.section-title {
 @media (max-width: 639px) {
   .testimonial-carousel-container {
     position: relative;
-    padding: 0 2.5rem; /* Add padding to accommodate nav buttons */
+    padding: 0 3rem; /* Add padding to accommodate nav buttons */
     width: 100% !important;
     max-width: 100% !important;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  
+  .testimonial-slides {
+    display: flex;
+    width: 100%;
+    touch-action: pan-y pinch-zoom;
   }
   
   .carousel-nav-button {
-    width: 2rem;
-    height: 2rem;
-    font-size: 0.75rem;
-    z-index: 30; /* Ensure buttons are above content */
-    background: rgba(255, 255, 255, 0.9);
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    font-size: 0.875rem !important;
+    z-index: 50 !important; /* Ensure buttons are above content */
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: var(--m3-sys-light-primary) !important;
+    border: 2px solid var(--m3-sys-light-primary) !important;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  }
+  
+  .carousel-nav-button:hover {
+    background: var(--m3-sys-light-primary) !important;
+    color: white !important;
+    transform: translateY(-50%) scale(1.05) !important;
   }
   
   .prev-button {
-    left: 0.25rem;
+    left: 0.5rem !important;
   }
   
   .next-button {
-    right: 0.25rem;
+    right: 0.5rem !important;
   }
   
   .testimonial-card {
-    padding: 1.5rem 1rem !important; /* Reduce padding to prevent text overflow */
-    margin: 0 !important; /* Remove margin that might cause issues */
+    padding: 2rem 1.5rem 1.5rem 1.5rem !important;
+    margin: 0 !important;
     min-width: 100% !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
   
   .testimonial-text {
-    font-size: 0.85rem !important; /* Smaller text on mobile */
-    line-height: 1.4 !important;
-    margin-bottom: 1rem !important;
+    font-size: 0.9rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1.25rem !important;
+    padding-top: 2rem !important; /* Space for quote icon */
   }
   
   .testimonial-quote-icon {
-    font-size: 1.25rem !important; /* Smaller quote icon */
-    margin-bottom: 0.5rem !important;
-    width: 2.5rem !important;
-    height: 2.5rem !important;
-    top: 1rem !important;
-    left: 1rem !important;
+    font-size: 1.5rem !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    top: 0.75rem !important;
+    left: 0.75rem !important;
+    position: absolute !important;
   }
   
   /* Ensure proper spacing and prevent overlay */
   .testimonial-author {
-    margin-top: 0.75rem !important;
-    font-size: 0.85rem !important;
+    margin-top: 1rem !important;
+    font-size: 0.9rem !important;
     font-weight: 600 !important;
   }
   
   .testimonial-author-title {
-    font-size: 0.75rem !important;
-    margin-top: 0.25rem !important;
+    font-size: 0.8rem !important;
+    margin-top: 0.5rem !important;
+    opacity: 0.8;
   }
   
   .star-rating {
-    margin-top: 0.5rem !important;
+    margin-top: 0.75rem !important;
   }
   
   .star-rating i {
-    font-size: 0.8rem !important;
-  }
-}
-
-/* FAQ Section Enhancements */
-.faq-item {
-  transition: all 0.3s var(--m3-motion-easing-standard);
-}
-
-.faq-item:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--m3-shadow-elevation-2);
-}
-
-.faq-question {
-  padding: 1.5rem;
-  margin: -1.5rem;
-  border-radius: 1rem;
-  transition: all 0.2s var(--m3-motion-easing-standard);
-  cursor: pointer;
-  border: none;
-  background: none;
-  width: 100%;
-  text-align: left;
-}
-
-.faq-question:hover {
-  background: rgba(255, 255, 255, 0.1);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-}
-
-.faq-question:active {
-  transform: scale(0.98);
-}
-
-.faq-question:focus {
-  outline: 2px solid var(--m3-sys-light-primary);
-  outline-offset: 2px;
-}
-
-.faq-question span {
-  pointer-events: none; /* Prevent text selection interference */
-}
-
-.faq-question i {
-  pointer-events: none; /* Prevent icon click interference */
-  transition: transform 0.3s var(--m3-motion-easing-emphasized);
-}
-
-.faq-item.active .faq-question {
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.faq-item.active .faq-question i {
-  transform: rotate(180deg);
-}
-
-.faq-answer {
-  transition: all 0.4s var(--m3-motion-easing-emphasized);
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  padding-top: 0;
-  margin-top: 0;
-}
-
-.faq-answer:not(.hidden) {
-  max-height: 300px;
-  opacity: 1;
-  padding-top: 1rem;
-  margin-top: 1rem;
-}
-
-/* Mobile FAQ improvements */
-@media (max-width: 768px) {
-  .faq-question {
-    padding: 1rem;
-    margin: -1rem;
+    font-size: 0.875rem !important;
+    margin-right: 0.125rem !important;
   }
   
-  .faq-question span {
-    font-size: 1rem;
+  /* Carousel dots mobile styling */
+  .carousel-dots {
+    padding: 1rem 0 0.5rem 0 !important;
+    margin-top: 0.5rem !important;
   }
   
-  .faq-answer {
-    font-size: 0.9rem;
-    line-height: 1.5;
+  .carousel-dot {
+    width: 8px !important;
+    height: 8px !important;
+    margin: 0 0.25rem !important;
   }
+}
+
+/* Additional mobile carousel fixes */
+@media (max-width: 480px) {
+  .testimonial-carousel-container {
+    padding: 0 2.5rem !important;
+    margin: 0 auto !important;
+  }
+    .testimonial-card {
+    padding: 1.5rem 1rem 1rem 1rem !important;
+    min-height: 180px !important;
+  }
+  
+  .testimonial-text {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+    padding-top: 1.5rem !important;
+  }
+  
+  .testimonial-quote-icon {
+    font-size: 1.25rem !important;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    top: 0.5rem !important;
+    left: 0.5rem !important;
+  }
+  
+  .carousel-nav-button {
+    width: 2rem !important;
+    height: 2rem !important;
+    font-size: 0.75rem !important;
+  }
+  
+  .prev-button {
+    left: 0.25rem !important;
+  }
+  
+  .next-button {
+    right: 0.25rem !important;
+  }
+}
+
+/* Ensure testimonial container doesn't break on very small screens */
+.testimonial-carousel-container {
+  min-height: 200px;
+  position: relative;
+}
+
+.testimonial-slides {
+  min-height: 200px;
+}
+
+/* Fix potential transform issues */
+.testimonial-card {
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }

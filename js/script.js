@@ -401,4 +401,53 @@ document.addEventListener("DOMContentLoaded", function () {
       element.style.transform = 'translateY(0)';
     }, 300);
   });
+  
+  // Add touch/swipe support for mobile testimonial carousel
+  if (testimonialSlidesContainer) {
+    let startX = 0;
+    let endX = 0;
+    let isDragging = false;
+    
+    testimonialSlidesContainer.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+      testimonialSlidesContainer.style.transition = 'none';
+    });
+    
+    testimonialSlidesContainer.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      endX = e.touches[0].clientX;
+      const diff = startX - endX;
+      const currentTransform = -currentTestimonialSlide * 100;
+      const movePercent = (diff / testimonialSlidesContainer.offsetWidth) * 100;
+      testimonialSlidesContainer.style.transform = `translateX(${currentTransform - movePercent}%)`;
+    });
+    
+    testimonialSlidesContainer.addEventListener('touchend', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      testimonialSlidesContainer.style.transition = 'transform 0.6s var(--m3-motion-easing-emphasized)';
+      
+      const diff = startX - endX;
+      const threshold = 50; // Minimum swipe distance
+      
+      if (Math.abs(diff) > threshold) {
+        if (diff > 0) {
+          // Swiped left (next slide)
+          moveTestimonialSlide(1);
+        } else {
+          // Swiped right (previous slide)
+          moveTestimonialSlide(-1);
+        }
+      } else {
+        // Snap back to current slide
+        testimonialSlidesContainer.style.transform = `translateX(${-currentTestimonialSlide * 100}%)`;
+      }
+    });
+    
+    // Prevent default touch behavior to avoid conflicts
+    testimonialSlidesContainer.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+    });
+  }
 });
