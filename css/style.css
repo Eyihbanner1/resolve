@@ -1946,7 +1946,7 @@ h2.section-title {
     position: relative;
     padding: 0 3rem; /* Add padding to accommodate nav buttons */
     width: 100% !important;
-    max-width: 100% !important;
+    max-width: none !important;
     margin: 0 auto;
     overflow: hidden;
   }
@@ -2099,4 +2099,17 @@ h2.section-title {
   will-change: transform;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+}
+
+/* Remove container padding constraints on mobile for testimonial section */
+@media (max-width: 639px) {
+  #testimonials .container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  #testimonials .text-center {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
