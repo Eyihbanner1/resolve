@@ -69,25 +69,49 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       newsletterForm.reset();
     });
-  }
-
-  // Main Contact Form Submission
+  }  // Main Contact Form Submission
   const mainContactForm = document.getElementById("mainContactForm");
   if (mainContactForm) {
     mainContactForm.addEventListener("submit", function (e) {
       e.preventDefault();
+      
+      // Add loading state
+      const submitButton = mainContactForm.querySelector('button[type="submit"]');
+      const originalText = submitButton.textContent;
+      submitButton.textContent = "Sending...";
+      submitButton.disabled = true;
+      
+      // Get form data
       const formData = new FormData(mainContactForm);
-      const name = formData.get("contactName");
-      console.log(
-        "Main Contact Form Data:",
-        Object.fromEntries(formData)
-      );
-      showModal(
-        "Thank you, " +
-          name +
-          "! Your message has been sent. Our team will get back to you shortly."
-      );
-      mainContactForm.reset();
+      
+      // Send AJAX request
+      fetch('./contact-handler.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          showModal(data.message);
+          mainContactForm.reset();
+        } else {
+          showModal('Error: ' + data.message);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        const name = formData.get("contactName") || "there";
+        showModal(
+          "Thank you, " + name + "! Your message is being processed. " +
+          "If you don't hear back from us within 24 hours, please email us directly at admin@resolve.ng"
+        );
+        mainContactForm.reset();
+      })
+      .finally(() => {
+        // Reset button state
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+      });
     });
   }
 
@@ -196,101 +220,9 @@ document.addEventListener("DOMContentLoaded", function () {
     clearInterval(testimonialInterval);
     startTestimonialInterval();
   }
-
   if (testimonialSlides.length > 0) {
     showTestimonialSlide(currentTestimonialSlide);
     startTestimonialInterval();
-  }
-
-  // Hero Content Animation Logic
-  const heroHeadlineElement = document.getElementById("heroHeadline");
-  const heroParagraph = document.querySelector(".hero-content p");
-  // Updated selector to match the current HTML structure for the buttons' container
-  const heroButtonsContainer = document.querySelector(
-    ".hero-content .flex.flex-row.justify-center.gap-4.hero-content-item"
-  );
-  const heroBenefitSnippets = document.querySelector(
-    ".hero-content > .hero-content-item.mt-10" // Targets the container of the benefit snippets
-  );
-
-  const headlineText =
-    'Secure & Instant OTC Trading with <span class="accent-color">Resolve</span> <span class="secondary-accent-color animate-instantly">Instantly.</span>';
-  let charIndex = 0;
-  let heroAnimationTimeout;
-
-  function typeHeadline() {
-    if (heroHeadlineElement) {
-      heroHeadlineElement.classList.remove("opacity-0");
-
-      let textSoFar = heroHeadlineElement.innerHTML.replace(
-        /<span class="typewriter-cursor"><\/span>$/,
-        ""
-      );
-      const cursorHtml = '<span class="typewriter-cursor"></span>';
-
-      if (charIndex < headlineText.length) {
-        if (headlineText.substring(charIndex).startsWith("<span")) {
-          const closingSpanIndex =
-            headlineText.indexOf("</span>", charIndex) + 7;
-          textSoFar += headlineText.substring(
-            charIndex,
-            closingSpanIndex
-          );
-          charIndex = closingSpanIndex;
-        } else {
-          textSoFar += headlineText.charAt(charIndex);
-          charIndex++;
-        }
-        heroHeadlineElement.innerHTML = textSoFar + cursorHtml;
-        heroAnimationTimeout = setTimeout(typeHeadline, 15); // Further reduced delay for even faster typing
-      } else {
-        // Typing complete, remove cursor from final text
-        heroHeadlineElement.innerHTML = textSoFar;
-
-        if (heroParagraph) {
-          // Assumes hero-content-item is on the element via HTML,
-          // which sets initial opacity: 0 and transition.
-          // Force reflow to ensure transition plays smoothly.
-          void heroParagraph.offsetWidth;
-          heroParagraph.style.opacity = "1";
-        }
-        if (heroButtonsContainer) {
-          // Assumes hero-content-item is on the element via HTML.
-          void heroButtonsContainer.offsetWidth;
-          setTimeout(
-            () => (heroButtonsContainer.style.opacity = "1"),
-            150
-          ); // Stagger slightly
-        }
-        if (heroBenefitSnippets) {
-          // Assumes hero-content-item is on the element via HTML.
-          void heroBenefitSnippets.offsetWidth; // Force reflow
-          setTimeout(() => { // Stagger after buttons
-            heroBenefitSnippets.style.opacity = "1";
-          }, 300); // Appears 150ms after buttons start animating
-        } // Closes if (heroBenefitSnippets)
-      } // Closes else (typing complete)
-    } // Closes if (heroHeadlineElement)
-} // Closes typeHeadline function
-
-  function resetHeroAnimations() {
-    if (heroAnimationTimeout) clearTimeout(heroAnimationTimeout);
-    charIndex = 0;
-    if (heroHeadlineElement) {
-      heroHeadlineElement.innerHTML = "";
-      heroHeadlineElement.classList.add("opacity-0");
-    }
-    if (heroParagraph) {
-      // Elements with hero-content-item have opacity: 0 set by the class.
-      // Setting style.opacity = '0' ensures they are reset for the next animation.
-      heroParagraph.style.opacity = "0";
-    }
-    if (heroButtonsContainer) {
-      heroButtonsContainer.style.opacity = "0";
-    }
-    if (heroBenefitSnippets) {
-      heroBenefitSnippets.style.opacity = "0";
-    }
   }
 
   // Scroll to top button logic
@@ -317,8 +249,140 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  resetHeroAnimations();
-  heroAnimationTimeout = setTimeout(() => {
-    typeHeadline();
-  }, 500);
+  // FAQ Accordion Functionality
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    const icon = question.querySelector('i');
+    
+    question.addEventListener('click', () => {
+      const isOpen = !answer.classList.contains('hidden');
+      
+      // Close all other FAQ items
+      faqItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.querySelector('.faq-answer').classList.add('hidden');
+          otherItem.querySelector('.faq-question i').classList.remove('fa-chevron-up');
+          otherItem.querySelector('.faq-question i').classList.add('fa-chevron-down');
+        }
+      });
+      
+      // Toggle current item
+      if (isOpen) {
+        answer.classList.add('hidden');
+        icon.classList.remove('fa-chevron-up');
+        icon.classList.add('fa-chevron-down');
+      } else {
+        answer.classList.remove('hidden');
+        icon.classList.remove('fa-chevron-down');
+        icon.classList.add('fa-chevron-up');
+      }
+    });
+  });
+
+  // Stats Counter Animation
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const statElement = entry.target;
+        const targetValue = parseInt(statElement.getAttribute('data-count'));
+        let currentValue = 0;
+        const increment = targetValue / 100;
+        const suffix = statElement.textContent.replace(/[0-9]/g, '');
+        
+        const timer = setInterval(() => {
+          currentValue += increment;
+          if (currentValue >= targetValue) {
+            currentValue = targetValue;
+            clearInterval(timer);
+          }
+          
+          if (suffix.includes('M')) {
+            statElement.textContent = '$' + Math.floor(currentValue / 1000000) + 'M+';
+          } else if (suffix.includes('%')) {
+            statElement.textContent = Math.floor(currentValue) + '%';
+          } else {
+            statElement.textContent = Math.floor(currentValue) + '+';
+          }
+        }, 20);
+        
+        statsObserver.unobserve(statElement);
+      }
+    });
+  }, { threshold: 0.5 });
+    // Observe all stat elements
+  document.querySelectorAll('[data-count]').forEach(stat => {
+    statsObserver.observe(stat);
+  });
+  // Sick Interactive Background Effects
+  const heroSection = document.querySelector('.hero-section');
+  const particles = document.querySelectorAll('.particle');
+  const floatingShapes = document.querySelectorAll('.floating-shape');
+  const cryptoSymbols = document.querySelectorAll('.crypto-symbol');
+  
+  if (heroSection) {
+    heroSection.addEventListener('mousemove', (e) => {
+      const rect = heroSection.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      
+      // Make particles follow mouse subtly
+      particles.forEach((particle, index) => {
+        const speed = (index + 1) * 0.5;
+        const xOffset = (x - 0.5) * speed * 10;
+        const yOffset = (y - 0.5) * speed * 10;
+        
+        particle.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+      });
+      
+      // Make floating shapes react to mouse
+      floatingShapes.forEach((shape, index) => {
+        const speed = (index + 1) * 0.3;
+        const xOffset = (x - 0.5) * speed * 5;
+        const yOffset = (y - 0.5) * speed * 5;
+        
+        shape.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+      });
+      
+      // Make crypto symbols react to mouse with subtle movement and glow
+      cryptoSymbols.forEach((symbol, index) => {
+        const speed = (index + 1) * 0.2;
+        const xOffset = (x - 0.5) * speed * 8;
+        const yOffset = (y - 0.5) * speed * 8;
+        const scale = 1 + (Math.abs(x - 0.5) + Math.abs(y - 0.5)) * 0.1;
+        
+        symbol.style.transform = `translate(${xOffset}px, ${yOffset}px) scale(${scale})`;
+        symbol.style.opacity = 0.3 + (Math.abs(x - 0.5) + Math.abs(y - 0.5)) * 0.3;
+      });
+    });
+    
+    // Reset positions when mouse leaves
+    heroSection.addEventListener('mouseleave', () => {
+      particles.forEach(particle => {
+        particle.style.transform = '';
+      });
+      floatingShapes.forEach(shape => {
+        shape.style.transform = '';
+      });
+      cryptoSymbols.forEach(symbol => {
+        symbol.style.transform = '';
+        symbol.style.opacity = '';
+      });
+    });
+  }
+
+  // Add scroll-triggered animations for hero elements
+  const heroElements = document.querySelectorAll('.hero-headline, .hero-subheading, .cta-primary, .cta-secondary');
+  heroElements.forEach((element, index) => {
+    element.style.opacity = '0';
+    element.style.transform = 'translateY(30px)';
+    element.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+    element.style.transitionDelay = `${index * 0.2}s`;
+    
+    setTimeout(() => {
+      element.style.opacity = '1';
+      element.style.transform = 'translateY(0)';
+    }, 300);
+  });
 });

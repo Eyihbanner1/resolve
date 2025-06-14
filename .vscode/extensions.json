@@ -1,5 +1,7 @@
 {
     "recommendations": [
-        "bini.vscode-gemini-assistant"
+        "bini.vscode-gemini-assistant",
+        "ritwickdey.liveserver",
+        "ms-vscode.vscode-json"
     ]
 }

@@ -3,7 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Resolve OTC - Modern Trading, Simplified</title>
+    <title>Resolve OTC - Professional Crypto Trading for Nigerians</title>
+
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="Nigeria's leading OTC trading platform for digital assets. Experience seamless crypto trading with competitive rates, deep liquidity, and professional service tailored for Nigerian businesses and individuals."
+    />
+    <meta
+      name="keywords"
+      content="OTC trading Nigeria, cryptocurrency trading, bitcoin naira, ethereum NGN, digital assets Nigeria, crypto exchange Lagos, bitcoin trading Abuja"
+    />
+    <meta name="author" content="Resolve OTC" />
+
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta
+      property="og:title"
+      content="Resolve OTC - Professional Crypto Trading for Nigerians"
+    />
+    <meta
+      property="og:description"
+      content="Nigeria's premier platform for seamless crypto-to-naira trading with competitive rates and professional service."
+    />
+    <meta property="og:image" content="./img/resolve logo.png" />
+    <meta property="og:url" content="https://resolve.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Resolve OTC - Professional Crypto Trading for Nigerians"
+    />
+    <meta
+      name="twitter:description"
+      content="Nigeria's premier platform for seamless crypto-to-naira trading with competitive rates."
+    />
+    <meta name="twitter:image" content="./img/resolve logo.png" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
     <!-- Note: "Sansation" font is loaded via @font-face in style.css -->
@@ -28,7 +65,7 @@
       >
         <a href="./index.html" class="flex items-center">
           <img
-            src="./img/resolve logo secondary.png"
+            src="./resolve logo 1.png"
             alt="Resolve Logo"
             class="navbar-logo mr-2"
           />
@@ -49,14 +86,14 @@
             >Assets</a
           >
           <a
-            href="#mobile-app"
-            class="text-xs sm:text-sm px-1 py-1 sm:px-2 sm:py-1 rounded-md font-medium m3-button-text nav-link"
-            >Mobile App</a
-          >
-          <a
             href="#testimonials"
             class="text-xs sm:text-sm px-1 py-1 sm:px-2 sm:py-1 rounded-md font-medium m3-button-text nav-link"
             >Testimonials</a
+          >
+          <a
+            href="#faq"
+            class="text-xs sm:text-sm px-1 py-1 sm:px-2 sm:py-1 rounded-md font-medium m3-button-text nav-link"
+            >FAQ</a
           >
           <a
             href="#contact-us-section"
@@ -94,14 +131,14 @@
             >Assets</a
           >
           <a
-            href="#mobile-app"
-            class="block px-3 py-2 rounded-md text-base font-medium m3-button-text text-center hover:bg-[var(--m3-sys-light-primary-container)] hover:text-[var(--m3-sys-light-on-primary-container)] nav-link"
-            >Mobile App</a
-          >
-          <a
             href="#testimonials"
             class="block px-3 py-2 rounded-md text-base font-medium m3-button-text text-center hover:bg-[var(--m3-sys-light-primary-container)] hover:text-[var(--m3-sys-light-on-primary-container)] nav-link"
             >Testimonials</a
+          >
+          <a
+            href="#faq"
+            class="block px-3 py-2 rounded-md text-base font-medium m3-button-text text-center hover:bg-[var(--m3-sys-light-primary-container)] hover:text-[var(--m3-sys-light-on-primary-container)] nav-link"
+            >FAQ</a
           >
           <a
             href="#contact-us-section"
@@ -111,195 +148,250 @@
         </div>
       </div>
     </nav>
-
     <header
-      class="hero-section min-h-screen flex items-center relative bg-cover bg-center"
-      <!--
-      Removed
-      inline
-      background-image
-      style
-      to
-      use
-      CSS
-      gradient
-      --
+      class="hero-section min-h-screen flex items-center relative overflow-hidden"
     >
-      <!-- Removed stray '>' character here -->
-      <!-- Removed black overlay div -->
-      <!-- ADDED: Decorative Shapes -->
-      <div
-        class="decorative-shape absolute top-1/4 left-1/4 w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 bg-[var(--m3-sys-light-primary-container)] rounded-full opacity-20 animate-pulse-slow mix-blend-overlay z-0"
-      ></div>
-      <div
-        class="decorative-shape absolute bottom-1/4 right-1/4 w-40 h-40 sm:w-48 sm:h-48 lg:w-64 lg:h-64 bg-[var(--m3-sys-light-secondary-container)] rounded-full opacity-15 animate-float-slow mix-blend-overlay z-0"
-      ></div>
-      <!-- ADDED: Floating Crypto Icons -->
-      <div
-        class="floating-crypto-icon"
-        style="
-          top: 15%;
-          left: 10%;
-          animation-name: float-crypto-1;
-          animation-duration: 12s;
-          font-size: 3rem;
-        "
-      >
-        <i class="fab fa-bitcoin"></i>
-      </div>
-      <div
-        class="floating-crypto-icon"
-        style="
-          top: 60%;
-          left: 20%;
-          animation-name: float-crypto-2;
-          animation-duration: 15s;
-          font-size: 2.5rem;
-          animation-delay: -2s;
-        "
-      >
-        <i class="fab fa-ethereum"></i>
-      </div>
-      <div
-        class="floating-crypto-icon"
-        style="
-          top: 30%;
-          left: 80%;
-          animation-name: float-crypto-3;
-          animation-duration: 10s;
-          font-size: 3.5rem;
-          animation-delay: -4s;
-        "
-      >
-        <i class="fas fa-dollar-sign"></i>
-        <!-- USDT often uses dollar sign -->
-      </div>
-      <div
-        class="floating-crypto-icon"
-        style="
-          top: 75%;
-          left: 70%;
-          animation-name: float-crypto-1;
-          animation-duration: 13s;
-          font-size: 2rem;
-          animation-delay: -6s;
-          opacity: 0.08;
-        "
-      >
-        <i class="fas fa-coins"></i>
-        <!-- Generic coins icon -->
-      </div>
-      <div
-        class="floating-crypto-icon"
-        style="
-          top: 10%;
-          left: 50%;
-          animation-name: float-crypto-2;
-          animation-duration: 14s;
-          font-size: 2.2rem;
-          animation-delay: -1s;
-        "
-      >
-        <i class="fab fa-btc"></i>
-        <!-- Another Bitcoin icon -->
-      </div>
-      <div
-        class="floating-crypto-icon"
-        style="
-          top: 85%;
-          left: 15%;
-          animation-name: float-crypto-3;
-          animation-duration: 11s;
-          font-size: 2.8rem;
-          animation-delay: -5s;
-          opacity: 0.1;
-        "
-      >
-        <i class="fas fa-lira-sign"></i>
-        <!-- Example, can be any icon -->
-      </div>
-      <div
-        class="floating-crypto-icon"
-        style="
-          top: 5%;
-          left: 75%;
-          animation-name: float-crypto-1;
-          animation-duration: 16s;
-          font-size: 1.8rem;
-          animation-delay: -3s;
-        "
-      >
-        <i class="fab fa-monero"></i>
-      </div>
-      <div
-        class="floating-crypto-icon"
-        style="
-          top: 45%;
-          left: 5%;
-          animation-name: float-crypto-2;
-          animation-duration: 12.5s;
-          font-size: 3.2rem;
-          animation-delay: -7s;
-          opacity: 0.09;
-        "
-      >
-        <i class="fab fa-dash"></i>
-      </div>
-      <!-- END ADDED: Floating Crypto Icons -->
-      <!-- END ADDED: Decorative Shapes -->
-      <!-- Content Container - needs to be on top of the overlay -->
-      <div
-        class="container mx-auto px-6 sm:px-6 pt-20 pb-6 md:pt-32 md:pb-24 relative z-10"
-      >
-        <!-- Content needs to be above overlay -->
-        <div class="flex flex-col items-center justify-center">
-          <div class="hero-content text-center max-w-3xl">
+      <!-- Two-column grid layout -->
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 h-full">
+        <div class="grid lg:grid-cols-2 gap-6 lg:gap-12 items-center h-full">
+          <!-- Left Column - Content -->
+          <div class="hero-content relative z-20 order-2 lg:order-1">
+            <!-- Main Headline -->
             <h1
-              id="heroHeadline"
-              class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 opacity-0"
+              class="hero-headline text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-medium text-[var(--m3-sys-light-on-background)] mb-3 leading-tight"
             >
-              <!-- Content will be injected by JS -->
+              Professional Crypto Trading for
+              <span class="text-[var(--m3-sys-light-primary)]">Nigeria</span>
             </h1>
-            <p class="text-lg sm:text-xl lg:text-2xl mb-8 hero-content-item">
-              Effortlessly trade large volumes of digital and traditional assets
-              with deep liquidity, competitive pricing, and complete discretion.
+
+            <!-- Subheadline -->
+            <p
+              class="hero-subheading text-base sm:text-lg lg:text-xl text-[var(--m3-sys-light-on-surface-variant)] mb-5 font-normal leading-relaxed"
+            >
+              Resolve empowers Nigerian businesses and investors to trade large
+              volumes of digital assets with competitive naira rates, deep
+              liquidity, and complete confidentiality.
             </p>
-            <div class="flex flex-row justify-center gap-4 hero-content-item">
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-3 mb-6">
               <a
                 href="#contact-us-section"
-                class="m3-button m3-button-primary text-base lg:text-lg"
+                class="cta-primary text-sm px-5 py-2.5 rounded-lg font-semibold transition-all duration-200"
               >
-                Get Started
+                Begin Trading Today
               </a>
               <a
                 href="#features"
-                class="m3-button m3-button-secondary text-base lg:text-lg"
+                class="cta-secondary text-sm px-5 py-2.5 rounded-lg font-semibold transition-all duration-200"
               >
-                Learn More
+                Discover Our Platform
               </a>
             </div>
-            <!-- ADDED: Key Benefit Snippets -->
-            <div
-              class="mt-10 sm:mt-12 flex flex-col sm:flex-row justify-center items-center sm:items-start gap-6 sm:gap-8 hero-content-item"
-            >
-              <div class="flex items-center gap-2 text-sm sm:text-base">
-                <i
-                  class="fas fa-shield-alt text-[var(--m3-sys-light-primary)]"
-                ></i>
-                <span>Bank-Grade Security</span>
-              </div>
-              <div class="flex items-center gap-2 text-sm sm:text-base">
-                <i class="fas fa-water text-[var(--m3-sys-light-primary)]"></i>
-                <span>Deep Liquidity Pools</span>
-              </div>
-              <div class="flex items-center gap-2 text-sm sm:text-base">
-                <i
-                  class="fas fa-headset text-[var(--m3-sys-light-primary)]"
-                ></i>
-                <span>24/7 Support</span>
+
+            <!-- Trust Indicators -->
+            <div class="trust-section">
+              <p
+                class="text-xs text-[var(--m3-sys-light-on-surface-variant)] mb-3 font-medium"
+              >
+                Trusted by professionals and institutions across Nigeria
+              </p>
+              <!-- Key Stats -->
+              <div class="grid grid-cols-2 gap-3 max-w-sm">
+                <div class="text-left">
+                  <div
+                    class="text-lg sm:text-xl font-bold text-[var(--m3-sys-light-primary)] mb-1"
+                  >
+                    500+
+                  </div>
+                  <div
+                    class="text-xs text-[var(--m3-sys-light-on-surface-variant)]"
+                  >
+                    Active Traders
+                  </div>
+                </div>
+                <div class="text-left">
+                  <div
+                    class="text-lg sm:text-xl font-bold text-[var(--m3-sys-light-primary)] mb-1"
+                  >
+                    $1B+
+                  </div>
+                  <div
+                    class="text-xs text-[var(--m3-sys-light-on-surface-variant)]"
+                  >
+                    Volume Traded
+                  </div>
+                </div>
+                <div class="text-left">
+                  <div
+                    class="text-lg sm:text-xl font-bold text-[var(--m3-sys-light-primary)] mb-1"
+                  >
+                    50+
+                  </div>
+                  <div
+                    class="text-xs text-[var(--m3-sys-light-on-surface-variant)]"
+                  >
+                    Assets
+                  </div>
+                </div>
+                <div class="text-left">
+                  <div
+                    class="text-lg sm:text-xl font-bold text-[var(--m3-sys-light-primary)] mb-1"
+                  >
+                    99.9%
+                  </div>
+                  <div
+                    class="text-xs text-[var(--m3-sys-light-on-surface-variant)]"
+                  >
+                    Uptime
+                  </div>
+                </div>
               </div>
             </div>
-            <!-- END ADDED: Key Benefit Snippets -->
+          </div>
+
+          <!-- Right Column - Animation Area -->
+          <div
+            class="hero-animation relative order-1 lg:order-2 min-h-[60vh] lg:min-h-screen"
+          >
+            <!-- Animation content will be positioned here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Animated Background - Now positioned to flow from right to left -->
+      <div
+        class="hero-background absolute inset-0 overflow-hidden pointer-events-none"
+      >
+        <!-- Animated Gradient Orbs -->
+        <div
+          class="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-[var(--m3-sys-light-primary)] to-[var(--m3-sys-light-secondary)] opacity-20 rounded-full blur-3xl animate-float-slow"
+        ></div>
+        <div
+          class="absolute bottom-1/4 right-1/3 w-80 h-80 bg-gradient-to-l from-[var(--m3-sys-light-tertiary)] to-[var(--m3-sys-light-primary)] opacity-15 rounded-full blur-2xl animate-float-reverse"
+        ></div>
+        <div
+          class="absolute top-1/2 right-1/6 w-64 h-64 bg-gradient-to-br from-[var(--m3-sys-light-secondary)] to-transparent opacity-10 rounded-full blur-xl animate-pulse-slow"
+        ></div>
+        <!-- Additional orb that flows into left side -->
+        <div
+          class="absolute top-3/4 left-1/4 w-48 h-48 bg-gradient-to-r from-[var(--m3-sys-light-primary)] to-transparent opacity-12 rounded-full blur-2xl animate-float-slow"
+        ></div>
+        <!-- Floating Geometric Shapes - Repositioned to flow from right to left -->
+        <div
+          class="floating-shape floating-shape-1"
+          style="right: 20%; top: 15%"
+        >
+          <div
+            class="w-4 h-4 bg-[var(--m3-sys-light-primary)] opacity-60 rotate-45"
+          ></div>
+        </div>
+        <div
+          class="floating-shape floating-shape-2"
+          style="right: 30%; top: 35%"
+        >
+          <div
+            class="w-3 h-3 bg-[var(--m3-sys-light-secondary)] opacity-50 rounded-full"
+          ></div>
+        </div>
+        <div
+          class="floating-shape floating-shape-3"
+          style="right: 10%; top: 60%"
+        >
+          <div
+            class="w-6 h-1 bg-[var(--m3-sys-light-tertiary)] opacity-40"
+          ></div>
+        </div>
+        <div
+          class="floating-shape floating-shape-4"
+          style="left: 40%; top: 25%"
+        >
+          <div
+            class="w-5 h-5 border-2 border-[var(--m3-sys-light-primary)] opacity-30"
+          ></div>
+        </div>
+        <div
+          class="floating-shape floating-shape-5"
+          style="right: 15%; bottom: 30%"
+        >
+          <div
+            class="w-2 h-8 bg-[var(--m3-sys-light-secondary)] opacity-50 rounded-full"
+          ></div>
+        </div>
+        <div
+          class="floating-shape floating-shape-6"
+          style="left: 35%; bottom: 20%"
+        >
+          <div
+            class="w-8 h-2 bg-[var(--m3-sys-light-primary)] opacity-40 rounded-full"
+          ></div>
+        </div>
+
+        <!-- Animated Lines - Repositioned -->
+        <div class="animated-line line-1" style="right: 25%; top: 40%"></div>
+        <div class="animated-line line-2" style="right: 5%; top: 70%"></div>
+        <div class="animated-line line-3" style="left: 45%; top: 50%"></div>
+
+        <!-- Particle Dots - Repositioned to flow from right -->
+        <div class="particle-container">
+          <div class="particle particle-1" style="right: 20%; top: 20%"></div>
+          <div class="particle particle-2" style="right: 35%; top: 45%"></div>
+          <div class="particle particle-3" style="right: 10%; top: 75%"></div>
+          <div class="particle particle-4" style="left: 30%; top: 35%"></div>
+          <div
+            class="particle particle-5"
+            style="right: 40%; bottom: 25%"
+          ></div>
+          <div class="particle particle-6" style="left: 20%; bottom: 40%"></div>
+          <div
+            class="particle particle-7"
+            style="right: 25%; bottom: 45%"
+          ></div>
+          <div class="particle particle-8" style="left: 40%; bottom: 15%"></div>
+        </div>
+
+        <!-- Rotating Rings - Repositioned -->
+        <div class="rotating-ring ring-1" style="right: 20%; top: 30%">
+          <div class="ring-element"></div>
+        </div>
+        <div class="rotating-ring ring-2" style="left: 35%; top: 65%">
+          <div class="ring-element"></div>
+        </div>
+
+        <!-- Floating Crypto Symbols - Repositioned to flow from right to left -->
+        <div class="crypto-symbols-container">
+          <div class="crypto-symbol crypto-btc" style="right: 15%; top: 15%">
+            <i class="fab fa-bitcoin"></i>
+          </div>
+          <div class="crypto-symbol crypto-eth" style="right: 25%; top: 25%">
+            <i class="fab fa-ethereum"></i>
+          </div>
+          <div class="crypto-symbol crypto-usdt" style="right: 5%; top: 60%">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <div class="crypto-symbol crypto-bnb" style="right: 35%; top: 40%">
+            <i class="fas fa-coins"></i>
+          </div>
+          <div class="crypto-symbol crypto-ada" style="left: 30%; top: 70%">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="crypto-symbol crypto-sol" style="left: 45%; top: 35%">
+            <i class="fas fa-sun"></i>
+          </div>
+          <div class="crypto-symbol crypto-dot" style="left: 20%; top: 80%">
+            <i class="fas fa-circle"></i>
+          </div>
+          <div class="crypto-symbol crypto-ltc" style="right: 30%; bottom: 20%">
+            <i class="fab fa-litecoin-sign"></i>
+          </div>
+          <div class="crypto-symbol crypto-xrp" style="left: 35%; bottom: 50%">
+            <i class="fas fa-wave-square"></i>
+          </div>
+          <div
+            class="crypto-symbol crypto-doge"
+            style="right: 10%; bottom: 40%"
+          >
+            <i class="fab fa-dogecoin"></i>
           </div>
         </div>
       </div>
@@ -311,14 +403,14 @@
           <h2
             class="section-title text-3xl sm:text-4xl md:text-5xl animate-on-scroll"
           >
-            Why Choose Resolve?
+            Why Nigerian Professionals Choose Resolve
           </h2>
           <p
             class="section-subtitle mt-3 md:mt-4 animate-on-scroll"
             style="transition-delay: 0.2s"
           >
-            Discover our easy-to-use and efficient OTC trading platform. Here's
-            why we are different:
+            Discover why we're the preferred OTC trading platform for serious
+            investors and businesses in Nigeria.
           </p>
         </div>
         <div
@@ -333,11 +425,12 @@
             <h3
               class="m3-title-large text-center text-lg sm:text-xl md:text-2xl"
             >
-              Very Fast Trades
+              Lightning-Fast Execution
             </h3>
             <p class="text-center m3-body-large">
-              Your trades are completed in a flash. Our system is built for
-              speed and efficiency.
+              Execute your trades instantly with our advanced technology. Built
+              for professionals who value speed and precision in every
+              transaction.
             </p>
           </div>
           <div
@@ -352,11 +445,12 @@
             <h3
               class="m3-title-large text-center text-lg sm:text-xl md:text-2xl"
             >
-              Top-Level Security
+              Bank-Grade Security
             </h3>
             <p class="text-center m3-body-large">
-              Your money and assets are protected with the best security, just
-              like a bank.
+              Your funds and digital assets are protected with enterprise-level
+              security protocols, ensuring complete peace of mind for every
+              transaction.
             </p>
           </div>
           <div
@@ -368,11 +462,12 @@
             <h3
               class="m3-title-large text-center text-lg sm:text-xl md:text-2xl"
             >
-              Always Enough to Trade
+              Deep Market Liquidity
             </h3>
             <p class="text-center m3-body-large">
-              You can always find buyers and sellers, so you get good prices,
-              even for big amounts.
+              Access substantial liquidity pools ensuring competitive rates and
+              seamless execution for transactions of any size, from thousands to
+              millions of naira.
             </p>
           </div>
           <div
@@ -387,10 +482,12 @@
             <h3
               class="m3-title-large text-center text-lg sm:text-xl md:text-2xl"
             >
-              Quick Trading & Withdrawals
+              Instant Settlement & Withdrawal
             </h3>
             <p class="text-center m3-body-large">
-              Trade when you want and get your money out quickly and easily.
+              Complete your transactions and access your funds immediately. Our
+              streamlined process ensures quick settlement and hassle-free
+              withdrawals.
             </p>
           </div>
           <div
@@ -402,11 +499,12 @@
             <h3
               class="m3-title-large text-center text-lg sm:text-xl md:text-2xl"
             >
-              Helpful Customer Support
+              24/7 Professional Support
             </h3>
             <p class="text-center m3-body-large">
-              Our friendly support team is always ready to help you, anytime,
-              day or night.
+              Our dedicated relationship managers provide round-the-clock
+              assistance, ensuring you receive expert guidance whenever you need
+              it.
             </p>
           </div>
           <div
@@ -418,11 +516,12 @@
             <h3
               class="m3-title-large text-center text-lg sm:text-xl md:text-2xl"
             >
-              Private & Confidential Trades
+              Discreet & Confidential Trading
             </h3>
             <p class="text-center m3-body-large">
-              Your big trades are kept private, so they don't affect market
-              prices. Your business stays your business.
+              Execute large-volume transactions with complete privacy. Your
+              trading activities remain confidential and won't impact market
+              prices.
             </p>
           </div>
         </div>
@@ -438,36 +537,52 @@
           <h2
             class="section-title text-3xl sm:text-4xl md:text-5xl animate-on-scroll"
           >
-            Many Assets to Trade
+            Comprehensive Asset Portfolio
           </h2>
           <p
             class="section-subtitle mt-3 md:mt-4 animate-on-scroll"
             style="transition-delay: 0.2s"
           >
-            Trade different types of assets with good prices and lots of options
-            available.
+            Trade a diverse range of digital assets with competitive naira rates
+            and professional-grade execution across all major cryptocurrencies.
           </p>
         </div>
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center stagger-delay"
+          class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 text-center stagger-delay"
         >
           <div class="market-item-card animate-on-scroll">
-            <i class="fab fa-bitcoin market-item-icon"></i>
+            <i class="fab fa-bitcoin market-item-icon icon-btc"></i>
             <p class="font-semibold text-sm md:text-base">Bitcoin (BTC)</p>
           </div>
           <div class="market-item-card animate-on-scroll">
-            <i class="fas fa-dollar-sign market-item-icon"></i>
+            <i class="fas fa-dollar-sign market-item-icon icon-usdt"></i>
             <p class="font-semibold text-sm md:text-base">Tether (USDT)</p>
           </div>
           <div class="market-item-card animate-on-scroll">
-            <i class="fab fa-ethereum market-item-icon"></i>
+            <i class="fab fa-ethereum market-item-icon icon-eth"></i>
             <p class="font-semibold text-sm md:text-base">Ethereum (ETH)</p>
           </div>
           <div class="market-item-card animate-on-scroll">
-            <i class="fas fa-naira-sign market-item-icon"></i>
+            <i class="fas fa-naira-sign market-item-icon icon-ngn"></i>
             <p class="font-semibold text-sm md:text-base">
               Nigerian Naira (NGN)
             </p>
+          </div>
+          <div class="market-item-card animate-on-scroll">
+            <i class="fas fa-dollar-sign market-item-icon icon-usdc"></i>
+            <p class="font-semibold text-sm md:text-base">USD Coin (USDC)</p>
+          </div>
+          <div class="market-item-card animate-on-scroll">
+            <i class="fab fa-cc-mastercard market-item-icon icon-bnb"></i>
+            <p class="font-semibold text-sm md:text-base">Binance Coin (BNB)</p>
+          </div>
+          <div class="market-item-card animate-on-scroll">
+            <i class="fas fa-coins market-item-icon icon-ada"></i>
+            <p class="font-semibold text-sm md:text-base">Cardano (ADA)</p>
+          </div>
+          <div class="market-item-card animate-on-scroll">
+            <i class="fas fa-chart-line market-item-icon icon-sol"></i>
+            <p class="font-semibold text-sm md:text-base">Solana (SOL)</p>
           </div>
         </div>
         <p class="text-center mt-10 animate-on-scroll m3-body-large">
@@ -476,44 +591,6 @@
             >Ask us for the complete list.</a
           >
         </p>
-      </div>
-    </section>
-
-    <section id="mobile-app" class="py-12 md:py-16">
-      <div class="container mx-auto px-4 sm:px-6">
-        <div class="text-center mb-10 md:mb-12">
-          <h2
-            class="section-title text-3xl sm:text-4xl md:text-5xl animate-on-scroll"
-          >
-            Trade With Your Phone
-          </h2>
-          <p
-            class="section-subtitle mt-3 md:mt-4 animate-on-scroll"
-            style="transition-delay: 0.2s"
-          >
-            Use our secure mobile app to access your Resolve OTC account and
-            trade wherever you are.
-          </p>
-        </div>
-        <div
-          class="flex flex-col sm:flex-row justify-center items-center gap-6 md:gap-8 animate-on-scroll"
-          style="transition-delay: 0.3s"
-        >
-          <a href="#" class="app-download-button">
-            <i class="fab fa-apple"></i>
-            <div>
-              <span class="button-text-small">Download on the</span>
-              <span class="button-text-large">App Store</span>
-            </div>
-          </a>
-          <a href="#" class="app-download-button">
-            <i class="fab fa-google-play"></i>
-            <div>
-              <span class="button-text-small">GET IT ON</span>
-              <span class="button-text-large">Google Play</span>
-            </div>
-          </a>
-        </div>
       </div>
     </section>
 
@@ -526,13 +603,14 @@
           <h2
             class="section-title text-3xl sm:text-4xl md:text-5xl animate-on-scroll"
           >
-            Hear From Our Clients
+            What Our Nigerian Clients Say
           </h2>
           <p
             class="section-subtitle mt-3 md:mt-4 animate-on-scroll"
             style="transition-delay: 0.2s"
           >
-            See why traders and institutions trust Resolve for their OTC needs.
+            Hear from businesses and professionals who trust Resolve for their
+            crypto trading needs.
           </p>
         </div>
 
@@ -543,9 +621,10 @@
             <div class="testimonial-card text-center">
               <i class="fas fa-quote-left testimonial-quote-icon"></i>
               <p class="testimonial-text m3-body-large">
-                "Resolve has made our large crypto trades so much smoother. The
-                liquidity is excellent, and their team is always responsive and
-                professional. Highly recommended!"
+                "Resolve has revolutionized how we handle large crypto
+                transactions for our clients. Their naira rates are excellent,
+                and the team delivers with utmost professionalism. They
+                understand the Nigerian market perfectly."
               </p>
               <div class="mt-4">
                 <div class="testimonial-author">Adebayo K.</div>
@@ -562,9 +641,11 @@
             <div class="testimonial-card text-center">
               <i class="fas fa-quote-left testimonial-quote-icon"></i>
               <p class="testimonial-text m3-body-large">
-                "The discretion and speed Resolve offers for OTC transactions
-                are unmatched. We can execute significant volumes without
-                worrying about market impact. Their platform is top-notch."
+                "The discretion and efficiency Resolve provides for
+                institutional OTC transactions is outstanding. We execute
+                significant volumes without any market disruption. Their
+                platform sets the standard for professional crypto trading in
+                Nigeria."
               </p>
               <div class="mt-4">
                 <div class="testimonial-author">Chioma E.</div>
@@ -581,9 +662,10 @@
             <div class="testimonial-card text-center">
               <i class="fas fa-quote-left testimonial-quote-icon"></i>
               <p class="testimonial-text m3-body-large">
-                "Switching to Resolve for our Naira to Crypto OTC needs was the
-                best decision. Their rates are competitive, and the withdrawal
-                process is incredibly fast. Excellent service all around!"
+                "Switching to Resolve for our naira-to-crypto conversions was a
+                game-changer. Their rates are highly competitive, settlement is
+                instant, and the entire process is seamless. Exceptional service
+                for serious investors!"
               </p>
               <div class="mt-4">
                 <div class="testimonial-author">Emeka O.</div>
@@ -615,6 +697,154 @@
       </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section
+      id="faq"
+      class="py-12 md:py-16 bg-[var(--m3-sys-light-surface-container-low)] border-t border-b border-[var(--m3-sys-light-outline-variant)]"
+    >
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10 md:mb-12">
+          <h2
+            class="section-title text-3xl sm:text-4xl md:text-5xl animate-on-scroll"
+          >
+            Frequently Asked Questions
+          </h2>
+          <p
+            class="section-subtitle mt-3 md:mt-4 animate-on-scroll"
+            style="transition-delay: 0.2s"
+          >
+            Get answers to common questions about our OTC trading platform.
+          </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto space-y-4">
+          <div class="faq-item m3-card p-6 animate-on-scroll">
+            <button
+              class="faq-question w-full text-left flex justify-between items-center"
+            >
+              <span class="font-semibold text-lg">What is OTC trading?</span>
+              <i
+                class="fas fa-chevron-down transition-transform duration-200"
+              ></i>
+            </button>
+            <div class="faq-answer mt-4 hidden">
+              <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                Over-the-counter (OTC) trading allows you to trade large volumes
+                of digital assets directly with other traders without affecting
+                market prices. It's perfect for institutional investors and
+                high-net-worth individuals who need to execute large trades
+                discreetly and efficiently.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item m3-card p-6 animate-on-scroll">
+            <button
+              class="faq-question w-full text-left flex justify-between items-center"
+            >
+              <span class="font-semibold text-lg"
+                >What are your trading limits?</span
+              >
+              <i
+                class="fas fa-chevron-down transition-transform duration-200"
+              ></i>
+            </button>
+            <div class="faq-answer mt-4 hidden">
+              <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                We accommodate trades from ₦5 million to multi-billion naira
+                transactions. There's no upper limit - our deep liquidity pools
+                can handle even the largest institutional trades. Contact our
+                team for specific requirements and custom solutions.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item m3-card p-6 animate-on-scroll">
+            <button
+              class="faq-question w-full text-left flex justify-between items-center"
+            >
+              <span class="font-semibold text-lg"
+                >How secure is your platform?</span
+              >
+              <i
+                class="fas fa-chevron-down transition-transform duration-200"
+              ></i>
+            </button>
+            <div class="faq-answer mt-4 hidden">
+              <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                We use bank-grade security with multi-signature wallets, cold
+                storage, and advanced encryption. Our platform is regularly
+                audited and complies with international security standards to
+                protect your assets and personal information.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item m3-card p-6 animate-on-scroll">
+            <button
+              class="faq-question w-full text-left flex justify-between items-center"
+            >
+              <span class="font-semibold text-lg"
+                >How fast are withdrawals?</span
+              >
+              <i
+                class="fas fa-chevron-down transition-transform duration-200"
+              ></i>
+            </button>
+            <div class="faq-answer mt-4 hidden">
+              <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                Most settlements are completed within 1-4 hours. Cryptocurrency
+                transfers typically complete within 1 hour, while naira bank
+                transfers may take 1-3 business days depending on your Nigerian
+                bank's processing times and CBN regulations.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item m3-card p-6 animate-on-scroll">
+            <button
+              class="faq-question w-full text-left flex justify-between items-center"
+            >
+              <span class="font-semibold text-lg">Do you charge any fees?</span>
+              <i
+                class="fas fa-chevron-down transition-transform duration-200"
+              ></i>
+            </button>
+            <div class="faq-answer mt-4 hidden">
+              <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                Our fee structure is transparent and competitive within the
+                Nigerian market. We charge a small percentage on each
+                transaction, with preferential rates for high-volume clients. No
+                hidden charges - complete transparency in pricing. Contact our
+                team for detailed fee schedules.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item m3-card p-6 animate-on-scroll">
+            <button
+              class="faq-question w-full text-left flex justify-between items-center"
+            >
+              <span class="font-semibold text-lg"
+                >Is my personal information safe?</span
+              >
+              <i
+                class="fas fa-chevron-down transition-transform duration-200"
+              ></i>
+            </button>
+            <div class="faq-answer mt-4 hidden">
+              <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                Absolutely. We follow strict privacy policies and comply with
+                international data protection regulations. Your personal and
+                trading information is encrypted and stored securely. We never
+                share your data with third parties without your consent.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section
       id="contact-us-section"
       class="py-12 md:py-16 bg-[var(--m3-sys-light-background)]"
@@ -624,20 +854,25 @@
           <h2
             class="section-title text-3xl sm:text-4xl md:text-5xl animate-on-scroll"
           >
-            Get In Touch With Us
+            Connect With Our Team
           </h2>
           <p
             class="section-subtitle mt-3 md:mt-4 animate-on-scroll"
             style="transition-delay: 0.1s"
           >
-            Have questions or need assistance? Our team is here to help you.
+            Ready to begin professional crypto trading? Our relationship
+            managers are here to assist you.
           </p>
         </div>
         <div
           class="max-w-2xl mx-auto m3-card p-8 md:p-10 animate-on-scroll"
           style="transition-delay: 0.2s"
         >
-          <form id="mainContactForm">
+          <form
+            id="mainContactForm"
+            action="./contact-handler.php"
+            method="POST"
+          >
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
                 <label for="contactName" class="block mb-2">Full Name:</label>
@@ -666,14 +901,14 @@
             </div>
             <div class="mb-6">
               <label for="contactCompany" class="block mb-2"
-                >Institution / Company (Optional):</label
+                >Company / Organization (Optional):</label
               >
               <input
                 type="text"
                 id="contactCompany"
                 name="contactCompany"
                 class="m3-input w-full"
-                placeholder="e.g., Major Capital Inc."
+                placeholder="e.g., Lagos Investment Partners Ltd."
               />
             </div>
             <div class="mb-6">
@@ -685,10 +920,12 @@
                 name="contactInquiryType"
                 class="m3-input w-full"
               >
-                <option>General Inquiry</option>
-                <option>API Access Request</option>
+                <option>General Trading Inquiry</option>
+                <option>Large Volume Trading</option>
+                <option>Corporate Account Setup</option>
                 <option>Partnership Opportunities</option>
                 <option>Technical Support</option>
+                <option>Compliance & Regulations</option>
                 <option>Other</option>
               </select>
             </div>
@@ -700,12 +937,12 @@
                 rows="5"
                 required
                 class="m3-input w-full"
-                placeholder="Please describe your needs..."
+                placeholder="Please describe your trading requirements or inquiries..."
               ></textarea>
             </div>
             <div class="text-center">
               <button type="submit" class="m3-button m3-button-primary text-lg">
-                Send Your Message
+                Send Your Inquiry
               </button>
             </div>
           </form>
@@ -715,20 +952,20 @@
           style="transition-delay: 0.3s"
         >
           <p class="m3-body-large">
-            You can also reach our support team directly:
+            You can also reach our relationship managers directly:
           </p>
           <p class="mt-2 m3-body-large">
             Email:
             <a
-              href="mailto:support@resolve.com"
+              href="mailto:admin@resolve.ng"
               class="accent-color hover:underline"
-              >admin@resolve.com</a
+              >admin@resolve.ng</a
             >
           </p>
           <p class="m3-body-large">
-            Phone (Support Line):
+            Professional Trading Line:
             <a href="tel:+12345678902" class="accent-color hover:underline"
-              >+1 (234) 567-8902</a
+              >+234 (0) 901-000-0000</a
             >
           </p>
         </div>
@@ -801,6 +1038,15 @@
         </button>
       </div>
     </div>
+
+    <!-- Scroll to Top Button -->
+    <button
+      id="scrollTopBtn"
+      class="fixed bottom-6 right-6 z-50 w-12 h-12 bg-[var(--m3-sys-light-primary)] text-[var(--m3-sys-light-on-primary)] rounded-full shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 invisible"
+      aria-label="Scroll to top"
+    >
+      <i class="fas fa-arrow-up text-lg"></i>
+    </button>
 
     <!-- Link to your external JavaScript file -->
     <script src="js/script.js" defer></script>
