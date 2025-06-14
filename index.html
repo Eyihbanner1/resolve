@@ -619,86 +619,131 @@
             crypto trading needs.
           </p>
         </div>
-        <div
-          class="testimonial-carousel-container mx-auto w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl animate-on-scroll"
-        >
-          <div class="testimonial-slides">
-            <div class="testimonial-card text-center">
-              <i class="fas fa-quote-left testimonial-quote-icon"></i>
-              <p class="testimonial-text m3-body-large">
-                "Resolve has revolutionized how we handle large crypto
-                transactions for our clients. Their naira rates are excellent,
-                and the team delivers with utmost professionalism. They
-                understand the Nigerian market perfectly."
-              </p>
-              <div class="mt-4">
-                <div class="testimonial-author">Adebayo K.</div>
-                <div class="testimonial-author-title">
-                  CEO, Fintech Innovators Ltd.
+        <!-- New Modern Testimonial Carousel -->
+        <div class="modern-testimonial-carousel animate-on-scroll">
+          <div class="testimonial-container">
+            <div class="testimonial-track">
+              <!-- Testimonial 1 -->
+              <div class="testimonial-slide active">
+                <div class="testimonial-content">
+                  <div class="quote-mark">
+                    <i class="fas fa-quote-left"></i>
+                  </div>
+                  <p class="testimonial-message">
+                    "Resolve has revolutionized how we handle large crypto
+                    transactions for our clients. Their naira rates are
+                    excellent, and the team delivers with utmost
+                    professionalism. They understand the Nigerian market
+                    perfectly."
+                  </p>
+                  <div class="testimonial-author-info">
+                    <div class="author-avatar">
+                      <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="author-details">
+                      <h4 class="author-name">Adebayo Kolawole</h4>
+                      <p class="author-title">CEO, Fintech Innovators Ltd.</p>
+                      <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="star-rating mt-2">
-                  <i class="fas fa-star"></i><i class="fas fa-star"></i
-                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
-                  ><i class="fas fa-star"></i>
+              </div>
+
+              <!-- Testimonial 2 -->
+              <div class="testimonial-slide">
+                <div class="testimonial-content">
+                  <div class="quote-mark">
+                    <i class="fas fa-quote-left"></i>
+                  </div>
+                  <p class="testimonial-message">
+                    "The discretion and efficiency Resolve provides for
+                    institutional OTC transactions is outstanding. We execute
+                    significant volumes without any market disruption. Their
+                    platform sets the standard for professional crypto trading
+                    in Nigeria."
+                  </p>
+                  <div class="testimonial-author-info">
+                    <div class="author-avatar">
+                      <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="author-details">
+                      <h4 class="author-name">Chioma Ezeugo</h4>
+                      <p class="author-title">
+                        Head of Trading, Global Ventures PLC
+                      </p>
+                      <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Testimonial 3 -->
+              <div class="testimonial-slide">
+                <div class="testimonial-content">
+                  <div class="quote-mark">
+                    <i class="fas fa-quote-left"></i>
+                  </div>
+                  <p class="testimonial-message">
+                    "Switching to Resolve for our naira-to-crypto conversions
+                    was a game-changer. Their rates are highly competitive,
+                    settlement is instant, and the entire process is seamless.
+                    Exceptional service for serious investors!"
+                  </p>
+                  <div class="testimonial-author-info">
+                    <div class="author-avatar">
+                      <i class="fas fa-user"></i>
+                    </div>
+                    <div class="author-details">
+                      <h4 class="author-name">Emeka Okafor</h4>
+                      <p class="author-title">Private Investor</p>
+                      <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="testimonial-card text-center">
-              <i class="fas fa-quote-left testimonial-quote-icon"></i>
-              <p class="testimonial-text m3-body-large">
-                "The discretion and efficiency Resolve provides for
-                institutional OTC transactions is outstanding. We execute
-                significant volumes without any market disruption. Their
-                platform sets the standard for professional crypto trading in
-                Nigeria."
-              </p>
-              <div class="mt-4">
-                <div class="testimonial-author">Chioma E.</div>
-                <div class="testimonial-author-title">
-                  Head of Trading, Global Ventures PLC
-                </div>
-                <div class="star-rating mt-2">
-                  <i class="fas fa-star"></i><i class="fas fa-star"></i
-                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
-                  ><i class="fas fa-star-half-alt"></i>
-                </div>
-              </div>
+
+            <!-- Navigation Controls -->
+            <div class="carousel-controls">
+              <button
+                class="nav-btn prev-btn"
+                onclick="changeSlide(-1)"
+                aria-label="Previous testimonial"
+              >
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button
+                class="nav-btn next-btn"
+                onclick="changeSlide(1)"
+                aria-label="Next testimonial"
+              >
+                <i class="fas fa-chevron-right"></i>
+              </button>
             </div>
-            <div class="testimonial-card text-center">
-              <i class="fas fa-quote-left testimonial-quote-icon"></i>
-              <p class="testimonial-text m3-body-large">
-                "Switching to Resolve for our naira-to-crypto conversions was a
-                game-changer. Their rates are highly competitive, settlement is
-                instant, and the entire process is seamless. Exceptional service
-                for serious investors!"
-              </p>
-              <div class="mt-4">
-                <div class="testimonial-author">Emeka O.</div>
-                <div class="testimonial-author-title">Private Investor</div>
-                <div class="star-rating mt-2">
-                  <i class="fas fa-star"></i><i class="fas fa-star"></i
-                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
-                  ><i class="fas fa-star"></i>
-                </div>
-              </div>
+            <!-- Pagination Dots -->
+            <div class="carousel-pagination">
+              <!-- Dots will be dynamically generated by JavaScript -->
             </div>
           </div>
-          <button
-            class="carousel-nav-button prev-button"
-            onclick="moveTestimonialSlide(-1)"
-            aria-label="Previous testimonial"
-          >
-            <i class="fas fa-chevron-left" aria-hidden="true"></i>
-          </button>
-          <button
-            class="carousel-nav-button next-button"
-            onclick="moveTestimonialSlide(1)"
-            aria-label="Next testimonial"
-          >
-            <i class="fas fa-chevron-right" aria-hidden="true"></i>
-          </button>
         </div>
-        <div class="carousel-dots" id="testimonialCarouselDots"></div>
       </div>
     </section>
 

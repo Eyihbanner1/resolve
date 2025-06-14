@@ -136,6 +136,11 @@ body {
   animation-delay: 1s;
 }
 
+.hero-headline,
+.hero-headline h1 {
+  color: var(--m3-sys-light-primary) !important;
+}
+
 .hero-subheading {
   font-family: "Inter", sans-serif;
   font-weight: 400;
@@ -173,8 +178,9 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-  transition: left 0.6s ease;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+  transition: left 0.5s ease;
+  z-index: 1;
 }
 
 .cta-primary:hover::before {
@@ -182,13 +188,14 @@ body {
 }
 
 .cta-primary:hover {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15),
-              0 6px 20px rgba(0, 0, 0, 0.1),
-              inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-6px) scale(1.08);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2),
+              0 8px 24px rgba(0, 0, 0, 0.12),
+              inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  filter: brightness(1.1);
 }
 
 .cta-primary:active {
@@ -233,14 +240,15 @@ body {
 }
 
 .cta-secondary:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   color: var(--m3-sys-light-primary);
-  border-color: rgba(255, 255, 255, 0.4);
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.12),
-              0 5px 16px rgba(0, 0, 0, 0.08),
-              inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-6px) scale(1.08);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.15),
+              0 7px 20px rgba(0, 0, 0, 0.1),
+              inset 0 1px 0 rgba(255, 255, 255, 0.3);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(255, 255, 255, 0.8);
+  filter: brightness(1.05);
 }
 
 .cta-secondary:hover::after {
@@ -1179,7 +1187,7 @@ nav {
 }
 
 nav a {
-  color: var(--m3-sys-light-primary);
+  color: var(--m3-sys-light-on-surface);
   font-weight: 600;
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
   padding: 0.5rem 1rem;
@@ -1464,281 +1472,323 @@ footer a:hover {
   font-weight: 700;
 }
 
-/* Material 3 Expressive Testimonial Styles */
-.testimonial-carousel-container {
+/* Modern Testimonial Carousel Styles */
+.modern-testimonial-carousel {
+  max-width: 1000px;
+  margin: 0 auto;
   position: relative;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 2rem 0;
+}
+
+.testimonial-container {
+  position: relative;
   overflow: hidden;
   border-radius: 2rem;
-  box-shadow: var(--m3-shadow-elevation-1);
-  width: 100%;
-  max-width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1),
+              0 8px 30px rgba(0, 0, 0, 0.05),
+              inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-.testimonial-slides {
+.testimonial-track {
   display: flex;
-  transition: transform 0.6s var(--m3-motion-easing-emphasized);
-  width: 300%; /* 3 slides total */
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.testimonial-card {
-  flex: 0 0 100%; /* Each card takes full width of the VIEWPORT/CONTAINER */
+.testimonial-slide {
   width: 100%;
-  background: rgba(255, 255, 255, 0.12);
-  -webkit-backdrop-filter: blur(25px);
-  backdrop-filter: blur(25px);
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  border-radius: 1.5rem;
-  padding: 3rem 2rem 2rem 2rem;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15),
-              0 6px 20px rgba(0, 0, 0, 0.08),
-              inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  position: relative;
-  box-sizing: border-box;
-  transition: all 0.3s var(--m3-motion-easing-standard);
+  flex: 0 0 100%;
+  padding: 4.5rem 2.5rem 3rem 2.5rem;
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s ease;
 }
 
-/* Carousel navigation buttons improvements */
-.carousel-nav-button {
+.testimonial-slide.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.testimonial-content {
+  text-align: center;
+  position: relative;
+}
+
+.quote-mark {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--m3-gradient-surface);
-  color: var(--m3-sys-light-primary);
-  border: 2px solid var(--m3-sys-light-primary-container);
+  top: -2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  background: var(--m3-gradient-primary);
   border-radius: 50%;
-  cursor: pointer;
-  z-index: 40;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s var(--m3-motion-easing-emphasized);
-  box-shadow: var(--m3-shadow-elevation-2);
-  width: 3rem;
-  height: 3rem;
-  padding: 0;
+  font-size: 1.5rem;
+  color: white;
+  box-shadow: 0 8px 25px rgba(var(--m3-primary-rgb), 0.3);
+  z-index: 10;
 }
 
-.carousel-nav-button:hover {
-  background: var(--m3-gradient-primary);
-  color: var(--m3-sys-light-on-primary);
-  border-color: var(--m3-sys-light-primary);
-  box-shadow: var(--m3-shadow-elevation-4);
-  transform: translateY(-50%) scale(1.1);
+.testimonial-message {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--m3-sys-light-on-surface);
+  margin: 3rem 0 2.5rem 0;
+  font-style: italic;
+  position: relative;
+  padding-top: 1.5rem;
 }
 
-.carousel-nav-button:active {
-  transform: translateY(-50%) scale(0.95);
+.testimonial-author-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
-.prev-button {
-  left: 1rem;
-}
-
-.next-button {
-  right: 1rem;
-}
-
-/* Carousel dots improvements */
-.carousel-dots {
-  text-align: center;
-  padding: 1.5rem 0;
-  margin-top: 1rem;
-}
-
-.carousel-dot {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
+.author-avatar {
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  margin: 0 0.5rem;
-  cursor: pointer;
-  transition: all 0.3s var(--m3-motion-easing-standard);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: var(--m3-gradient-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: var(--m3-sys-light-primary);
+  border: 3px solid rgba(var(--m3-primary-rgb), 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.carousel-dot.active {
-  background: var(--m3-sys-light-primary);
-  transform: scale(1.2);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.author-details {
+  text-align: left;
 }
 
-.carousel-dot:hover {
-  background: var(--m3-sys-light-primary);
+.author-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--m3-sys-light-on-surface);
+  margin: 0 0 0.25rem 0;
+}
+
+.author-title {
+  font-size: 0.9rem;
+  color: var(--m3-sys-light-on-surface-variant);
+  margin: 0 0 0.75rem 0;
   opacity: 0.8;
 }
 
-/* Material 3 Expressive Utility Classes */
-.m3-surface-tint {
-  background: linear-gradient(135deg, 
-    var(--m3-sys-light-surface) 0%,
-    color-mix(in srgb, var(--m3-sys-light-surface) 95%, var(--m3-sys-light-primary) 5%) 100%);
+.rating {
+  display: flex;
+  gap: 0.2rem;
 }
 
-.m3-expressive-border {
-  border: 2px solid transparent;
-  background: linear-gradient(var(--m3-sys-light-surface), var(--m3-sys-light-surface)) padding-box,
-              var(--m3-gradient-primary) border-box;
-  border-radius: 1rem;
+.rating i {
+  color: #ffc107;
+  font-size: 0.9rem;
 }
 
-.m3-floating-action {
-  position: relative;
-  overflow: hidden;
-}
-
-.m3-floating-action::before {
-  content: '';
+/* Navigation Controls */
+.carousel-controls {
   position: absolute;
-  top: 0;
-  left: -100%;
+  top: 50%;
   width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-  transition: left 0.8s;
-}
-
-.m3-floating-action:hover::before {
-  left: 100%;
-}
-
-/* Enhanced focus states for accessibility */
-.m3-button:focus-visible,
-.m3-input:focus-visible {
-  outline: 3px solid var(--m3-sys-light-primary);
-  outline-offset: 2px;
-}
-
-/* Expressive state layer effects */
-.m3-state-layer {
-  position: relative;
-}
-
-.m3-state-layer::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--m3-sys-light-primary);
-  opacity: 0;
-  transition: opacity 0.3s var(--m3-motion-easing-standard);
-  border-radius: inherit;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
   pointer-events: none;
+  z-index: 10;
 }
 
-.m3-state-layer:hover::after {
-  opacity: 0.08;
+.nav-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid var(--m3-sys-light-primary);
+  color: var(--m3-sys-light-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  pointer-events: all;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
-.m3-state-layer:active::after {
-  opacity: 0.12;
+.nav-btn:hover {
+  background: var(--m3-sys-light-primary);
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(var(--m3-primary-rgb), 0.3);
 }
 
-/* Enhanced typography classes */
-.m3-display-large {
-  font-family: "Bricolage Grotesque", "Inter", sans-serif;
-  font-size: clamp(2.25rem, 4vw, 3.5rem);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+.nav-btn:active {
+  transform: translateY(-50%) scale(0.95);
 }
 
-.m3-display-medium {
-  font-family: "Bricolage Grotesque", "Inter", sans-serif;
-  font-size: clamp(1.875rem, 3vw, 2.75rem);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.015em;
+/* Pagination Dots */
+.carousel-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding: 1rem 0;
 }
 
-.m3-title-large {
-  font-family: "Bricolage Grotesque", "Inter", sans-serif;
-  font-size: clamp(1.25rem, 2vw, 1.75rem);
-  font-weight: 600;
-  line-height: 1.3;
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  display: inline-block;
 }
 
-.m3-body-large {
-  font-family: "Inter", sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.6;
-  color: var(--m3-sys-light-on-surface-variant);
+.dot.active {
+  background: var(--m3-sys-light-primary);
+  transform: scale(1.2);
+  border-color: rgba(var(--m3-primary-rgb), 0.3);
+  box-shadow: 0 0 0 4px rgba(var(--m3-primary-rgb), 0.2);
 }
 
-/* Form labels with enhanced visibility */
-.form-label,
-label {
+.dot:hover:not(.active) {
+  background: rgba(var(--m3-primary-rgb), 0.6);
+  transform: scale(1.1);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .modern-testimonial-carousel {
+    padding: 1rem 0;
+  }
+  .testimonial-slide {
+    padding: 3.5rem 1.5rem 2rem 1.5rem;
+  }
+  
+  .testimonial-message {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 2.5rem 0 2rem 0;
+    padding-top: 1rem;
+  }
+  
+  .quote-mark {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+    top: -2rem;
+  }
+  
+  .testimonial-author-info {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .author-details {
+    text-align: center;
+  }
+  
+  .author-avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+  
+  .nav-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 1rem;
+  }
+  
+  .carousel-controls {
+    padding: 0 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonial-slide {
+    padding: 1.5rem 1rem;
+  }
+  
+  .testimonial-message {
+    font-size: 0.95rem;
+  }
+  
+  .quote-mark {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+  
+  .nav-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Additional mobile hero enhancements for smaller screens */
+@media (max-width: 768px) {
+  .hero-headline {
+    font-size: clamp(1.75rem, 9vw, 2.8rem);
+    font-weight: 900;
+    margin-bottom: 1rem;
+    text-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 
+                 0 3px 6px rgba(255, 255, 255, 0.9),
+                 0 10px 20px rgba(2, 119, 242, 0.3);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+  
+  .hero-headline h1 {
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--m3-sys-light-primary), #1976d2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-headline {
+    font-size: clamp(1.5rem, 10vw, 2.2rem);
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Keep theme color for key branding elements */
+.hero-headline,
+.hero-headline h1 {
   color: var(--m3-sys-light-primary) !important;
-  font-weight: 600;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
-/* Button enhancements for forms */
-.m3-button,
-button[type="submit"] {
-  background: rgba(255, 255, 255, 0.15) !important;
-  -webkit-backdrop-filter: blur(15px);
-  backdrop-filter: blur(15px);
+/* Keep theme color for important call-to-action text */
+.highlight-text,
+.accent-text {
   color: var(--m3-sys-light-primary) !important;
-  font-weight: 600;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1),
-              inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-.m3-button:hover,
-button[type="submit"]:hover {
-  background: rgba(255, 255, 255, 0.25) !important;
-  border-color: rgba(255, 255, 255, 0.4) !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15),
-              inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-/* Global text visibility improvements for frosted glass design */
-.m3-card h3,
-.m3-card h4,
-.m3-card .card-title {
+/* Keep theme color for testimonial author names */
+.testimonial-slide .author-name {
   color: var(--m3-sys-light-primary) !important;
-  font-weight: 700;
-  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
- }
-
-.m3-card p,
-.m3-card .card-text,
-.m3-card .feature-description {
-  color: var(--m3-sys-light-primary) !important;
-  font-weight: 500;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
-  opacity: 0.9;
 }
 
-.m3-card .feature-icon {
-  filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.3));
-}
-
-/* Enhanced section text visibility */
-.section-title,
-h2.section-title {
-  color: var(--m3-sys-light-primary) !important;
-  font-weight:  800;
-  text-shadow: 0 2px 6px rgba(255,  255, 255, 0.8);
-}
-
-.section-subtitle,
-.section-description {
-  color: var(--m3-sys-light-primary) !important;
-  font-weight: 500;
-  text-shadow: 0 1px 3px rgba(255, 255,  255, 0.6);
-  opacity: 0.85;
-}
-
-/* Floating Crypto Symbols - Updated positioning */
+/* Floating Crypto Symbols in Hero Section */
 .crypto-symbols-container {
   position: absolute;
   top: 0;
@@ -1747,6 +1797,7 @@ h2.section-title {
   height: 100%;
   pointer-events: none;
   z-index: 5;
+  overflow: hidden;
 }
 
 .crypto-symbol {
@@ -1757,86 +1808,94 @@ h2.section-title {
   animation-duration: 20s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
-  filter: drop-shadow(0 2px 8px rgba(2, 119, 242, 0.3));
+  filter: drop-shadow(0 2px 8px rgba(2, 119, 242, 0.2));
   transition: all 0.3s ease;
+  font-weight: 600;
 }
 
 .crypto-symbol:hover {
-  opacity: 0.3;
+  opacity: 0.25;
   transform: scale(1.2);
-  filter: drop-shadow(0 4px 16px rgba(2, 119, 242, 0.5));
+  filter: drop-shadow(0 4px 16px rgba(2, 119, 242, 0.3));
 }
 
-/* Remove individual positioning since it's now inline */
+/* Individual crypto symbol animations */
 .crypto-btc {
-  animation: float-crypto-1 18s infinite ease-in-out;
+  animation: float-crypto-btc 18s infinite ease-in-out;
 }
 
 .crypto-eth {
-  animation: float-crypto-2 22s infinite ease-in-out;
+  animation: float-crypto-eth 22s infinite ease-in-out;
 }
 
 .crypto-usdt {
-  animation: float-crypto-3 16s infinite ease-in-out;
+  animation: float-crypto-usdt 16s infinite ease-in-out;
 }
 
 .crypto-bnb {
-  animation: float-crypto-4 20s infinite ease-in-out;
+  animation: float-crypto-bnb 20s infinite ease-in-out;
 }
 
 .crypto-ada {
-  animation: float-crypto-1 24s infinite ease-in-out;
+  animation: float-crypto-ada 24s infinite ease-in-out;
 }
 
 .crypto-sol {
-  animation: float-crypto-2 19s infinite ease-in-out;
+  animation: float-crypto-sol 19s infinite ease-in-out;
 }
 
 .crypto-dot {
-  animation: float-crypto-3 21s infinite ease-in-out;
+  animation: float-crypto-dot 21s infinite ease-in-out;
 }
 
 .crypto-ltc {
-  animation: float-crypto-4 17s infinite ease-in-out;
+  animation: float-crypto-ltc 17s infinite ease-in-out;
 }
 
 .crypto-xrp {
-  animation: float-crypto-1 23s infinite ease-in-out;
+  animation: float-crypto-xrp 23s infinite ease-in-out;
 }
 
 .crypto-doge {
-  animation: float-crypto-2 25s infinite ease-in-out;
+  animation: float-crypto-doge 25s infinite ease-in-out;
 }
 
-/* Crypto symbol animations */
-@keyframes float-crypto-1 {
+/* Crypto symbol floating animations */
+@keyframes float-crypto-btc {
   0%, 100% { 
     transform: translateY(0px) translateX(0px) rotate(0deg); 
+    opacity: 0.15;
   }
   25% { 
     transform: translateY(-20px) translateX(15px) rotate(5deg); 
+    opacity: 0.25;
   }
   50% { 
     transform: translateY(-10px) translateX(-10px) rotate(-3deg); 
+    opacity: 0.12;
   }
   75% { 
     transform: translateY(-25px) translateX(20px) rotate(8deg); 
+    opacity: 0.18;
   }
 }
 
-@keyframes float-crypto-2 {
+@keyframes float-crypto-eth {
   0%, 100% { 
     transform: translateY(0px) translateX(0px) rotate(0deg) scale(1); 
+    opacity: 0.15;
   }
   33% { 
     transform: translateY(-30px) translateX(-20px) rotate(-8deg) scale(1.05); 
+    opacity: 0.22;
   }
   66% { 
     transform: translateY(15px) translateX(25px) rotate(5deg) scale(0.95); 
+    opacity: 0.1;
   }
 }
 
-@keyframes float-crypto-3 {
+@keyframes float-crypto-usdt {
   0%, 100% { 
     transform: translateY(0px) translateX(0px) rotate(0deg); 
     opacity: 0.15; 
@@ -1847,275 +1906,107 @@ h2.section-title {
   }
 }
 
-@keyframes float-crypto-4 {
+@keyframes float-crypto-bnb {
   0%, 100% { 
     transform: translateY(0px) translateX(0px) rotate(0deg) scale(1); 
+    opacity: 0.15;
   }
   20% { 
     transform: translateY(-15px) translateX(-25px) rotate(-6deg) scale(1.1); 
+    opacity: 0.2;
   }
   40% { 
     transform: translateY(-40px) translateX(10px) rotate(4deg) scale(0.9); 
+    opacity: 0.12;
   }
   60% { 
     transform: translateY(-20px) translateX(35px) rotate(-10deg) scale(1.05); 
+    opacity: 0.18;
   }
   80% { 
     transform: translateY(-10px) translateX(-15px) rotate(7deg) scale(0.95); 
+    opacity: 0.14;
   }
 }
 
-/* Responsive hero section adjustments for better 100vh fit */
-@media (max-height: 700px) {
-  .hero-section {
-    padding-top: 80px;
-    padding-bottom: 40px;
+@keyframes float-crypto-ada {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg); 
+    opacity: 0.15;
   }
-  
-  .hero-headline {
-    font-size: 1.75rem;
-    margin-bottom: 0.75rem;
-  }
-  
-  .hero-subheading {
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
-  }
-  
-  .trust-section {
-    margin-bottom: 0.5rem;
+  50% { 
+    transform: translateY(-28px) translateX(-18px) rotate(-12deg); 
+    opacity: 0.23;
   }
 }
 
-@media (max-height: 600px) {
-  .hero-section {
-    padding-top: 60px;
-    padding-bottom: 30px;
+@keyframes float-crypto-sol {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg) scale(1); 
+    opacity: 0.15;
   }
-  
-  .hero-headline {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+  25% { 
+    transform: translateY(-22px) translateX(18px) rotate(6deg) scale(1.08); 
+    opacity: 0.21;
   }
-  
-  .hero-subheading {
-    font-size: 0.9rem;
-    margin-bottom: 0.75rem;
-  }
-  
-  .cta-primary, .cta-secondary {
-    padding: 8px 16px;
-    font-size: 0.85rem;
+  75% { 
+    transform: translateY(-12px) translateX(-22px) rotate(-4deg) scale(0.92); 
+    opacity: 0.11;
   }
 }
 
-/* Mobile-specific hero adjustments */
-@media (max-width: 1023px) {
-  .hero-content {
-    text-align: center;
-    padding-right: 0;
+@keyframes float-crypto-dot {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg); 
+    opacity: 0.15;
   }
-  
-  .hero-section .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  33% { 
+    transform: translateY(-32px) translateX(12px) rotate(9deg); 
+    opacity: 0.24;
   }
-  
-  /* Increase font weight of header on mobile */
-  .hero-headline {
-    font-weight: 700;
-  }
-  
-  /* Ensure animations still work on mobile but are more subtle */
-  .hero-background {
-    opacity: 0.5;
-  }
-  
-  /* Center the stats grid on mobile */
-  .trust-section .grid {
-    max-width: 280px;
-    margin: 0 auto;
+  66% { 
+    transform: translateY(-8px) translateX(-28px) rotate(-7deg); 
+    opacity: 0.13;
   }
 }
 
-/* Mobile testimonial fixes to prevent overlay issues */
-@media (max-width: 639px) {
-  .testimonial-carousel-container {
-    position: relative;
-    padding: 0 3rem; /* Add padding to accommodate nav buttons */
-    width: 100% !important;
-    max-width: none !important;
-    margin: 0 auto;
-    overflow: hidden;
+@keyframes float-crypto-ltc {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg) scale(1); 
+    opacity: 0.15;
   }
-  
-  .testimonial-slides {
-    display: flex;
-    width: 300%; /* 3 slides total */
-    touch-action: pan-y pinch-zoom;
-  }
-  
-  .carousel-nav-button {
-    width: 2.5rem !important;
-    height: 2.5rem !important;
-    font-size: 0.875rem !important;
-    z-index: 50 !important; /* Ensure buttons are above content */
-    background: rgba(255, 255, 255, 0.95) !important;
-    color: var(--m3-sys-light-primary) !important;
-    border: 2px solid var(--m3-sys-light-primary) !important;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-  }
-  
-  .carousel-nav-button:hover {
-    background: var(--m3-sys-light-primary) !important;
-    color: white !important;
-    transform: translateY(-50%) scale(1.05) !important;
-  }
-  
-  .prev-button {
-    left: 0.5rem !important;
-  }
-  
-  .next-button {
-    right: 0.5rem !important;
-  }
-  
-  .testimonial-card {
-    padding: 2rem 1.5rem 1.5rem 1.5rem !important;
-    margin: 0 !important;
-    min-width: 100% !important; /* Each card takes full viewport width */
-    flex: 0 0 100% !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  
-  .testimonial-text {
-    font-size: 0.9rem !important;
-    line-height: 1.5 !important;
-    margin-bottom: 1.25rem !important;
-    padding-top: 2rem !important; /* Space for quote icon */
-  }
-  
-  .testimonial-quote-icon {
-    font-size: 1.5rem !important;
-    width: 3rem !important;
-    height: 3rem !important;
-    top: 0.75rem !important;
-    left: 0.75rem !important;
-    position: absolute !important;
-  }
-  
-  /* Ensure proper spacing and prevent overlay */
-  .testimonial-author {
-    margin-top: 1rem !important;
-    font-size: 0.9rem !important;
-    font-weight: 600 !important;
-  }
-  
-  .testimonial-author-title {
-    font-size: 0.8rem !important;
-    margin-top: 0.5rem !important;
-    opacity: 0.8;
-  }
-  
-  .star-rating {
-    margin-top: 0.75rem !important;
-  }
-  
-  .star-rating i {
-    font-size: 0.875rem !important;
-    margin-right: 0.125rem !important;
-  }
-  
-  /* Carousel dots mobile styling */
-  .carousel-dots {
-    padding: 1rem 0 0.5rem 0 !important;
-    margin-top: 0.5rem !important;
-  }
-  
-  .carousel-dot {
-    width: 8px !important;
-    height: 8px !important;
-    margin: 0 0.25rem !important;
+  50% { 
+    transform: translateY(-26px) translateX(-14px) rotate(-15deg) scale(1.12); 
+    opacity: 0.26;
   }
 }
 
-/* Additional mobile carousel fixes */
-@media (max-width: 480px) {
-  .testimonial-carousel-container {
-    padding: 0 2.5rem !important;
-    margin: 0 auto !important;
+@keyframes float-crypto-xrp {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg); 
+    opacity: 0.15;
   }
-    .testimonial-card {
-    padding: 1.5rem 1rem 1rem 1rem !important;
-    min-height: 180px !important;
-    min-width: 100% !important; /* Each card takes full viewport width */
-    flex: 0 0 100% !important;
-    width: 100% !important;
+  40% { 
+    transform: translateY(-18px) translateX(26px) rotate(12deg); 
+    opacity: 0.2;
   }
-  
-  .testimonial-text {
-    font-size: 0.85rem !important;
-    line-height: 1.4 !important;
-    padding-top: 1.5rem !important;
-  }
-  
-  .testimonial-quote-icon {
-    font-size: 1.25rem !important;
-    width: 2.5rem !important;
-    height: 2.5rem !important;
-    top: 0.5rem !important;
-    left: 0.5rem !important;
-  }
-  
-  .carousel-nav-button {
-    width: 2rem !important;
-    height: 2rem !important;
-    font-size: 0.75rem !important;
-  }
-  
-  .prev-button {
-    left: 0.25rem !important;
-  }
-  
-  .next-button {
-    right: 0.25rem !important;
+  80% { 
+    transform: translateY(-38px) translateX(-8px) rotate(-5deg); 
+    opacity: 0.17;
   }
 }
 
-/* Ensure testimonial container doesn't break on very small screens */
-.testimonial-carousel-container {
-  min-height: 200px;
-  position: relative;
-}
-
-.testimonial-slides {
-  min-height: 200px;
-  width: 300%; /* Ensure 3 slides total width */
-}
-
-/* Fix potential transform issues */
-.testimonial-card {
-  will-change: transform;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  flex: 0 0 100%; /* Each card takes full viewport width */
-  width: 100%;
-}
-
-/* Remove container padding constraints on mobile for testimonial section */
-@media (max-width: 639px) {
-  #testimonials .container {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+@keyframes float-crypto-doge {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg) scale(1); 
+    opacity: 0.15;
   }
-  
-  #testimonials .text-center {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  30% { 
+    transform: translateY(-24px) translateX(-16px) rotate(-11deg) scale(1.06); 
+    opacity: 0.22;
+  }
+  70% { 
+    transform: translateY(-14px) translateX(32px) rotate(8deg) scale(0.94); 
+    opacity: 0.12;
   }
 }

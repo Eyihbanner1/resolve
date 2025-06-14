@@ -154,75 +154,151 @@ document.addEventListener("DOMContentLoaded", function () {
     animatedElements.forEach((el) => {
       observer.observe(el);
     });
-  }
-
-  // Testimonial Carousel Logic
-  let currentTestimonialSlide = 0;
-  const testimonialSlidesContainer = document.querySelector(
-    ".testimonial-slides"
-  );
-  const testimonialSlides = document.querySelectorAll(
-    ".testimonial-slides .testimonial-card"
-  );
-  const testimonialDotsContainer = document.getElementById(
-    "testimonialCarouselDots"
-  );
-  let testimonialInterval;  window.showTestimonialSlide = function (index) {
-    if (!testimonialSlidesContainer || testimonialSlides.length === 0)
+  }  // Modern Testimonial Carousel Logic
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.testimonial-slide');
+  const track = document.querySelector('.testimonial-track');
+  const paginationContainer = document.querySelector('.carousel-pagination');
+  let dots = [];
+  let autoSlideInterval;  // Initialize carousel
+  function initCarousel() {
+    if (slides.length === 0) {
       return;
-
-    if (index >= testimonialSlides.length) {
-      currentTestimonialSlide = 0;
-    } else if (index < 0) {
-      currentTestimonialSlide = testimonialSlides.length - 1;
-    } else {
-      currentTestimonialSlide = index;
     }
     
-    // Standard transform: each slide is 100% of container width
-    testimonialSlidesContainer.style.transform = `translateX(${-currentTestimonialSlide * 100}%)`;
-    updateTestimonialDots();
-  };
+    // Create pagination dots dynamically
+    createPaginationDots();
+    
+    updateCarousel();
+    startAutoSlide();
+    
+    // Add touch/swipe support for mobile
+    addTouchSupport();
+  }
 
-  window.moveTestimonialSlide = function (n) {
-    showTestimonialSlide(currentTestimonialSlide + n);
-    resetTestimonialInterval();
-  };
-
-  window.currentTestimonialDot = function (n) {
-    showTestimonialSlide(n);
-    resetTestimonialInterval();
-  };
-
-  function updateTestimonialDots() {
-    if (!testimonialDotsContainer) return;
-    testimonialDotsContainer.innerHTML = "";
-    testimonialSlides.forEach((_, index) => {
-      const dot = document.createElement("span");
-      dot.classList.add("carousel-dot");
-      if (index === currentTestimonialSlide) {
-        dot.classList.add("active");
+  // Create pagination dots based on number of slides
+  function createPaginationDots() {
+    if (!paginationContainer) return;
+    
+    // Clear existing dots
+    paginationContainer.innerHTML = '';
+    dots = [];
+    
+    // Create dots for each slide
+    for (let i = 0; i < slides.length; i++) {
+      const dot = document.createElement('span');
+      dot.className = 'dot';
+      if (i === 0) dot.classList.add('active');
+      dot.onclick = () => currentSlide(i + 1);
+      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      paginationContainer.appendChild(dot);
+      dots.push(dot);
+    }
+  }
+  // Update carousel position and active states
+  function updateCarousel() {
+    if (!track) return;
+    
+    // Update track position - each slide moves by 100% of container width
+    const translateX = -currentSlide * 100;
+    track.style.transform = `translateX(${translateX}%)`;
+    
+    // Update slide active states
+    slides.forEach((slide, index) => {
+      slide.classList.toggle('active', index === currentSlide);
+    });
+    
+    // Update dot active states
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentSlide);
+    });
+  }
+  // Change slide function - always loops to the right
+  window.changeSlide = function(direction) {
+    if (direction > 0) {
+      // Going forward (right)
+      currentSlide++;
+      if (currentSlide >= slides.length) {
+        currentSlide = 0;
       }
-      dot.setAttribute("aria-label", "Go to slide " + (index + 1));
-      dot.setAttribute("onclick", "currentTestimonialDot(" + index + ")");
-      testimonialDotsContainer.appendChild(dot);
+    } else {
+      // Going backward - but we'll make it loop right instead
+      currentSlide++;
+      if (currentSlide >= slides.length) {
+        currentSlide = 0;
+      }
+    }
+    
+    updateCarousel();
+    resetAutoSlide();
+  };
+
+  // Go to specific slide
+  window.currentSlide = function(slideIndex) {
+    currentSlide = slideIndex - 1; // Convert to 0-based index
+    updateCarousel();
+    resetAutoSlide();
+  };
+
+  // Auto-slide functionality
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+      changeSlide(1);
+    }, 6000); // Change slide every 6 seconds
+  }
+
+  function resetAutoSlide() {
+    clearInterval(autoSlideInterval);
+    startAutoSlide();
+  }
+
+  // Touch/Swipe support for mobile
+  function addTouchSupport() {
+    if (!track) return;
+    
+    let startX = 0;
+    let isDragging = false;
+    
+    track.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+      track.style.transition = 'none';
+    });
+      track.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      
+      const currentX = e.touches[0].clientX;
+      const diffX = startX - currentX;
+      const currentTransform = -currentSlide * 100;
+      const movePercent = (diffX / track.offsetWidth) * 100;
+      
+      track.style.transform = `translateX(${currentTransform - movePercent}%)`;
+    });
+    
+    track.addEventListener('touchend', (e) => {
+      if (!isDragging) return;
+      
+      isDragging = false;
+      track.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      
+      const endX = e.changedTouches[0].clientX;
+      const diffX = startX - endX;
+      const threshold = 50; // Minimum swipe distance
+      
+      if (Math.abs(diffX) > threshold) {
+        if (diffX > 0) {
+          changeSlide(1); // Swipe left = next slide
+        } else {
+          changeSlide(-1); // Swipe right = previous slide
+        }
+      } else {
+        updateCarousel(); // Snap back to current slide
+      }
     });
   }
 
-  function startTestimonialInterval() {
-    testimonialInterval = setInterval(() => {
-      moveTestimonialSlide(1);
-    }, 5000);
-  }
-
-  function resetTestimonialInterval() {
-    clearInterval(testimonialInterval);
-    startTestimonialInterval();
-  }
-  if (testimonialSlides.length > 0) {
-    showTestimonialSlide(currentTestimonialSlide);
-    startTestimonialInterval();
-  }
+  // Initialize the carousel when DOM is ready
+  initCarousel();
 
   // Scroll to top button logic
   const scrollTopBtn = document.getElementById("scrollTopBtn");
@@ -396,54 +472,7 @@ document.addEventListener("DOMContentLoaded", function () {
     element.style.transitionDelay = `${index * 0.2}s`;
     
     setTimeout(() => {
-      element.style.opacity = '1';
-      element.style.transform = 'translateY(0)';
+      element.style.opacity = '1';      element.style.transform = 'translateY(0)';
     }, 300);
   });
-  
-  // Add touch/swipe support for mobile testimonial carousel
-  if (testimonialSlidesContainer) {
-    let startX = 0;
-    let endX = 0;
-    let isDragging = false;
-    
-    testimonialSlidesContainer.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      isDragging = true;
-      testimonialSlidesContainer.style.transition = 'none';
-    });    testimonialSlidesContainer.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
-      endX = e.touches[0].clientX;
-      const diff = startX - endX;
-      const currentTransform = -currentTestimonialSlide * 100;
-      const movePercent = (diff / testimonialSlidesContainer.offsetWidth) * 100;
-      testimonialSlidesContainer.style.transform = `translateX(${currentTransform - movePercent}%)`;
-    });
-    
-    testimonialSlidesContainer.addEventListener('touchend', (e) => {
-      if (!isDragging) return;
-      isDragging = false;
-      testimonialSlidesContainer.style.transition = 'transform 0.6s var(--m3-motion-easing-emphasized)';
-      
-      const diff = startX - endX;
-      const threshold = 50; // Minimum swipe distance
-      
-      if (Math.abs(diff) > threshold) {
-        if (diff > 0) {
-          // Swiped left (next slide)
-          moveTestimonialSlide(1);        } else {
-          // Swiped right (previous slide)
-          moveTestimonialSlide(-1);
-        }
-      } else {
-        // Snap back to current slide
-        testimonialSlidesContainer.style.transform = `translateX(${-currentTestimonialSlide * 100}%)`;
-      }
-    });
-    
-    // Prevent default touch behavior to avoid conflicts
-    testimonialSlidesContainer.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-    });
-  }
 });
