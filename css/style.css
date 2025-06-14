@@ -1979,3 +1979,29 @@ h2.section-title {
     font-size: 0.85rem;
   }
 }
+
+/* Mobile-specific hero adjustments */
+@media (max-width: 1023px) {
+  .hero-content {
+    text-align: center;
+    padding-right: 0;
+  }
+  
+  .hero-section .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Ensure animations still work on mobile but are more subtle */
+  .hero-background {
+    opacity: 0.5;
+  }
+  
+  /* Center the stats grid on mobile */
+  .trust-section .grid {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}
