@@ -2013,45 +2013,62 @@ h2.section-title {
 @media (max-width: 639px) {
   .testimonial-carousel-container {
     position: relative;
-    padding: 0 3rem; /* Add padding to accommodate nav buttons */
+    padding: 0 2.5rem; /* Add padding to accommodate nav buttons */
+    width: 100% !important;
+    max-width: 100% !important;
   }
   
   .carousel-nav-button {
     width: 2rem;
     height: 2rem;
-    font-size: 0.8rem;
-    z-index: 20; /* Ensure buttons are above content */
+    font-size: 0.75rem;
+    z-index: 30; /* Ensure buttons are above content */    background: rgba(255, 255, 255, 0.9);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
   }
   
   .prev-button {
-    left: 0.5rem;
+    left: 0.25rem;
   }
   
   .next-button {
-    right: 0.5rem;
+    right: 0.25rem;
   }
   
   .testimonial-card {
-    padding: 1.5rem 1rem; /* Reduce padding to prevent text overflow */
-    margin: 0 0.5rem; /* Add margin for better spacing */
+    padding: 1.5rem 1rem !important; /* Reduce padding to prevent text overflow */
+    margin: 0 !important; /* Remove margin that might cause issues */
+    min-width: 100% !important;
   }
   
   .testimonial-text {
-    font-size: 0.9rem; /* Slightly smaller text on mobile */
-    line-height: 1.5;
+    font-size: 0.85rem !important; /* Smaller text on mobile */
+    line-height: 1.4 !important;
+    margin-bottom: 1rem !important;
   }
   
   .testimonial-quote-icon {
-    font-size: 1.5rem; /* Smaller quote icon */
+    font-size: 1.25rem !important; /* Smaller quote icon */
+    margin-bottom: 0.5rem !important;
   }
   
   /* Ensure proper spacing and prevent overlay */
   .testimonial-author {
-    margin-top: 1rem;
-    font-size: 0.9rem;
+    margin-top: 0.75rem !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
   }
   
   .testimonial-author-title {
-    font-size: 0.8rem;
+    font-size: 0.75rem !important;
+    margin-top: 0.25rem !important;
+  }
+  
+  .star-rating {
+    margin-top: 0.5rem !important;
+  }
+  
+  .star-rating i {
+    font-size: 0.8rem !important;
   }
 }
