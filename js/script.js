@@ -168,7 +168,6 @@ document.addEventListener("DOMContentLoaded", function () {
     "testimonialCarouselDots"
   );
   let testimonialInterval;
-
   window.showTestimonialSlide = function (index) {
     if (!testimonialSlidesContainer || testimonialSlides.length === 0)
       return;
@@ -180,8 +179,11 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       currentTestimonialSlide = index;
     }
-    testimonialSlidesContainer.style.transform =
-      "translateX(" + -currentTestimonialSlide * 100 + "%)";
+    
+    // Transform calculation: each slide is 1/3 of the container width
+    // So to show slide N, we need to move -N * (100/3)%
+    const translatePercentage = -currentTestimonialSlide * (100 / 3);
+    testimonialSlidesContainer.style.transform = `translateX(${translatePercentage}%)`;
     updateTestimonialDots();
   };
 
@@ -413,13 +415,12 @@ document.addEventListener("DOMContentLoaded", function () {
       isDragging = true;
       testimonialSlidesContainer.style.transition = 'none';
     });
-    
-    testimonialSlidesContainer.addEventListener('touchmove', (e) => {
+      testimonialSlidesContainer.addEventListener('touchmove', (e) => {
       if (!isDragging) return;
       endX = e.touches[0].clientX;
       const diff = startX - endX;
-      const currentTransform = -currentTestimonialSlide * 100;
-      const movePercent = (diff / testimonialSlidesContainer.offsetWidth) * 100;
+      const currentTransform = -currentTestimonialSlide * (100 / 3);
+      const movePercent = (diff / testimonialSlidesContainer.offsetWidth) * (100 / 3);
       testimonialSlidesContainer.style.transform = `translateX(${currentTransform - movePercent}%)`;
     });
     
@@ -434,14 +435,13 @@ document.addEventListener("DOMContentLoaded", function () {
       if (Math.abs(diff) > threshold) {
         if (diff > 0) {
           // Swiped left (next slide)
-          moveTestimonialSlide(1);
-        } else {
+          moveTestimonialSlide(1);        } else {
           // Swiped right (previous slide)
           moveTestimonialSlide(-1);
         }
       } else {
         // Snap back to current slide
-        testimonialSlidesContainer.style.transform = `translateX(${-currentTestimonialSlide * 100}%)`;
+        testimonialSlidesContainer.style.transform = `translateX(${-currentTestimonialSlide * (100 / 3)}%)`;
       }
     });
     
