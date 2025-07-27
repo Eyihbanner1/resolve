@@ -41,6 +41,17 @@
     />
     <meta name="twitter:image" content="./img/resolve logo.png" />
 
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="theme-color" content="#6200EA" />
+    <meta name="msapplication-TileColor" content="#6200EA" />
+    <link rel="canonical" href="https://resolve.ng" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="./img/resolve.png" as="image" />
+    <link rel="preload" href="css/style.css" as="style" />
+    <link rel="preload" href="js/script.js" as="script" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
     <!-- Note: "Sansation" font is loaded via @font-face in style.css -->
@@ -160,15 +171,47 @@
           <h1
             class="hero-headline text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-[var(--m3-sys-light-on-background)] mb-6 leading-tight"
           >
-            Professional Crypto Trading for 
-            <span class="text-[var(--m3-sys-light-primary)]">Nigeria</span>
+            Unlock the Power of Seamless Trading with 
+            <span class="text-[var(--m3-sys-light-primary)]">Resolve</span>
           </h1>
 
           <!-- Supporting Tagline -->
           <p
             class="hero-subheading text-xl sm:text-2xl lg:text-3xl text-[var(--m3-sys-light-on-surface-variant)] mb-8 font-normal leading-relaxed max-w-3xl mx-auto"
           >
-            Resolve empowers Nigerian businesses and investors to trade large volumes of digital assets with competitive naira rates, deep liquidity, and complete confidentiality.
+            Start and empower your trading journey with Resolve, where individuals, businesses, and investors can trade with confidence, leveraging:
+          </p>
+
+          <!-- Key Features List -->
+          <div class="mb-8 max-w-2xl mx-auto">
+            <ul class="text-lg sm:text-xl text-[var(--m3-sys-light-on-surface-variant)] space-y-3 text-left">
+              <li class="flex items-center">
+                <span class="text-[var(--m3-sys-light-primary)] mr-3">•</span>
+                <strong>Competitive Rates</strong>: Get the best prices for your trades
+              </li>
+              <li class="flex items-center">
+                <span class="text-[var(--m3-sys-light-primary)] mr-3">•</span>
+                <strong>Deep Liquidity</strong>: Access ample market depth for large transactions
+              </li>
+              <li class="flex items-center">
+                <span class="text-[var(--m3-sys-light-primary)] mr-3">•</span>
+                <strong>Complete Confidentiality</strong>: Trade securely and privately, every time
+              </li>
+            </ul>
+          </div>
+
+          <!-- Secondary Tagline -->
+          <p
+            class="text-lg sm:text-xl text-[var(--m3-sys-light-on-surface-variant)] mb-4 font-medium"
+          >
+            Experience the Resolve difference and take your trading to the next level.
+          </p>
+          
+          <!-- Boost tagline -->
+          <p
+            class="text-lg sm:text-xl text-[var(--m3-sys-light-primary)] mb-8 font-semibold"
+          >
+            Boost Your Crypto Game: "Easy & Pro Crypto Trading Solutions"
           </p>
 
           <!-- CTA Buttons -->
@@ -450,7 +493,7 @@
             <h3
               class="m3-title-large text-center text-lg sm:text-xl md:text-2xl"
             >
-              Bank-Grade Security
+              Advanced Security
             </h3>
             <p class="text-center m3-body-large">
               Your funds and digital assets are protected with enterprise-level
@@ -555,51 +598,43 @@
         <div
           class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 text-center stagger-delay"
         >
-          <div class="market-item-card animate-on-scroll">
+          <div class="market-item-card animate-on-scroll" role="button" tabindex="0" aria-label="Bitcoin trading">
             <div class="market-item-icon icon-btc crypto-logo">
               <img src="img/btc.svg" alt="Bitcoin Logo" width="64" height="64" loading="lazy" />
             </div>
             <p class="font-semibold text-sm md:text-base">Bitcoin (BTC)</p>
           </div>
-          <div class="market-item-card animate-on-scroll">
+          <div class="market-item-card animate-on-scroll" role="button" tabindex="0" aria-label="Tether trading">
             <div class="market-item-icon icon-usdt crypto-logo">
               <img src="img/usdt.svg" alt="Tether Logo" width="64" height="64" loading="lazy" />
             </div>
             <p class="font-semibold text-sm md:text-base">Tether (USDT)</p>
           </div>
-          <div class="market-item-card animate-on-scroll">
+          <div class="market-item-card animate-on-scroll" role="button" tabindex="0" aria-label="Ethereum trading">
             <div class="market-item-icon icon-eth crypto-logo">
               <img src="img/ethereum.svg" alt="Ethereum Logo" width="64" height="64" loading="lazy" />
             </div>
             <p class="font-semibold text-sm md:text-base">Ethereum (ETH)</p>
           </div>
-          <div class="market-item-card animate-on-scroll">
-            <div class="market-item-icon icon-ngn crypto-logo">
-              <img src="img/currency-naira.svg" alt="Nigerian Naira Logo" width="64" height="64" loading="lazy" />
-            </div>
-            <p class="font-semibold text-sm md:text-base">
-              Nigerian Naira (NGN)
-            </p>
-          </div>
-          <div class="market-item-card animate-on-scroll">
+          <div class="market-item-card animate-on-scroll" role="button" tabindex="0" aria-label="USD Coin trading">
             <div class="market-item-icon icon-usdc crypto-logo">
               <img src="img/usdc.svg" alt="USD Coin Logo" width="64" height="64" loading="lazy" />
             </div>
             <p class="font-semibold text-sm md:text-base">USD Coin (USDC)</p>
           </div>
-          <div class="market-item-card animate-on-scroll">
+          <div class="market-item-card animate-on-scroll" role="button" tabindex="0" aria-label="Binance Coin trading">
             <div class="market-item-icon icon-bnb crypto-logo">
               <img src="img/bnb.svg" alt="Binance Coin Logo" width="64" height="64" loading="lazy" />
             </div>
             <p class="font-semibold text-sm md:text-base">Binance Coin (BNB)</p>
           </div>
-          <div class="market-item-card animate-on-scroll">
+          <div class="market-item-card animate-on-scroll" role="button" tabindex="0" aria-label="Cardano trading">
             <div class="market-item-icon icon-ada crypto-logo">
               <img src="img/cardano.svg" alt="Cardano Logo" width="64" height="64" loading="lazy" />
             </div>
             <p class="font-semibold text-sm md:text-base">Cardano (ADA)</p>
           </div>
-          <div class="market-item-card animate-on-scroll">
+          <div class="market-item-card animate-on-scroll" role="button" tabindex="0" aria-label="Solana trading">
             <div class="market-item-icon icon-sol crypto-logo">
               <img src="img/solana.svg" alt="Solana Logo" width="64" height="64" loading="lazy" />
             </div>
@@ -635,140 +670,431 @@
           <h2
             class="section-title text-3xl sm:text-4xl md:text-5xl animate-on-scroll"
           >
-            Frequently Asked Questions
+            Frequently Asked Questions (FAQ)
           </h2>
-          <p
-            class="section-subtitle mt-3 md:mt-4 animate-on-scroll"
-            style="transition-delay: 0.2s"
-          >
-            Get answers to common questions about our OTC trading platform.
-          </p>
         </div>
 
         <div class="max-w-4xl mx-auto space-y-4">
-          <div class="faq-item m3-card p-6 animate-on-scroll">
-            <button
-              class="faq-question w-full text-left flex justify-between items-center"
-              aria-expanded="false"
-              aria-controls="faq-answer-1"
-            >
-              <span class="font-semibold text-lg">What is OTC trading?</span>
-              <i
-                class="fas fa-chevron-down transition-transform duration-200"
-              ></i>
-            </button>
-            <div class="faq-answer mt-4 hidden" id="faq-answer-1">
-              <p class="text-[var(--m3-sys-light-on-surface-variant)]">
-                Over-the-counter (OTC) trading allows you to trade large volumes
-                of digital assets directly with other traders without affecting
-                market prices. It's perfect for institutional investors and
-                high-net-worth individuals who need to execute large trades
-                discreetly and efficiently.
-              </p>
-            </div>
-          </div>
-
-          <div class="faq-item m3-card p-6 animate-on-scroll">
-            <button
-              class="faq-question w-full text-left flex justify-between items-center"
-            >
-              <span class="font-semibold text-lg"
-                >What are your trading limits?</span
+          <!-- GENERAL QUESTIONS -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-[var(--m3-sys-light-primary)]">GENERAL QUESTIONS</h3>
+            
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+                aria-expanded="false"
               >
-              <i
-                class="fas fa-chevron-down transition-transform duration-200"
-              ></i>
-            </button>
-            <div class="faq-answer mt-4 hidden">
-              <p class="text-[var(--m3-sys-light-on-surface-variant)]">
-                We accommodate trades from ₦5 million to multi-billion naira
-                transactions. There's no upper limit - our deep liquidity pools
-                can handle even the largest institutional trades. Contact our
-                team for specific requirements and custom solutions.
-              </p>
+                <span class="font-semibold text-lg">What is the Purpose of RESOLVE?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  The platform allows you to buy, sell, store, and transfer cryptocurrencies securely. You can also swap crypto, send funds globally, and track your portfolio in real time.
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div class="faq-item m3-card p-6 animate-on-scroll">
-            <button
-              class="faq-question w-full text-left flex justify-between items-center"
-            >
-              <span class="font-semibold text-lg"
-                >How secure is your platform?</span
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
               >
-              <i
-                class="fas fa-chevron-down transition-transform duration-200"
-              ></i>
-            </button>
-            <div class="faq-answer mt-4 hidden">
-              <p class="text-[var(--m3-sys-light-on-surface-variant)]">
-                We use bank-grade security with multi-signature wallets, cold
-                storage, and advanced encryption. Our platform is regularly
-                audited and complies with international security standards to
-                protect your assets and personal information.
-              </p>
+                <span class="font-semibold text-lg">Is this platform available in my country?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  We support most regions worldwide. However, due to regulatory restrictions, access may be limited in certain countries. Please refer to our supported regions page.
+                </p>
+              </div>
             </div>
           </div>
 
-          <div class="faq-item m3-card p-6 animate-on-scroll">
-            <button
-              class="faq-question w-full text-left flex justify-between items-center"
-            >
-              <span class="font-semibold text-lg"
-                >How fast are withdrawals?</span
+          <!-- TRADING AND TRANSACTIONS -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-[var(--m3-sys-light-primary)]">TRADING AND TRANSACTIONS</h3>
+            
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
               >
-              <i
-                class="fas fa-chevron-down transition-transform duration-200"
-              ></i>
-            </button>
-            <div class="faq-answer mt-4 hidden">
-              <p class="text-[var(--m3-sys-light-on-surface-variant)]">
-                Most settlements are completed within 1-4 hours. Cryptocurrency
-                transfers typically complete within 1 hour, while naira bank
-                transfers may take 1-3 business days depending on your Nigerian
-                bank's processing times and CBN regulations.
-              </p>
+                <span class="font-semibold text-lg">Can I sell my crypto for fiat (like NGN, USD)?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  Yes. Select the "Sell" option, choose your crypto, and enter your payout method (e.g., bank account or wallet). The funds will be sent after confirmation.
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div class="faq-item m3-card p-6 animate-on-scroll">
-            <button
-              class="faq-question w-full text-left flex justify-between items-center"
-            >
-              <span class="font-semibold text-lg">Do you charge any fees?</span>
-              <i
-                class="fas fa-chevron-down transition-transform duration-200"
-              ></i>
-            </button>
-            <div class="faq-answer mt-4 hidden">
-              <p class="text-[var(--m3-sys-light-on-surface-variant)]">
-                Our fee structure is transparent and competitive within the
-                Nigerian market. We charge a small percentage on each
-                transaction, with preferential rates for high-volume clients. No
-                hidden charges - complete transparency in pricing. Contact our
-                team for detailed fee schedules.
-              </p>
-            </div>
-          </div>
-
-          <div class="faq-item m3-card p-6 animate-on-scroll">
-            <button
-              class="faq-question w-full text-left flex justify-between items-center"
-            >
-              <span class="font-semibold text-lg"
-                >Is my personal information safe?</span
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
               >
-              <i
-                class="fas fa-chevron-down transition-transform duration-200"
-              ></i>
-            </button>
-            <div class="faq-answer mt-4 hidden">
-              <p class="text-[var(--m3-sys-light-on-surface-variant)]">
-                Absolutely. We follow strict privacy policies and comply with
-                international data protection regulations. Your personal and
-                trading information is encrypted and stored securely. We never
-                share your data with third parties without your consent.
-              </p>
+                <span class="font-semibold text-lg">What cryptocurrencies are supported?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  We currently process payments through stablecoins USDC and USDT. With plans to roll out more assets.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">What are stablecoins?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  Stablecoins are backed by external assets such as US dollars, gold, or commodities that are traded on exchanges. Different from computer-mined cryptos like Bitcoin, ETH, and DogeCoin.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">What is the minimum trade amount?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  This varies by currency. The minimum is typically equivalent to a few dollars' worth. You'll see the specific minimum on the trade screen.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">How do I receive crypto?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  Go to "Wallet," select the coin, click "Receive," and copy your wallet address. Share it with the sender. Always confirm the right network is used.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">How do I send crypto?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  Go to "Wallet," select the coin, click "Send," paste the recipient's wallet address, enter the amount, and confirm the transaction.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">Can I transfer funds to another user on this platform?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  Yes, you can send crypto to another registered user by using their username or email for instant internal transfers with zero fees.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">What is a wallet address?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  A wallet address is a unique identifier for receiving crypto. Each currency has a different address format. Double-check before sending.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">Do I need to verify my account before I can accept payments?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  The signup process requires that you provide the basic information and business documents required to create your business account.<br><br>
+                  In addition, registered businesses are required to verify their accounts before they can create payment links. However, starter businesses may begin accepting (limited) payments immediately after creating their accounts.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECURITY & SUPPORT -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-[var(--m3-sys-light-primary)]">SECURITY & SUPPORT</h3>
+            
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">How secure is this platform?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  We use end-to-end encryption, two-factor authentication (2FA), and other security protocols to protect your assets.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">What should I do if I suspect unauthorized activity?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  Immediately change your password and contact support. Enable 2FA and avoid clicking on unknown links or emails.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">How can I keep my account safe?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <div class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  <ul class="list-disc pl-6 space-y-2">
+                    <li>Use a strong password</li>
+                    <li>Enable 2FA</li>
+                    <li>Never share your login details</li>
+                    <li>Log out after use</li>
+                    <li>Use official app/website only</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">What is 2FA?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  Two-Factor Authentication (2FA) adds an extra layer of security to your cryptocurrency accounts, making it much harder for unauthorized users to gain access. It requires a second verification method beyond your password, typically a code from an authenticator app or SMS message, to confirm your identity. This significantly reduces the risk of hacking and theft of your digital assets.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- REGULATORY & COMPLIANCE -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-[var(--m3-sys-light-primary)]">REGULATORY & COMPLIANCE</h3>
+            
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">What is KYC/KYB and why is it required?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  KYC (Know Your Customer), KYB (know your business) is a process to verify your identity. It's required to comply with anti-money laundering (AML) regulations and protect users.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">How do I verify my account?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  Upload a valid government-issued ID and a clear selfie. Verification is typically completed within 24 hours.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">Why is my KYC/KYB verification unsuccessful?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <div class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  <p>A number of factors can lead to KYC/KYB verification being unsuccessful. The most common issues are:</p>
+                  <ul class="list-disc pl-6 mt-2 space-y-1">
+                    <li>An issue with your BVN</li>
+                    <li>Upload of blurry documents</li>
+                    <li>Wrong file size</li>
+                    <li>Wrong document selection</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">Do I need to be KYC verified to withdraw?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  Yes, you need to have completed your KYC/KYB verification to initiate withdrawals.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- OTHER QUESTIONS -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-[var(--m3-sys-light-primary)]">Other Questions</h3>
+            
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">What are network/gas fees?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  These are blockchain transaction fees paid to miners/validators. Fees vary depending on network congestion and crypto type.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">Can I recover funds sent to the wrong address?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  Unfortunately, crypto transactions are irreversible. Double-check the wallet address and network before sending.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">Can I generate transaction reports?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  Yes, you can generate transaction reports over a one, three, and six months, timeframe.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">Where can I contact support?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  Use our in-app live chat, email support, or visit the help center for assistance.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item m3-card p-6 animate-on-scroll">
+              <button
+                class="faq-question w-full text-left flex justify-between items-center"
+              >
+                <span class="font-semibold text-lg">Is crypto legal?</span>
+                <i
+                  class="fas fa-chevron-down transition-transform duration-200"
+                ></i>
+              </button>
+              <div class="faq-answer mt-4 hidden">
+                <p class="text-[var(--m3-sys-light-on-surface-variant)]">
+                  Cryptocurrency regulations vary by country. Always check local laws. Our platform complies with applicable regulations in supported regions.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -800,8 +1126,9 @@
         >
           <form
             id="mainContactForm"
-            action="./contact-handler.php"
+            action="mailto:admin@resolve.ng"
             method="POST"
+            enctype="text/plain"
           >
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
@@ -920,7 +1247,7 @@
           <p class="text-sm text-[var(--m3-sys-light-on-surface-variant)] mb-6">
             Subscribe for market insights & updates.
           </p>
-          <form id="newsletterForm" class="flex flex-col sm:flex-row gap-3">
+          <form id="newsletterForm" action="mailto:admin@resolve.ng" method="POST" enctype="text/plain" class="flex flex-col sm:flex-row gap-3">
             <input
               type="email"
               id="newsletterEmail"

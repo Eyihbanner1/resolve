@@ -61,11 +61,27 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
       const formData = new FormData(newsletterForm);
       const email = formData.get("newsletterEmail");
+      
+      // Create newsletter subscription email
+      const subject = "Newsletter Subscription Request";
+      const body = `New newsletter subscription request:
+
+Email: ${email}
+Date: ${new Date().toLocaleDateString()}
+Time: ${new Date().toLocaleTimeString()}
+
+---
+Sent from Resolve Trading Platform Newsletter Form`;
+
+      // Create mailto link
+      const mailtoLink = `mailto:admin@resolve.ng?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
+      
       console.log("Newsletter Subscription:", email);
       showModal(
-        "Thank you for subscribing to the Resolve newsletter, " +
-          email +
-          "!"
+        "Thank you for subscribing to the Resolve newsletter! Your email client should open with the subscription request. Please send the email to complete your subscription."
       );
       newsletterForm.reset();
     });
@@ -78,40 +94,46 @@ document.addEventListener("DOMContentLoaded", function () {
       // Add loading state
       const submitButton = mainContactForm.querySelector('button[type="submit"]');
       const originalText = submitButton.textContent;
-      submitButton.textContent = "Sending...";
+      submitButton.textContent = "Opening Email...";
       submitButton.disabled = true;
       
       // Get form data
       const formData = new FormData(mainContactForm);
       
-      // Send AJAX request
-      fetch('./contact-handler.php', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          showModal(data.message);
-          mainContactForm.reset();
-        } else {
-          showModal('Error: ' + data.message);
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        const name = formData.get("contactName") || "there";
-        showModal(
-          "Thank you, " + name + "! Your message is being processed. " +
-          "If you don't hear back from us within 24 hours, please email us directly at admin@resolve.ng"
-        );
+      // Create email content
+      const name = formData.get("contactName") || "";
+      const email = formData.get("contactEmail") || "";
+      const company = formData.get("contactCompany") || "";
+      const inquiryType = formData.get("contactInquiryType") || "";
+      const message = formData.get("contactMessage") || "";
+      
+      const subject = `Trading Inquiry: ${inquiryType} - ${name}`;
+      const body = `Name: ${name}
+Email: ${email}
+Company: ${company}
+Inquiry Type: ${inquiryType}
+
+Message:
+${message}
+
+---
+Sent from Resolve Trading Platform`;
+
+      // Create mailto link
+      const mailtoLink = `mailto:admin@resolve.ng?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
+      
+      // Show success message
+      setTimeout(() => {
+        showModal(`Thank you, ${name}! Your default email client should now open with your inquiry pre-filled. If it doesn't open automatically, please send your inquiry directly to admin@resolve.ng`);
         mainContactForm.reset();
-      })
-      .finally(() => {
+        
         // Reset button state
         submitButton.textContent = originalText;
         submitButton.disabled = false;
-      });
+      }, 1000);
     });
   }
 
@@ -472,7 +494,106 @@ document.addEventListener("DOMContentLoaded", function () {
     element.style.transitionDelay = `${index * 0.2}s`;
     
     setTimeout(() => {
-      element.style.opacity = '1';      element.style.transform = 'translateY(0)';
+      element.style.opacity = '1';
+      element.style.transform = 'translateY(0)';
     }, 300);
   });
+
+  // === IMAGE OPTIMIZATION ===
+  
+  // Enhanced lazy loading for crypto logos
+  const cryptoLogos = document.querySelectorAll('.crypto-logo img');
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        // Add error handling for missing images
+        img.addEventListener('error', function() {
+          this.style.opacity = '0.5';
+          this.alt = 'Logo unavailable';
+          console.warn(`Failed to load image: ${this.src}`);
+        });
+        
+        // Add load success animation
+        img.addEventListener('load', function() {
+          this.style.animation = 'fadeInImage 0.6s ease forwards';
+        });
+        
+        observer.unobserve(img);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '50px'
+  });
+
+  cryptoLogos.forEach(img => {
+    imageObserver.observe(img);
+  });
+
+  // === ENHANCED FORM VALIDATION ===
+  
+  // Real-time email validation
+  const emailInputs = document.querySelectorAll('input[type="email"]');
+  emailInputs.forEach(input => {
+    input.addEventListener('blur', function() {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (this.value && !emailRegex.test(this.value)) {
+        this.style.borderColor = '#dc3545';
+        this.setAttribute('aria-invalid', 'true');
+      } else {
+        this.style.borderColor = '';
+        this.removeAttribute('aria-invalid');
+      }
+    });
+  });
+
+  // === CRYPTO CARD INTERACTIONS ===
+  
+  // Add click handlers for crypto trading cards
+  const cryptoCards = document.querySelectorAll('.market-item-card[role="button"]');
+  cryptoCards.forEach(card => {
+    card.addEventListener('click', function() {
+      const cryptoName = this.querySelector('p').textContent;
+      // Scroll to contact form
+      const contactSection = document.getElementById('contact-us-section');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+        
+        // Pre-fill inquiry type in contact form
+        setTimeout(() => {
+          const inquirySelect = document.getElementById('contactInquiryType');
+          const messageTextarea = document.getElementById('contactMessage');
+          if (inquirySelect) {
+            inquirySelect.value = 'General Trading Inquiry';
+          }
+          if (messageTextarea && !messageTextarea.value) {
+            messageTextarea.value = `I'm interested in trading ${cryptoName}. Please provide more information about your rates and services.`;
+            messageTextarea.focus();
+          }
+        }, 800);
+      }
+    });
+
+    // Add keyboard accessibility
+    card.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.click();
+      }
+    });
+  });
+
+  // === PERFORMANCE OPTIMIZATIONS ===
+  
+  // Debounced scroll handler for better performance
+  let scrollTimeout;
+  const debouncedScrollHandler = () => {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      // Update scroll-based animations or effects here if needed
+    }, 16); // ~60fps
+  };
+
+  window.addEventListener('scroll', debouncedScrollHandler, { passive: true });
 });

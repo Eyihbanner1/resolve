@@ -2163,3 +2163,112 @@ footer a:hover {
   transform: translateY(-1px);
   box-shadow: var(--glow-primary);
 }
+
+/* === ADDITIONAL UI ENHANCEMENTS === */
+
+/* Enhanced Market Item Crypto Logo Animations */
+.crypto-logo {
+  transition: all 0.4s var(--m3-motion-easing-emphasized);
+  position: relative;
+  overflow: hidden;
+}
+
+.crypto-logo img {
+  transition: all 0.4s var(--m3-motion-easing-emphasized);
+  filter: brightness(1) saturate(1);
+}
+
+.market-item-card:hover .crypto-logo img {
+  filter: brightness(1.1) saturate(1.2);
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Add a subtle glow effect behind crypto logos */
+.crypto-logo::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--m3-sys-light-primary) 0%, transparent 70%);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+  transition: all 0.4s var(--m3-motion-easing-emphasized);
+  z-index: -1;
+}
+
+.market-item-card:hover .crypto-logo::before {
+  opacity: 0.2;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+/* Enhanced Scroll Top Button */
+#scrollTopBtn {
+  backdrop-filter: blur(20px);
+  background: rgba(var(--m3-sys-light-primary-rgb), 0.9) !important;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s var(--m3-motion-easing-emphasized);
+}
+
+#scrollTopBtn:hover {
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: var(--glow-primary), var(--m3-shadow-elevation-3);
+  background: var(--m3-sys-light-primary) !important;
+}
+
+/* Form Input Focus Enhancements */
+.m3-input:focus {
+  border-color: var(--m3-sys-light-primary);
+  box-shadow: 0 0 0 3px rgba(var(--m3-sys-light-primary-rgb), 0.12);
+  transform: scale(1.02);
+}
+
+/* Newsletter Form Enhancement */
+#newsletterForm {
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+/* FAQ Accordion Arrow Animation Enhancement */
+.faq-item[aria-expanded="true"] .fas.fa-chevron-down {
+  transform: rotate(180deg);
+  color: var(--m3-sys-light-primary);
+}
+
+/* Loading States for Images */
+.crypto-logo img {
+  opacity: 0;
+  animation: fadeInImage 0.6s ease forwards;
+}
+
+@keyframes fadeInImage {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Performance: will-change for animated elements */
+.market-item-card,
+.feature-card,
+.crypto-logo img,
+#scrollTopBtn {
+  will-change: transform;
+}
+
+/* Smooth page transitions */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced accessibility - focus indicators */
+.m3-button:focus,
+.m3-input:focus,
+.faq-question:focus {
+  outline: 3px solid var(--m3-sys-light-primary);
+  outline-offset: 2px;
+}
