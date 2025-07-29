@@ -344,52 +344,47 @@ Sent from Resolve Trading Platform`;
     scrollTopBtn.addEventListener("click", function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
-  }  // FAQ Accordion Functionality
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach(item => {
-    const question = item.querySelector('.faq-question');
-    const answer = item.querySelector('.faq-answer');
-    const icon = question.querySelector('i');
+  }  // FAQ Category Accordion Functionality
+  const faqCategoryHeaders = document.querySelectorAll('.faq-category-header');
+  faqCategoryHeaders.forEach(header => {
+    const content = header.nextElementSibling;
+    const icon = header.querySelector('i');
     
-    question.addEventListener('click', (e) => {
+    header.addEventListener('click', (e) => {
       e.preventDefault();
-      const isOpen = !answer.classList.contains('hidden');
+      const isOpen = !content.classList.contains('hidden');
       
-      // Close all other FAQ items
-      faqItems.forEach(otherItem => {
-        if (otherItem !== item) {
-          const otherAnswer = otherItem.querySelector('.faq-answer');
-          const otherIcon = otherItem.querySelector('.faq-question i');
-          const otherQuestion = otherItem.querySelector('.faq-question');
-          otherAnswer.classList.add('hidden');
+      // Close all other FAQ categories
+      faqCategoryHeaders.forEach(otherHeader => {
+        if (otherHeader !== header) {
+          const otherContent = otherHeader.nextElementSibling;
+          const otherIcon = otherHeader.querySelector('i');
+          otherContent.classList.add('hidden');
           otherIcon.classList.remove('fa-chevron-up');
           otherIcon.classList.add('fa-chevron-down');
-          otherItem.classList.remove('active');
-          otherQuestion.setAttribute('aria-expanded', 'false');
+          otherHeader.setAttribute('aria-expanded', 'false');
         }
       });
       
-      // Toggle current item
+      // Toggle current category
       if (isOpen) {
-        answer.classList.add('hidden');
+        content.classList.add('hidden');
         icon.classList.remove('fa-chevron-up');
         icon.classList.add('fa-chevron-down');
-        item.classList.remove('active');
-        question.setAttribute('aria-expanded', 'false');
+        header.setAttribute('aria-expanded', 'false');
       } else {
-        answer.classList.remove('hidden');
+        content.classList.remove('hidden');
         icon.classList.remove('fa-chevron-down');
         icon.classList.add('fa-chevron-up');
-        item.classList.add('active');
-        question.setAttribute('aria-expanded', 'true');
+        header.setAttribute('aria-expanded', 'true');
       }
     });
     
     // Add keyboard support
-    question.addEventListener('keydown', (e) => {
+    header.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        question.click();
+        header.click();
       }
     });
   });

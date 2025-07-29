@@ -2272,3 +2272,41 @@ footer a:hover {
   outline: 3px solid var(--m3-sys-light-primary);
   outline-offset: 2px;
 }
+
+/* === CLEAN HERO SECTION === */
+
+/* Simple hero headline */
+.hero-headline {
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+}
+
+/* Clean hero subheading */
+.hero-subheading {
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  margin-bottom: 2rem;
+}
+
+/* Simple button styling */
+.hero-section a[href="#contact-us-section"] {
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.hero-section a[href="#contact-us-section"]:hover {
+  transform: translateY(-1px);
+}
+
+.hero-section a[class*="border-2"] {
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.hero-section a[class*="border-2"]:hover {
+  transform: translateY(-1px);
+}
