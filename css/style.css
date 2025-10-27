@@ -1717,6 +1717,17 @@ footer a:hover {
   color: var(--m3-sys-light-on-surface);
 }
 
+@media (max-width: 639px) {
+  #features .feature-card h3 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 0;
+    line-height: 1.4;
+  }
+}
+
 /* Enhanced card interaction effects */
 .feature-card:active,
 .m3-card:active {
