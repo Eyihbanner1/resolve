@@ -1773,6 +1773,20 @@ footer a:hover {
   margin-right: auto;
 }
 
+@media (max-width: 480px) {
+  .feature-list {
+    grid-template-columns: 1fr !important;
+    max-width: 22rem;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 1.25rem;
+  }
+
+  #features .feature-card {
+    padding: 1.5rem 1.25rem;
+  }
+}
+
 .trusted-logo {
   font-weight: 600;
   font-size: 1rem;
@@ -1870,6 +1884,13 @@ footer a:hover {
 }
 
 @media (max-width: 639px) {
+  .feature-list {
+    grid-template-columns: 1fr !important;
+    max-width: 24rem;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 1.25rem;
+  }
   #features .feature-card {
     min-height: 12.5rem;
     align-items: center;
@@ -2053,20 +2074,6 @@ footer a:hover {
 
 /* Particle Animations */
 .particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: var(--m3-sys-light-primary);
-  border-radius: 50%;
-  opacity: 0.3;
-  pointer-events: none;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-}
-
-.particle-1 { animation: particle1 35s infinite ease-in-out; }
-.particle-2 { animation: particle2 30s infinite ease-in-out; }
-.particle-3 { animation: particle3 40s infinite ease-in-out; }
 .particle-4 { animation: particle4 32s infinite ease-in-out; }
 .particle-5 { animation: particle5 38s infinite ease-in-out; }
 .particle-6 { animation: particle6 28s infinite ease-in-out; }
